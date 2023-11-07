@@ -1,0 +1,215 @@
+header {
+    position: fixed;                 /* 스크롤 해도 항상 위치 고정함 */
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;                   /* 책 올릴 때 header 위로 올라가는 문제 해결 */
+}
+
+nav {
+    height: 120px;
+}
+
+.nav.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    background-color: #FFF;
+}
+
+.nav-logo {
+    display: flex;
+    margin-left: -1060px;
+    margin-top: -60px;
+    width: 200px;
+    height: 70px;
+}
+
+li {
+    list-style: none;
+}
+
+.nav-list {
+    display: flex;
+    padding: 0;                     /* 내부 여백 제거 */
+}
+
+.nav-list img {
+    width: 80px;
+    height: 80px;
+}
+
+.nav-item {
+    margin-left: 15px;              /* 이미지 사이의 간격 조절 */
+}
+
+hr {
+    height: 3px;
+    background: #41B96F;
+    border: 0;
+    margin-top: 0;
+}
+
+main {
+    margin-top: -10px;
+}
+
+p {
+    display: flex;
+    justify-content: center;
+    margin-top: 180px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: Pretendard;
+}
+
+.id_container {
+    margin-top: 25px;
+}
+
+/*
+.id_container h5 {
+    margin-right: 18%;
+}
+
+.pw_container h5 {
+    margin-right: 17%;
+}
+
+.email_container h5 {
+    margin-right: 28%;
+}
+*/
+
+.id_container,
+.pw_container,
+.email_container {
+    margin-bottom: -5px;
+}
+
+.email_container {
+    /* margin-left: 120px; */
+    margin-left: 140px;
+}
+
+h5 {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-right: 220px;
+    color: #a9a9a9;
+}
+
+.input_container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.id_input {
+    width: 19vw;
+    height: 3vh;
+    outline: none;  /* 클릭 시 테두리 없애기 */
+}
+
+.pw_input {
+    width: 19vw;
+    height: 3vh;
+}
+
+.email_input {
+    width: 9vw;
+    height: 3vh;
+}
+
+/*
+.domain_input {
+    width: 6.3vw;
+    height: 3vh;
+}
+*/
+
+.id_input,
+.pw_input,
+.email_input,
+.domain_input {
+    padding: 10px;
+    margin: 5px;
+    margin-top: -15px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;  /* 클릭 시 테두리 없애기 */
+}
+
+/* 도메인 선택 셀렉트 박스 스타일 */
+/*
+.domain {
+    width: 7.5vw;
+    height: 6vh;
+    margin-top: -20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 0.8rem;
+}
+*/
+
+/* 그림 아이콘 스타일 */
+.icon-container {
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+
+.icon-placeholder {
+    width: 20px;
+    height: 20px;
+    background-image: url('images/select.jpg'); /* 사용자 정의 아이콘 이미지 경로 */
+    background-size: cover;
+}
+
+.input_container.email {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-left: -5px;
+}
+
+.input_container.email > h4 {
+    text-align: center;
+    margin-top: -5px;
+    margin-left: 5px;
+    margin-right: 6px;
+    font-weight: normal;
+    color: #a9a9a9;
+}
+
+.button_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    margin-right: 5px;
+}
+
+button {
+    width: 20.6vw;
+    height: 5vh;
+    background-color: #41B96F;
+    color: #FFF;
+    border-radius: 4px;
+    border: 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.error {
+    display: flex;
+    margin-left: 603px;
+    margin-top: 5px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: red;
+}

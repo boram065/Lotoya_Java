@@ -1,0 +1,210 @@
+header {
+    position: fixed; /* 스크롤 해도 항상 위치 고정함 */
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100; /* 책 올릴 때 header 위로 올라가는 문제 해결 */
+}
+
+nav {
+    height: 120px;
+}
+
+.nav.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    background-color: #FFF;
+}
+
+.nav-logo {
+    display: flex;
+    margin-left: -1060px;
+    margin-top: -60px;
+    width: 200px;
+    height: 70px;
+}
+
+li {
+    list-style: none;
+}
+
+.nav-list {
+    display: flex;
+    padding: 0;                     /* 내부 여백 제거 */
+}
+
+.nav-list img {
+    width: 80px;
+    height: 80px;
+}
+
+.nav-item {
+    margin-left: 15px;              /* 이미지 사이의 간격 조절 */
+}
+
+hr {
+    height: 3px;
+    background: #41B96F;
+    border: 0;
+    margin-top: 0;
+}
+
+main {
+    margin-top: calc(120px + 10px);
+}
+
+.top {
+    margin-top: 190px;
+    margin-left: 40px;
+}
+
+/* 코인 */
+.coin {
+    display: flex;
+    float: right;
+    margin-right: 200px;
+    margin-top: -45px;
+}
+
+.coinImg {
+    position: absolute;
+    width: 3vw;
+    height: 3vw;
+    margin-left: -15px;
+    margin-top: 3px;
+    object-fit: cover;
+}
+
+.money {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 11vw;
+    height: 2vw;
+    margin-top: 10px;
+    border: 0;
+    border-radius: 30px;
+    box-shadow: 1px 2px 2px #bbb;
+}
+
+/* 장바구니 이미지 */
+.basketImg {
+    float: right;
+    width: 4.5vw;
+    height: 8vh;
+    margin-right: 120px;
+    margin-top: -55px;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    margin-top: -30px;
+    margin-left: 300px;
+    column-gap: 70px;
+}
+
+.playerImg {
+    width: 23vw;
+    display: flex;
+    align-items: center;
+    border: 1px solid #000;
+}
+
+.playerImg img {
+    width: 23vw;
+    height: 50vh;
+}
+
+.Container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    display: flex;
+    margin-top: -20px;
+    flex-direction: column;
+}
+
+.name {
+    font-size: 1.3rem;
+}
+
+.coinContainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: -20px;
+    margin-left: 15px;
+}
+
+.coinImg img{
+    width: 3vw;
+    height: 6vh;
+}
+
+.moneyContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -15px;
+    margin-left: 40px;
+    font-size: 1.2rem;
+}
+
+.inforContainer {
+    display: flex;
+    width: 25vw;
+    height: 18vh;
+    border-radius: 20px;
+    background-color: #F5F5F5;
+    margin-top: 20px;
+}
+
+.infor {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.infor h4 {
+    margin-bottom: -10px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    column-gap: 20px;
+}
+
+.btnBasket {
+    width: 20vw;
+    height: 6vh;
+    border: 0;
+    cursor: pointer;
+    background-color: #41B96F;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.wish {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.5vw;
+    height: 6vh;
+    border: 0;
+    cursor: pointer;
+    font-size: 1.5rem;
+    background-color: #CAECD7;
+    color: #6D7885;
+}
+
+.wish i {
+    margin-top: 5px;
+}

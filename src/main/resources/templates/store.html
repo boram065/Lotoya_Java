@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <link th:href="@{/static/css/store.css}" rel="stylesheet">
+    <title>FA 계약</title>
+</head>
+<body>
+
+<header>
+    <nav class="nav container">
+        <a class="nav-logo">
+            <li class="nav-item">
+                <a th:href="@{/main}" class="nav-link">
+                    <img th:src="@{/static/images/logo.jpg}" th:alt="logo">
+                </a>
+            </li>
+        </a>
+
+        <ul class="nav-list">
+            <!-- 승부예측 이미지 -->
+            <li class="nav-item"><a th:href="@{/forecast}" class="nav-link"><img th:src="@{/static/images/vs.jpg}" th:alt="vs"></a></li>
+
+            <!-- 야구장 이미지 -->
+            <li class="nav-item"><a th:href="@{/ground}" class="nav-link"><img th:src="@{/static/images/club.jpg}" th:alt="club"></a></li>
+
+            <!-- FA 예약 이미지 -->
+            <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="@{/static/images/FA.jpg}" th:alt="FA"></a></li>
+
+            <!-- 마이페이지 이미지 -->
+            <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="@{/static/images/mypage.jpg}" th:alt="myPage"></a></li>
+        </ul>
+    </nav>
+
+    <!-- 구분선 -->
+    <hr>
+</header>
+
+<main>
+
+    <div class="top">
+        <!-- 선수단 글씨 이미지 -->
+        <a href="" class="playerteamImg"><img th:src="@{/static/images/playerteam.jpg}" th:alt="playerTeam"></a>
+
+        <!-- 검색창 -->
+        <div class="search">
+            <input type="text" placeholder="찾고 싶은 선수를 검색하세요" class="inputSearch">
+            <img th:src="@{/static/images/search.jpg}" class="searchImg">
+        </div>
+
+        <!-- 코인 표시 -->
+        <div class="coin">
+            <div class="money">
+                <h3>10,000</h3>
+            </div>
+
+            <img th:src="@{/static/images/coin.jpg}" class="coinImg">
+        </div>
+
+        <!-- 장바구니 이미지 -->
+        <img th:src="@{/static/images/basket.jpg}" class="basketImg">
+    </div>
+
+    <div class="main">
+        <!-- 구단, 포지션 선택 -->
+        <div class="check">
+            <div class="team_container">
+                <div class="team_title">
+                    <p>구단</p>
+                    <!-- 구단 밑에 있는 선 -->
+                    <hr>
+                </div>
+
+                <!-- 구단 선택 목록 -->
+                <div class="team">
+                    <div class="Tline_1">
+                        <button id="team_doosan" class="button">
+                            <p>두산</p>
+                        </button>
+
+                        <button id="team_lotte" class="button">
+                            <p>롯데</p>
+                        </button>
+
+                        <button id="team_samsung" class="button">
+                            <p>삼성</p>
+                        </button>
+                    </div>
+
+                    <div class="Tline_2">
+                        <button id="team_kiwoom" class="button">
+                            <p>키움</p>
+                        </button>
+
+                        <button id="team_hanwha" class="button">
+                            <p>한화</p>
+                        </button>
+
+                        <button id="team_kia" class="button">
+                            <p>KIA</p>
+                        </button>
+
+                        <button id="team_kt" class="button">
+                            <p>KT</p>
+                        </button>
+                    </div>
+
+                    <div class="Tline_3">
+                        <button id="team_ssg" class="button">
+                            <p>SSG</p>
+                        </button>
+
+                        <button id="team_lg" class="button">
+                            <p>LG</p>
+                        </button>
+
+                        <button id="team_nc" class="button">
+                            <p>NC</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="position">
+                    <div class="team_title">
+                        <p>포지션</p>
+                        <!-- 포지션 밑에 있는 선 -->
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="Pline_1">
+                    <button id="posi_pitcher" class="button">
+                        <p>투수</p>
+                    </button>
+
+                    <button id="posi_catcher" class="button">
+                        <p>포수</p>
+                    </button>
+                </div>
+
+                <div class="Pline_2">
+                    <button id="posi_infielder" class="button">
+                        <p>내야수</p>
+                    </button>
+
+                    <button id="posi_outfielder" class="button">
+                        <p>외야수</p>
+                    </button>
+                </div>
+
+                <div class="team_title">
+                    <img th:src="@{/static/images/wishlist.jpg}" class="wish">
+                    <!-- 포지션 밑에 있는 선 -->
+                    <hr>
+                </div>
+
+                <button id="wishlist" class="button">
+                    <p>위시리스트</p>
+                </button>
+
+            </div> <!-- team_container -->
+        </div> <!-- check -->
+
+        <div class="playerContainer">
+            <div id="player-container">
+                <th:block th:each="player, idx : ${nameList}">
+                    <div class="player">
+                        <img th:src="${imgList[idx]}" alt="player">
+                    </div>
+                    <div class="bottomName">
+                        <h3 th:text="${player}"></h3>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script type="text/javascript" th:src="@{/static/js/store.js}" th:line="javascript"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+</html>

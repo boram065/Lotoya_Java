@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <link rel="stylesheet" th:href="@{/static/css/login.css}">
+    <title>로그인</title>
+</head>
+<body>
+
+    <header>
+        <nav class="nav container">
+            <a href="" class="nav-logo">
+                <li class="nav-item">
+                    <a th:href="@{main}" class="nav-link">
+                        <img th:src="@{images/logo.jpg}" alt="">
+                    </a>
+                </li>
+            </a>
+
+            <ul class="nav-list">
+                <!-- 승부예측 이미지 -->
+                <li class="nav-item"><a th:href="@{/forecast}" class="nav-link"><img th:src="@{/images/vs.jpg}" alt=""></a></li>
+
+                <!-- 야구장 이미지 -->
+                <li class="nav-item"><a th:href="@{/ground}" class="nav-link"><img th:src="@{/images/club.jpg}" alt=""></a></li>
+
+                <!-- FA 예약 이미지 -->
+                <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="@{/images/FA.jpg}" alt=""></a></li>
+
+                <!-- 마이페이지 이미지 -->
+                <li class="nav-item"><a th:href="@{}" class="nav-link"><img th:src="@{/images/mypage.jpg}" alt=""></a></li>
+              </ul>
+        </nav>
+
+        <!-- 구분선 -->
+        <hr>
+
+    </header>
+
+    <main>
+
+        <p>로그인</p>
+
+        <!-- 아이디 입력창 -->
+        <div class="id_container">
+            <h5 style="margin-left: -50px">아이디</h5>
+            <div class="input_container">
+                <input class="id_input" type="text">
+                <div class="error" id="idErrorMessage" style="visibility: hidden">아이디 틀림 에러 메시지</div>
+            </div>
+        </div>
+
+        <!-- 비밀번호 입력창 -->
+        <div class="pw_container">
+            <h5 style="margin-left: -40px">비밀번호</h5>
+            <div class="input_container">
+                <input class="pw_input" type="password">
+                <div class="error" id="pwErrorMessage" style="visibility: hidden">비밀번호 틀림 에러 메시지</div>
+            </div>
+        </div>
+
+        <!-- 글씨 클릭 시 회원가입 화면으로 이동 -->
+        <h5 class="join"><a href="@{/join}">회원가입하러가기</a></h5>
+
+        <!-- 로그인 버튼 -->
+        <div class="button_container">
+          <button th:onclick="location.href='main.html'">로그인</button>
+        </div>
+
+    </main>
+
+    <script type="text/javascript" th:src="@{/static/js/login.js}" th:line="javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+</html>

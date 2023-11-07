@@ -1,0 +1,154 @@
+header {
+    position: fixed; /* 스크롤 해도 항상 위치 고정함 */
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100; /* 책 올릴 때 header 위로 올라가는 문제 해결 */
+}
+
+nav {
+    height: 120px;
+}
+
+.nav.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    background-color: #FFF;
+}
+
+.nav-logo {
+    display: flex;
+    margin-left: -1060px;
+    margin-top: -60px;
+    width: 200px;
+    height: 70px;
+}
+
+li {
+    list-style: none;
+}
+
+.nav-list {
+    display: flex;
+    padding: 0;                     /* 내부 여백 제거 */
+}
+
+.nav-list img {
+    width: 80px;
+    height: 80px;
+}
+
+.nav-item {
+    margin-left: 15px;              /* 이미지 사이의 간격 조절 */
+}
+
+hr {
+    height: 3px;
+    background: #41B96F;
+    border: 0;
+    margin-top: 0;
+}
+
+main {
+    margin-top: calc(120px + 10px);
+}
+
+.top {
+    margin-top: 140px;
+    margin-left: 30px;
+}
+
+.todayFore {
+    display: flex;
+    justify-content: center;
+    column-gap: 120px;
+    width: 50vw;
+    height: 150vh;
+    border-radius: 90px;
+    margin-left: 25%;
+    background-color: #F5F5F5;
+    padding-top: 70px;
+}
+
+.scoreViewRight, .scoreViewLeft {
+    width: 10vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fore-container{
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    width: 100%;
+    column-gap: 12%;
+}
+
+.ssg-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    height: 18vh;
+    margin-left: 12px;
+}
+
+.doosan-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    height: 18vh;
+}
+
+.imgTeam:nth-child(2n-1) {
+    margin-left: 10%;
+}
+
+.imgTeam:nth-child(2n) {
+    margin-left: 45%;
+}
+
+.doosan{
+    width: 17vw;
+    height: 20vh;
+    margin-top: 10px
+}
+
+.ssg {
+    width: 9vw;
+    height: 18vh;
+}
+
+.scoreShowRight, .scoreShowLeft {
+    width: 10vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    background-color: #FDFDFD;
+    box-shadow: inset 3px 3px 10px #C8C8C8;
+}
+
+.vs {
+    display: flex;
+    margin-top: 5%;
+}
+
+.score {
+    width: 7vw;
+    font-size: 1.3rem;
+    margin-left: 40%;
+    margin-top: -2%;
+}
+
+.scoreViewRight i,
+.scoreViewLeft i {
+    margin-top: -4%;
+    margin-left: 15%;
+    color: #FFC804;
+}

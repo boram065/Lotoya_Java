@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>승부예측</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" th:href="@{/static/css/forecast.css}">
+</head>
+<body>
+
+<header>
+  <nav class="nav container">
+    <a href="" class="nav-logo">
+      <li class="nav-item">
+        <a th:href="@{/main}" class="nav-link">
+          <img th:src="@{/static/images/logo.jpg}" alt="logo">
+        </a>
+      </li>
+    </a>
+
+    <ul class="nav-list">
+      <!-- 승부예측 이미지 -->
+      <li class="nav-item"><a th:href="@{/forecast}" class="nav-link"><img th:src="@{/static/images/vs.jpg}" alt="vs"></a></li>
+
+      <!-- 야구장 이미지 -->
+      <li class="nav-item"><a th:href="@{/ground}" class="nav-link"><img th:src="@{/static/images/club.jpg}" alt="club"></a></li>
+
+      <!-- FA 예약 이미지 -->
+      <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="@{/static/images/FA.jpg}" alt="FA"></a></li>
+
+      <!-- 마이페이지 이미지 -->
+      <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="@{/static/images/mypage.jpg}" alt="mypage"></a></li>
+    </ul>
+  </nav>
+
+  <!-- 구분선 -->
+  <hr>
+
+</header>
+
+<main>
+
+  <div class="top">
+    <h1>승부예측</h1>
+  </div>
+
+  <div class="todayFore">
+    <div class="fore-container">
+      <div class="scoreViewLeft">
+        <div class="ssg-logo"><img th:src="@{/static/images/SSG.png}" class="ssg"></div>
+        <div class="scoreShowRight">
+          <div class="score">100</div>
+          <i class="bi bi-plus"></i>
+        </div>
+      </div>
+
+      <div class="vs">
+        <h1>VS</h1>
+      </div>
+
+      <div class="scoreViewRight">
+        <div class="doosan-logo"><img th:src="@{/static/images/두산.png}" class="doosan"></div>
+        <div class="scoreShowLeft">
+          <div class="score">100</div>
+          <i class="bi bi-plus"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<script type="text/javascript" th:src="@{/static/js/forecast.js}" th:line="javascript"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+</html>

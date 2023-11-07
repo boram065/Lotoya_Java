@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <link rel="stylesheet" th:href="@{/static/css/login.css}">
+    <title>회원가입</title>
+
+</head>
+<body>
+
+    <header>
+        <nav class="nav container">
+            <a href="" class="nav-logo">
+                <li class="nav-item">
+                    <a th:href="@{main}" class="nav-link">
+                        <img th:src="@{images/logo.jpg}" alt="">
+                    </a>
+                </li>
+            </a>
+
+            <ul class="nav-list">
+                <!-- 승부예측 이미지 -->
+                <li class="nav-item"><a th:href="@{/forecast}" class="nav-link"><img th:src="@{/images/vs.jpg}" alt=""></a></li>
+
+                <!-- 야구장 이미지 -->
+                <li class="nav-item"><a th:href="@{/ground}" class="nav-link"><img th:src="@{/images/club.jpg}" alt=""></a></li>
+
+                <!-- FA 예약 이미지 -->
+                <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="@{/images/FA.jpg}" alt=""></a></li>
+
+                <!-- 마이페이지 이미지 -->
+                <li class="nav-item"><a th:href="@{}" class="nav-link"><img th:src="@{/images/mypage.jpg}" alt=""></a></li>
+            </ul>
+        </nav>
+
+        <!-- 구분선 -->
+        <hr>
+
+    </header>
+
+    <main>
+
+        <p>회원가입</p>
+
+        <!-- 아이디 입력창 -->
+        <form th:action="@{/join}" th:method="post">
+            <div class="id_container">
+                <h5 style="margin-left: -50px">아이디</h5>
+                <div class="input_container">
+                    <input class="id_input" type="text" name="id_input">
+                </div>
+            </div>
+
+            <!-- 비밀번호 입력창 -->
+            <div class="pw_container">
+                <h5 style="margin-left: -40px">비밀번호</h5>
+                <div class="input_container">
+                    <input class="pw_input" type="password" name="pw_input">
+                </div>
+            </div>
+
+            <!-- 이메일 입력창 -->
+            <div class="email_container">
+                <h5 style="margin-left: -190px">이메일</h5>
+                <div class="input_container email">
+                    <input class="email_input" type="text" name="email_input">
+<!--                    <h4>@</h4>-->
+<!--                    <input class="domain_input" type="text">-->
+
+<!--                    <select class="domain">-->
+<!--                        <option value="" disabled selected hidden></option>-->
+<!--                        <option value="gmail.com">gmail.com</option>-->
+<!--                        <option value="naver.com">naver.com</option>-->
+<!--                        <option value="hotmail.com">hotmail.com</option>-->
+<!--                        <option value="self">직접입력</option>-->
+<!--                    </select>-->
+                    <!-- 그림 아이콘 표시 -->
+                    <div class="icon-container">
+                        <div class="icon-placeholder"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="error" id="ErrorMessage">에러 메시지</div>
+
+        <!-- 회원가입 버튼 -->
+        <div class="join_container">
+            <div class="button_container">
+                <!-- 버튼 클릭 시 로그인 화면으로 이동 -->
+                <button type="button">회원가입</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script type="text/javascript" th:src="@{/static/js/join.js}" th:line="javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+</html>
