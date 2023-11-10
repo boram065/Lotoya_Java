@@ -1,4 +1,4 @@
-package com.example.Lotoya_Java.info;
+package com.example.Java_Lotoya.info;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
