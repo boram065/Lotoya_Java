@@ -1,4 +1,4 @@
-package com.example.Java_Lotoya.info;
+package com.example.Lotoya_Java.info;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,8 +21,6 @@ public class SamsungInfo {
         ArrayList<String> birthList = new ArrayList<>();
         ArrayList<String> positionList = new ArrayList<>();
         ArrayList<String> heightList = new ArrayList<>();
-
-//        JsonArray playersArray = new JsonArray();
 
         try {
             for(int i = 0; i < pitcher2.length; i++) {
@@ -59,15 +57,6 @@ public class SamsungInfo {
                 playerHeight = content.substring(content.indexOf("키/몸무게 : ") + 8, content.indexOf("경력")).trim();
                 heightList.add(playerHeight);
 
-//                // 각 선수 정보를 JSON 객체로 생성하여 배열에 추가
-//                JsonObject playerObject = new JsonObject();
-//                playerObject.addProperty("playerName", nameList.get(i));
-//                playerObject.addProperty("playerNumber", numList.get(i));
-//                playerObject.addProperty("playerPosition", positionList.get(i));
-//                playerObject.addProperty("playerBirth", birthList.get(i));
-//                playerObject.addProperty("playerHeight", heightList.get(i));
-//                playersArray.add(playerObject);
-
                 System.out.println("선수명 : " + nameList.get(i));
                 System.out.println("등번호 : " + numList.get(i));
                 System.out.println("포지션 : " + positionList.get(i));
@@ -80,10 +69,5 @@ public class SamsungInfo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        // 모든 선수 정보를 JSON 배열로 묶어서 출력
-//        JsonObject result = new JsonObject();
-//        result.add("players", playersArray);
-//        String jsonData = new Gson().toJson(result);
-//        System.out.println(jsonData);
     }
 }
