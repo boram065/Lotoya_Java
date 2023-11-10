@@ -1,22 +1,21 @@
 package com.example.Lotoya_Java.controller;
 
-import com.example.Lotoya_Java.Player;
+import com.example.Lotoya_Java.BoramPlayer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
 @Controller
 @RequiredArgsConstructor
 public class buyPlayerController {
-    private final Player player;
+    private final BoramPlayer boramPlayer;
 
     @RequestMapping("/buyPlayer")
     public String buyPlayer(Model model) {
-        ArrayList<String> name = player.getPlayerName();
+        ArrayList<String> name = boramPlayer.getPlayerName();
 
         model.addAttribute("playerName", name);
         model.addAttribute("imagePath1", "/static/images/logo.jpg");
