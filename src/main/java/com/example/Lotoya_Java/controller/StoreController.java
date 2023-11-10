@@ -1,6 +1,6 @@
 package com.example.Lotoya_Java.controller;
 
-import com.example.Lotoya_Java.Player;
+import com.example.Lotoya_Java.BoramPlayer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,14 +14,14 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 public class StoreController {
-    private final Player player;
+    private final BoramPlayer boramPlayer;
 
     @RequestMapping("/store")
         public String store(Model model) {
         // 이미 주입받은 com.example.Lotoya_Java.Player 객체를 활용
-        ArrayList<String> imgList = player.getPlayerImg();
-        ArrayList<String> numList = player.getPlayerNumber();
-        ArrayList<String> nameList = player.getPlayerName();
+        ArrayList<String> imgList = boramPlayer.getPlayerImg();
+        ArrayList<String> numList = boramPlayer.getPlayerNumber();
+        ArrayList<String> nameList = boramPlayer.getPlayerName();
 
         // 모델에 데이터 추가
         model.addAttribute("imgList", imgList);
@@ -46,9 +46,9 @@ public class StoreController {
     public Map<String, Object> storeData() {
         Map<String, Object> data = new HashMap<>();
         // 이미 주입받은 com.example.Lotoya_Java.Player 객체를 활용
-        ArrayList<String> imgList = player.getPlayerImg();
-        ArrayList<String> numList = player.getPlayerNumber();
-        ArrayList<String> nameList = player.getPlayerName();
+        ArrayList<String> imgList = boramPlayer.getPlayerImg();
+        ArrayList<String> numList = boramPlayer.getPlayerNumber();
+        ArrayList<String> nameList = boramPlayer.getPlayerName();
 
         data.put("imgList", imgList);
         data.put("nameList", nameList);

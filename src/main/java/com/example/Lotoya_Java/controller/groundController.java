@@ -1,16 +1,16 @@
 package com.example.Lotoya_Java.controller;
 
-import com.example.Lotoya_Java.Player;
+import com.example.Lotoya_Java.BoramPlayer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class groundController {
-    private final Player player;
+    private final BoramPlayer boramPlayer;
 
-    public groundController(Player player) {
-        this.player = player;
+    public groundController(BoramPlayer boramPlayer) {
+        this.boramPlayer = boramPlayer;
     }
 
     @RequestMapping("/ground")

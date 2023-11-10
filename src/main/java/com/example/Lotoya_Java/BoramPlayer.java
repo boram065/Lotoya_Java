@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
-public class Player {
+public class BoramPlayer {
     private ArrayList<String> playerImg;
     private ArrayList<String> playerName;
     private ArrayList<String> playerNumber;
@@ -13,7 +13,7 @@ public class Player {
     private ArrayList<String> playerPosition;
     private ArrayList<String> playerHeight;
 
-    public Player(ArrayList<String> playerImg, ArrayList<String> playerName, ArrayList<String> playerNumber, ArrayList<String> playerBirth, ArrayList<String> playerPosition, ArrayList<String> playerHeight) {
+    public BoramPlayer(ArrayList<String> playerImg, ArrayList<String> playerName, ArrayList<String> playerNumber, ArrayList<String> playerBirth, ArrayList<String> playerPosition, ArrayList<String> playerHeight) {
         this.playerImg = playerImg;
         this.playerName = playerName;
         this.playerNumber = playerNumber;
