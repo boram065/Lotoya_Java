@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.*;
 
@@ -28,9 +29,29 @@ public class WebSecurityConfig {
                                     .requestMatchers("/join").permitAll()
                                     .anyRequest().authenticated()
                     );
+            http
+                    .formLogin(form -> form
+                            .loginPage("/login")
+                            .defaultSuccessUrl("/")
+                            .usernameParameter("email")
+                            .failureUrl("/users/login/error")
+                            .permitAll());
+            http
+                    .logout((logout) -> logout
+                            .logoutRequestMatcher(new AntPathRequestMatcher("/login"))
+                            .logoutSuccessUrl("/")
+                            .permitAll());
+
             return http.build();
         }
 
+
+
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 //    @Bean
 //    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //
@@ -47,11 +68,5 @@ public class WebSecurityConfig {
 //
 //        return http.build();
 //    }
-
-
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
 }
