@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
-    <link rel="stylesheet" th:href="@{/static/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/join.css}">
     <title>회원가입</title>
 
 </head>
@@ -29,8 +29,6 @@
                 <!-- FA 예약 이미지 -->
                 <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="@{/images/FA.jpg}" alt=""></a></li>
 
-                <!-- 마이페이지 이미지 -->
-                <li class="nav-item"><a th:href="@{}" class="nav-link"><img th:src="@{/images/mypage.jpg}" alt=""></a></li>
             </ul>
         </nav>
 
@@ -96,7 +94,7 @@
 
     </main>
 
-    <script type="text/javascript" th:src="@{/static/js/join.js}" th:line="javascript"></script>
+    <script type="text/javascript" th:src="@{/js/join.js}" th:line="javascript"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
