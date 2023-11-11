@@ -65,32 +65,24 @@ public class SSGInfo {
                 playerImg = img.attr("src");
                 imgList.add(playerImg);
 
-                for (Element row : tr) {
-                    Element content = row.select("th").first();
-                    Element dataCell = row.select("td").first();
+                playerBirth = tr.select("th:contains(생년월일) + td").text();
+                birthList.add(playerBirth);
 
-                    if(content.text().equals("생년월일")) {
-                        playerBirth = dataCell.text();
-                        birthList.add(playerBirth);
-                    }
+                playerHeight = tr.select("th:contains(신장) + td").text();
+                heightList.add(playerHeight);
 
-                    if(content.text().equals("신장")) {
-                        playerHeight = dataCell.text();
-                    }
+                playerWeight = tr.select("th:contains(체중) + td").text();
+                weightList.add(playerWeight);
 
-                    if(content.text().equals("체중")) {
-                        playerWeight = dataCell.text();
-                        String heightWeight = playerHeight + " / " + playerWeight;
-                        heightList.add(heightWeight);
-                    }
-                }
+                String heightWeight = playerHeight + " / " + playerWeight;
+                heightList.add(heightWeight);
 
-                System.out.println("이미지 링크 : " + imgList.get(i));
-                System.out.println("선수명 : " + nameList.get(i));
-                System.out.println("등번호 : " + numList.get(i));
-                System.out.println("포지션 : " + positionList.get(i));
-                System.out.println("생년월일 : " + birthList.get(i));
-                System.out.println("키/몸무게 : " + heightList.get(i));
+                System.out.println("이미지 링크: " + imgList.get(i));
+                System.out.println("선수명: " + nameList.get(i));
+                System.out.println("등번호: " + numList.get(i));
+                System.out.println("생년월일: " + birthList.get(i));
+                System.out.println("포지션: " + positionList.get(i));
+                System.out.println("신장/체중: " + heightList.get(i));
                 System.out.println();
             }
 

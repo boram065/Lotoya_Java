@@ -3,12 +3,11 @@ package com.example.Lotoya_Java.info;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class KIAInfo {
+public class KTInfo {
     public static ArrayList<String> imgList = new ArrayList<>();
     public static ArrayList<String> numList = new ArrayList<>();
     public static ArrayList<String> nameList = new ArrayList<>();
@@ -17,14 +16,15 @@ public class KIAInfo {
     public static ArrayList<String> heightList = new ArrayList<>();
 
     public static void main(String[] args) {
-        String pitcher1 = "https://tigers.co.kr/players/pitcher/";
-        String pitcher2[] = {"67604", "53609"};
-        String pitcherImg = "https://tigers.co.kr/players/pitcher";
+        String pitcher1 = "https://www.ktwiz.co.kr/player/pitcher/detail?pcode=";
+        String pitcher2[] = {"53006"};
+        String imgLink = "https://www.ktwiz.co.kr/player/pitcher";
 
         try {
-            for(int i = 0; i < pitcher2.length; i++) {
+            for (int i = 0; i < pitcher2.length; i++) {
                 Document doc = Jsoup.connect(pitcher1 + pitcher2[i]).get();
-                Element div = doc.select("div.plyr_view01In").first();
+                Element article = doc.select("article.player_info_content").first();
+                Element dl = article.select("div dl.player_info").first();
 
                 String playerImg = "";
                 String playerName = "";
@@ -33,27 +33,36 @@ public class KIAInfo {
                 String playerPosition = "";
                 String playerHeight = "";
 
-                playerPosition = div.select("p").text();
-                positionList.add(playerPosition);
-
-                Element name = div.select("h5").first();
-                playerName = name.ownText();
-                nameList.add(playerName);
-
-                Element number = div.select("h5 strong").first();
-                playerNumber = number.text();
+                Element dt = dl.select("dt").first();
+                String text = dt.text();
+                playerNumber = text.replaceAll("\\D", "");
                 numList.add(playerNumber);
 
-                playerBirth = div.select("dl dt:contains(생년월일) + dd").text();
+                playerName = dt.ownText();
+                nameList.add(playerName);
+
+                Element span = dl.select("span.position").first();
+                String number = span.text();
+                int index = number.indexOf("(");
+                playerPosition = number.substring(0, index);
+                positionList.add(playerPosition);
+
+                // 생년월일, 신장/체중
+                Element dd = dl.select("dd.info_list_wrap").first();
+
+                Element birth = dd.select("dl dt:contains(생년월일) + dd").first();
+                playerBirth = birth.text();
                 birthList.add(playerBirth);
 
-                playerHeight = div.select("dl dt:contains(신장/체중) + dd").text();
+                Element body = dd.select("dl dt:contains(체격) + dd").first();
+                playerHeight = body.text();
                 heightList.add(playerHeight);
 
-                Document imgDoc = Jsoup.connect(pitcherImg).get();
-                Element ul = imgDoc.select("ul.clear").first();
-                Element img = ul.select("img[alt=playerName]").first();
-                playerImg = img.attr("src");
+                // 이미지
+                Document imgDoc = Jsoup.connect(imgLink).get();
+                Element box = imgDoc.select(".article").first();
+                Element imgDiv = box.select(".tit_img").first();
+                playerImg = imgDiv.attr("src");
                 imgList.add(playerImg);
 
                 System.out.println("이미지 링크: " + imgList.get(i));
