@@ -15,14 +15,11 @@ public class buyPlayerController {
 
     @RequestMapping("/buyPlayer")
     public String buyPlayer(Model model) {
-        ArrayList<String> name = boramPlayer.getPlayerName();
 
-        model.addAttribute("playerName", name);
         model.addAttribute("imagePath1", "/static/images/logo.jpg");
         model.addAttribute("imagePath2", "/static/images/vs.jpg");
         model.addAttribute("imagePath3", "/static/images/club.jpg");
         model.addAttribute("imagePath4", "/static/images/FA.jpg");
-        model.addAttribute("imagePath5", "/static/images/mypage.jpg");
         model.addAttribute("imagePath8", "/static/images/coin.jpg");
         model.addAttribute("imagePath9", "/static/images/basket.jpg");
         return "buyPlayer";

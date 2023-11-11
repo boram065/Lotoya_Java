@@ -15,7 +15,6 @@ public class loginController {
         model.addAttribute("imagePath2", "/static/images/vs.jpg");
         model.addAttribute("imagePath3", "/static/images/club.jpg");
         model.addAttribute("imagePath4", "/static/images/FA.jpg");
-        model.addAttribute("imagePath5", "/static/images/mypage.jpg");
 
         return "login";
     }
