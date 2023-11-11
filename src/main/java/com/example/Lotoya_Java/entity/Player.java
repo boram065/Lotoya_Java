@@ -1,9 +1,9 @@
 package com.example.Lotoya_Java.entity;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 
 @Entity
 @Getter
