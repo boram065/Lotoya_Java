@@ -8,7 +8,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class KIAInfo {
+public class KiwoomInfo {
     public static ArrayList<String> imgList = new ArrayList<>();
     public static ArrayList<String> numList = new ArrayList<>();
     public static ArrayList<String> nameList = new ArrayList<>();
@@ -17,14 +17,14 @@ public class KIAInfo {
     public static ArrayList<String> heightList = new ArrayList<>();
 
     public static void main(String[] args) {
-        String pitcher1 = "https://tigers.co.kr/players/pitcher/";
-        String pitcher2[] = {"67604", "53609"};
-        String pitcherImg = "https://tigers.co.kr/players/pitcher";
+        String pitcher1 = "https://www.heroesbaseball.co.kr/players/pitcher/view.do?num=";
+        String pitcher2[] = {"448"};
 
         try {
-            for(int i = 0; i < pitcher2.length; i++) {
+            for (int i = 0; i < pitcher2.length; i++) {
                 Document doc = Jsoup.connect(pitcher1 + pitcher2[i]).get();
-                Element div = doc.selectFirst(".plyr_view01In");
+                Element div = doc.select(".playerInfo").first();
+                Element n = div.select(".summary").first();
 
                 String playerImg = "";
                 String playerName = "";
@@ -33,25 +33,36 @@ public class KIAInfo {
                 String playerPosition = "";
                 String playerHeight = "";
 
-                playerPosition = div.select("p").text();
-                positionList.add(playerPosition);
-
-                Element name = div.select("h5").first();
-                playerName = name.ownText();
-                nameList.add(playerName);
-
-                Element number = div.select("strong").first();
-                playerNumber = number.text();
+                // 등번호
+                String num = n.select("em").text();
+                int index = num.indexOf(".");
+                playerNumber = num.substring(index);
                 numList.add(playerNumber);
 
-                playerBirth = div.select("dt:contains(생년월일) + dd").text();
+                // 이름
+                playerName = n.selectFirst("span").text();
+                nameList.add(playerName);
+
+                Element table = n.select("table.profile").first();
+                Elements tr = table.select("tr");
+
+                // 포지션
+                playerPosition = tr.select("th:contains(포지션) + td").text();
+                positionList.add(playerPosition);
+
+                // 생년월일
+                playerBirth = tr.select("th:contains(생년월일) + td").text();
                 birthList.add(playerBirth);
 
-                playerHeight = div.select("dt:contains(신장/체중) + dd").text();
+                // 키 몸무게
+                playerHeight = tr.select("th:contains(키 / 몸무게) + td").text();
                 heightList.add(playerHeight);
 
-                Element img = doc.selectFirst(".plyrImg img");
-                playerImg = img.attr("src");
+                // 이미지
+                String imgLink = "https://www.heroesbaseball.co.kr/players/pitcher/list.do";
+                Document imgDoc = Jsoup.connect(imgLink).get();
+                Element ul = imgDoc.select(".playerList").first();
+                playerImg = ul.attr("href");
                 imgList.add(playerImg);
 
                 System.out.println("이미지 링크: " + imgList.get(i));
