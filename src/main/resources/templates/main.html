@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
@@ -12,24 +12,22 @@
     <nav class="nav container">
       <a href="" class="nav-logo">
         <li class="nav-item">
-          <a href="main.html" class="nav-link">
-            <img src="images/logo.jpg" alt="">
+          <a th:href="@{/main}" class="nav-link">
+            <img th:src="@{/static/images/logo.jpg}" alt="logo">
           </a>
         </li>
       </a>
 
       <ul class="nav-list">
         <!-- 승부예측 이미지 -->
-        <li class="nav-item"><a href="forecast.html" class="nav-link"><img src="images/vs.jpg" alt=""></a></li>
+        <li class="nav-item"><a th:href="@{/forecast}" class="nav-link"><img th:src="@{/static/images/vs.jpg}" alt="vs"></a></li>
 
         <!-- 야구장 이미지 -->
-        <li class="nav-item"><a href="ground.html" class="nav-link"><img src="images/club.jpg" alt=""></a></li>
+        <li class="nav-item"><a th:href="@{/ground}" class="nav-link"><img th:src="@{/static/images/club.jpg}" alt="club"></a></li>
 
         <!-- FA 예약 이미지 -->
-        <li class="nav-item"><a href="store.html" class="nav-link"><img src="images/FA.jpg" alt=""></a></li>
+        <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="@{/static/images/FA.jpg}" alt="FA"></a></li>
 
-        <!-- 마이페이지 이미지 -->
-        <li class="nav-item"><a href="" class="nav-link"><img src="images/mypage.jpg" alt=""></a></li>
       </ul>
     </nav>
 
@@ -41,11 +39,11 @@
   <main>
 
     <div class="slide slide_wrap">
-      <div class="slide_item item1"><img src="images/back.jpg" alt="" /></div>
-      <div class="slide_item item2"><img src="images/coin.jpg" alt="" /></div>
-      <div class="slide_item item3"><img src="images/search.jpg" alt="" /></div>
-      <div class="slide_item item4"><img src="images/vs.jpg" alt="" /></div>
-      <div class="slide_item item5"><img src="images/mypage.jpg" alt="" /></div>
+      <div class="slide_item item1"><img th:src="@{/images/back.jpg}" alt="" /></div>
+      <div class="slide_item item2"><img th:src="@{/images/coin.jpg}" alt="" /></div>
+      <div class="slide_item item3"><img th:src="@{/images/search.jpg}" alt="" /></div>
+      <div class="slide_item item4"><img th:src="@{/images/vs.jpg}" alt="" /></div>
+      <div class="slide_item item5"><img th:src="@{/images/mypage.jpg}" alt="" /></div>
 
       <!-- 화살표 -->
       <div class="slide_prev_button slide_button">
@@ -70,7 +68,8 @@
 
   </main>
 
-  <script src="/static/js/main.js"></script>
+  <script type="text/javascript" th:src="@{/static/js/main.js}" th:line="javascript"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
 </html>
