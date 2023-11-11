@@ -1,15 +1,12 @@
 package com.example.Lotoya_Java.service;
 
-import com.example.Lotoya_Java.dto.UserRequest;
+import com.example.Lotoya_Java.dto.UserDto;
 import com.example.Lotoya_Java.entity.User;
 import com.example.Lotoya_Java.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -18,12 +15,28 @@ public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public Long save(UserRequest dto) {
-        return userRepository.save(User.builder()
-                .email(dto.getEmail())
-                .password(bCryptPasswordEncoder.encode(dto.getPassword()))
-                .build()).getId();
+    public User saveUser(User user){
+        validateDuplicateUser(user);
+
+        return userRepository.save(user);
     }
+
+    private void validateDuplicateUser(User user){
+        User findUser = userRepository.findByEmail(user.getEmail());
+        if(findUser != null){
+            throw new IllegalStateException("이미 가입된 회원입니다.");
+        }
+    }
+
+    public static User createUser(UserDto userDto, PasswordEncoder passwordEncoder){
+        User user = User.builder()
+                .email(userDto.getEmail())
+                .password(passwordEncoder.encode(userDto.getPassword()))
+                .build();
+        return user;
+    }
+
+
 
 //    public List<User> getAllUser(){
 //        return userRepository.findAll();
