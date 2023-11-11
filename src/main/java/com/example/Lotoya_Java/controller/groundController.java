@@ -19,7 +19,6 @@ public class groundController {
         model.addAttribute("imagePath2", "/static/images/vs.jpg");
         model.addAttribute("imagePath3", "/static/images/club.jpg");
         model.addAttribute("imagePath4", "/static/images/FA.jpg");
-        model.addAttribute("imagePath5", "/static/images/mypage.jpg");
         model.addAttribute("imagePath6", "/static/images/playerteam.jpg");
         model.addAttribute("imagePath7", "/static/images/search.jpg");
         model.addAttribute("imagePath8", "/static/images/coin.jpg");

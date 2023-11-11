@@ -1,5 +1,4 @@
 // 아이디 input 요소와 에러 메시지 요소를 가져옵니다.
-var idInput = document.querySelector('.id_input');
 var pwInput = document.querySelector('.pw_input');
 var emailInput = document.querySelector('.email_input');
 var domainInput = document.querySelector('.domain_input');
@@ -17,12 +16,7 @@ joinButton.addEventListener('click', function(event) {
 
     var hasError = false;
 
-    // 입력 상태를 확인하고 에러 메시지를 출력합니다.
-    if (idInput.value.trim() === '') {
-        errorMessage.textContent = '아이디를 입력하세요';
-        hasError = true;
-
-    } else if (pwInput.value.trim() === '') {
+    if (pwInput.value.trim() === '') {
         errorMessage.textContent = '비밀번호를 입력하세요';
         hasError = true;
 
