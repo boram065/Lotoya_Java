@@ -18,15 +18,6 @@ public class StoreController {
 
     @RequestMapping("/store")
         public String store(Model model) {
-        // 이미 주입받은 com.example.Lotoya_Java.Player 객체를 활용
-        ArrayList<String> imgList = boramPlayer.getPlayerImg();
-        ArrayList<String> numList = boramPlayer.getPlayerNumber();
-        ArrayList<String> nameList = boramPlayer.getPlayerName();
-
-        // 모델에 데이터 추가
-        model.addAttribute("imgList", imgList);
-        model.addAttribute("numList", numList);
-        model.addAttribute("nameList", nameList);
         model.addAttribute("imagePath1", "/static/images/logo.jpg");
         model.addAttribute("imagePath2", "/static/images/vs.jpg");
         model.addAttribute("imagePath3", "/static/images/club.jpg");
@@ -39,21 +30,5 @@ public class StoreController {
         model.addAttribute("imagePath10", "/static/images/wishlist.jpg");
 
         return "store";
-    }
-
-    @RequestMapping("/store-data")
-    @ResponseBody
-    public Map<String, Object> storeData() {
-        Map<String, Object> data = new HashMap<>();
-        // 이미 주입받은 com.example.Lotoya_Java.Player 객체를 활용
-        ArrayList<String> imgList = boramPlayer.getPlayerImg();
-        ArrayList<String> numList = boramPlayer.getPlayerNumber();
-        ArrayList<String> nameList = boramPlayer.getPlayerName();
-
-        data.put("imgList", imgList);
-        data.put("nameList", nameList);
-        data.put("numList", numList);
-
-        return data;
     }
 }
