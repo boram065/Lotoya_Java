@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@RequestMapping("/join")
 @Controller
 public class UserController{
 
@@ -22,30 +21,30 @@ public class UserController{
     @GetMapping(value = "/new")
     public String login(Model model){
         model.addAttribute("userDto", new UserDto());
-        return "user/join";
+        return "join";
     }
     @PostMapping(value = "new")
     public String login(@Valid UserDto userDto, BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()){
-            return "user/join";
+            return "join";
         }try{
             User user = userService.createUser(userDto, passwordEncoder);
             userService.saveUser(user);
-            return "user/login";
+            return "login";
         }catch (IllegalStateException e){
             model.addAttribute("errorMessage", e.getMessage());
-            return "user/join";
+            return "join";
         }
     }
 
     @GetMapping(value = "/login")
     public String loginUser(){
-        return "/user/login";
+        return "login";
     }
 
     @GetMapping(value = "/login/error")
     public String loginError(Model model){
         model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요.");
-        return "/user/login";
+        return "login";
     }
 }
