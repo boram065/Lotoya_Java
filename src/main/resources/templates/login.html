@@ -45,7 +45,7 @@
             <h5 style="margin-left: -50px">이메일</h5>
             <div class="input_container">
                 <input class="email_input" type="text">
-                <div class="error" id="idErrorMessage" style="visibility: hidden">아이디 틀림 에러 메시지</div>
+                <div class="error" id="idErrorMessage" style="visibility: hidden">이메일 틀림 에러 메시지</div>
             </div>
         </div>
 
@@ -63,12 +63,12 @@
 
         <!-- 로그인 버튼 -->
         <div class="button_container">
-          <button th:onclick="location.href='main.html'">로그인</button>
+          <button>로그인</button>
         </div>
 
     </main>
 
-    <script type="text/javascript" th:src="@{/static/js/login.js}" th:line="javascript"></script>
+    <script type="text/javascript" th:src="@{/js/login.js}" th:line="javascript"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>

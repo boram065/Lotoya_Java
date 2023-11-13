@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>승부예측</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" th:href="@{/static/css/forecast.css}">
+  <link rel="stylesheet" th:href="@{/css/forecast.css}">
 </head>
 <body>
 
@@ -13,20 +13,20 @@
     <a href="" class="nav-logo">
       <li class="nav-item">
         <a th:href="@{/main}" class="nav-link">
-          <img th:src="@{/static/images/logo.jpg}" alt="logo">
+          <img th:src="@{/images/logo.jpg}" alt="logo">
         </a>
       </li>
     </a>
 
     <ul class="nav-list">
       <!-- 승부예측 이미지 -->
-      <li class="nav-item"><a th:href="@{/forecast}" class="nav-link"><img th:src="@{/static/images/vs.jpg}" alt="vs"></a></li>
+      <li class="nav-item"><a th:href="@{/forecast}" class="nav-link"><img th:src="@{/images/vs.jpg}" alt=""></a></li>
 
       <!-- 야구장 이미지 -->
-      <li class="nav-item"><a th:href="@{/ground}" class="nav-link"><img th:src="@{/static/images/club.jpg}" alt="club"></a></li>
+      <li class="nav-item"><a th:href="@{/ground}" class="nav-link"><img th:src="@{/images/club.jpg}" alt=""></a></li>
 
       <!-- FA 예약 이미지 -->
-      <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="@{/static/images/FA.jpg}" alt="FA"></a></li>
+      <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="@{/images/FA.jpg}" alt=""></a></li>
 
     </ul>
   </nav>
@@ -45,31 +45,203 @@
   <div class="todayFore">
     <div class="fore-container">
       <div class="scoreViewLeft">
-        <div class="ssg-logo"><img th:src="@{/static/images/SSG.png}" class="ssg"></div>
+        <div class="ssg-logo"><img th:src="@{/images/SSG.png}" class="ssg"></div>
         <div class="scoreShowRight">
-          <div class="score">100</div>
-          <i class="bi bi-plus"></i>
+          <div class="score"><p>0</p></div>
+          <div class="controll">
+            <i class="bi bi-dash"></i>
+            <i class="bi bi-plus"></i>
+          </div>
         </div>
       </div>
 
-      <div class="vs">
-        <h1>VS</h1>
+      <div class="scoreTable">
+        <div class="num">
+          <h2>0</h2>
+        </div>
+
+        <div class="vs">
+          <h1>VS</h1>
+        </div>
+
+        <div class="num">
+          <h2>0</h2>
+        </div>
       </div>
 
       <div class="scoreViewRight">
-        <div class="doosan-logo"><img th:src="@{/static/images/두산.png}" class="doosan"></div>
+        <div class="doosan-logo"><img th:src="@{/images/두산.png}" class="doosan"></div>
         <div class="scoreShowLeft">
-          <div class="score">100</div>
-          <i class="bi bi-plus"></i>
+          <div class="score"><p>0</p></div>
+          <div class="controll">
+            <i class="bi bi-dash"></i>
+            <i class="bi bi-plus"></i>
+          </div>
         </div>
       </div>
     </div>
 
+    <div class="fore-container">
+      <div class="scoreViewLeft">
+        <div class="lotte-logo"><img th:src="@{/images/롯데.png}" class="lotte"></div>
+        <div class="scoreShowRight">
+          <div class="score"><p>0</p></div>
+          <div class="controll">
+            <i class="bi bi-dash"></i>
+            <i class="bi bi-plus"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="scoreTable">
+        <div class="num">
+          <h2>0</h2>
+        </div>
+
+        <div class="vs">
+          <h1>VS</h1>
+        </div>
+
+        <div class="num">
+          <h2>0</h2>
+        </div>
+      </div>
+
+      <div class="scoreViewRight">
+        <div class="samsung-logo"><img th:src="@{/images/삼성.png}" class="samsung"></div>
+        <div class="scoreShowLeft">
+          <div class="score"><p>0</p></div>
+          <div class="controll">
+            <i class="bi bi-dash"></i>
+            <i class="bi bi-plus"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fore-container">
+      <div class="scoreViewLeft">
+        <div class="kia-logo"><img th:src="@{/images/기아.png}" class="kia"></div>
+        <div class="scoreShowRight">
+          <div class="score"><p>0</p></div>
+          <div class="controll">
+            <i class="bi bi-dash"></i>
+            <i class="bi bi-plus"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="scoreTable">
+        <div class="num">
+          <h2>0</h2>
+        </div>
+
+        <div class="vs">
+          <h1>VS</h1>
+        </div>
+
+        <div class="num">
+          <h2>0</h2>
+        </div>
+      </div>
+
+      <div class="scoreViewRight">
+        <div class="kiwoom-logo"><img th:src="@{/images/키움.png}" class="kiwoom"></div>
+        <div class="scoreShowLeft">
+          <div class="score"><p>0</p></div>
+          <div class="controll">
+            <i class="bi bi-dash"></i>
+            <i class="bi bi-plus"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fore-container">
+      <div class="scoreViewLeft">
+        <div class="hanwha-logo"><img th:src="@{/images/한화.png}" class="hanwha"></div>
+        <div class="scoreShowRight">
+          <div class="score"><p>0</p></div>
+          <div class="controll">
+            <i class="bi bi-dash"></i>
+            <i class="bi bi-plus"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="scoreTable">
+        <div class="num">
+          <h2>0</h2>
+        </div>
+
+        <div class="vs">
+          <h1>VS</h1>
+        </div>
+
+        <div class="num">
+          <h2>0</h2>
+        </div>
+      </div>
+
+      <div class="scoreViewRight">
+        <div class="kt-logo"><img th:src="@{/images/KT.png}" class="kt"></div>
+        <div class="scoreShowLeft">
+          <div class="score"><p>0</p></div>
+          <div class="controll">
+            <i class="bi bi-dash"></i>
+            <i class="bi bi-plus"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fore-container">
+      <div class="scoreViewLeft">
+        <div class="lg-logo"><img th:src="@{/images/LG.png}" class="lg"></div>
+        <div class="scoreShowRight">
+          <div class="score"><p>0</p></div>
+          <div class="controll">
+            <i class="bi bi-dash"></i>
+            <i class="bi bi-plus"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="scoreTable">
+        <div class="num">
+          <h2>0</h2>
+        </div>
+
+        <div class="vs">
+          <h1>VS</h1>
+        </div>
+
+        <div class="num">
+          <h2>0</h2>
+        </div>
+      </div>
+
+      <div class="scoreViewRight">
+        <div class="nc-logo"><img th:src="@{/images/NC.png}" class="nc"></div>
+        <div class="scoreShowLeft">
+          <div class="score"><p>0</p></div>
+          <div class="controll">
+            <i class="bi bi-dash"></i>
+            <i class="bi bi-plus"></i>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div class="gogo">
+    <button class="ok">예측 완료</button>
+    <button class="replay">예측 다시하기</button>
+  </div>>
 
 </main>
 
-<script type="text/javascript" th:src="@{/static/js/forecast.js}" th:line="javascript"></script>
+<script type="text/javascript" th:src="@{/js/forecast.js}" th:line="javascript"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>

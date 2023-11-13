@@ -101,7 +101,7 @@ h5 {
 }
 
 .join {
-    margin-top: 8px;
+    margin-top: 30px;
     font-size: 0.7rem;
     color: #41B96F;
     text-decoration: underline;
@@ -130,4 +130,12 @@ button {
     border: 0;
     font-size: 0.9rem;
     font-weight: bold;
+}
+
+.error {
+    display: flex;
+    margin-right: 11.7%;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: red;
 }

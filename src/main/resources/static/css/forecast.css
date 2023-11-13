@@ -19,9 +19,8 @@ nav {
 }
 
 .nav-logo {
+    position: absolute;
     display: flex;
-    margin-left: -1060px;
-    margin-top: -60px;
     width: 200px;
     height: 70px;
 }
@@ -63,13 +62,14 @@ main {
 .todayFore {
     display: flex;
     justify-content: center;
-    column-gap: 120px;
+    flex-direction: column;
+    column-gap: 130px;
+    row-gap: 5%;
     width: 50vw;
-    height: 150vh;
+    height: 160vh;
     border-radius: 90px;
     margin-left: 25%;
     background-color: #F5F5F5;
-    padding-top: 70px;
 }
 
 .scoreViewRight, .scoreViewLeft {
@@ -87,7 +87,11 @@ main {
     column-gap: 12%;
 }
 
-.ssg-logo {
+.ssg-logo,
+.lotte-logo,
+.kia-logo,
+.hanwha-logo,
+.lg-logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,7 +100,11 @@ main {
     margin-left: 12px;
 }
 
-.doosan-logo {
+.doosan-logo,
+.samsung-logo,
+.kiwoom-logo,
+.kt-logo,
+.nc-logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,15 +120,38 @@ main {
     margin-left: 45%;
 }
 
-.doosan{
+.doosan,
+.samsung,
+.kiwoom,
+.kt,
+.nc {
     width: 17vw;
     height: 20vh;
     margin-top: 10px
 }
 
-.ssg {
+.nc {
+    width: 7vw;
+    height: 15vh;
+}
+
+.kt,
+.nc {
+    margin-top: -4px;
+}
+
+.ssg,
+.lotte,
+.kia,
+.hanwha,
+.lg {
     width: 9vw;
     height: 18vh;
+}
+
+.lotte {
+    width: 16vw;
+    height: 25vh;
 }
 
 .scoreShowRight, .scoreShowLeft {
@@ -140,15 +171,54 @@ main {
 }
 
 .score {
+    display: flex;
+    justify-content: center;
     width: 7vw;
-    font-size: 1.3rem;
-    margin-left: 40%;
     margin-top: -2%;
 }
 
-.scoreViewRight i,
-.scoreViewLeft i {
-    margin-top: -4%;
-    margin-left: 15%;
+.score > p {
+   font-size: 1.3rem;
+}
+
+.scoreViewRight .bi-plus,
+.scoreViewLeft .bi-plus {
     color: #FFC804;
+}
+
+.scoreViewRight .bi-dash,
+.scoreViewLeft .bi-dash {
+    color: #FFC804;
+}
+
+.controll {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    column-gap: 85%;
+}
+
+.gogo {
+    display: flex;
+    justify-content: center;
+    margin: 3%;
+    column-gap: 5%;
+}
+
+.ok,
+.replay {
+    width: 20vw;
+    height: 7vh;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    color: #FFF;
+    border: 0;
+    background-color: #41B96F;
+}
+
+.scoreTable {
+    display: flex;
+    column-gap: 50%;
+    justify-content: center;
+    align-items: center;
 }

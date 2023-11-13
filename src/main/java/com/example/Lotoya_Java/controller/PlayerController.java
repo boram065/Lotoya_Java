@@ -1,7 +1,6 @@
 package com.example.Lotoya_Java.controller;
 
 import com.example.Lotoya_Java.dto.PlayerViewResponse;
-import com.example.Lotoya_Java.repository.PlayerRepository;
 import com.example.Lotoya_Java.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/plyaers")
+@RequestMapping("/players")
 public class PlayerController {
 
     private final PlayerService playerService;
@@ -29,7 +28,5 @@ public class PlayerController {
                 .map(PlayerViewResponse::new)
                 .toList();
         return ResponseEntity.ok().body(players);
-
-
     }
 }

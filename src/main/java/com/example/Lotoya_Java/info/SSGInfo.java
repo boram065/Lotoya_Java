@@ -9,13 +9,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class SSGInfo {
-    public static ArrayList<String> imgList;
-    public static ArrayList<String> numList;
-    public static ArrayList<String> nameList;
-    public static ArrayList<String> birthList;
-    public static ArrayList<String> positionList;
-    public static ArrayList<String> heightList;
-    public static ArrayList<String> weightList;
+    public static ArrayList<String> imgList = new ArrayList<>();
+    public static ArrayList<String> numList = new ArrayList<>();
+    public static ArrayList<String> nameList = new ArrayList<>();
+    public static ArrayList<String> birthList = new ArrayList<>();
+    public static ArrayList<String> positionList = new ArrayList<>();
+    public static ArrayList<String> heightList = new ArrayList<>();
+    public static ArrayList<String> weightList = new ArrayList<>();
 
     public static void main(String[] args) {
         String player1 = "https://www.ssglanders.com/players/";
@@ -24,14 +24,6 @@ public class SSGInfo {
                             "419", "589", "640", "527", "601", "591", "611", "60", "557", "630",
                             "258", "699", "638", "590", "645", "542", "683", "571", "683", "571",
                             "465", "259"};
-
-        ArrayList<String> imgList = new ArrayList<>();
-        ArrayList<String> numList = new ArrayList<>();
-        ArrayList<String> nameList = new ArrayList<>();
-        ArrayList<String> birthList = new ArrayList<>();
-        ArrayList<String> positionList = new ArrayList<>();
-        ArrayList<String> heightList = new ArrayList<>();
-        ArrayList<String> weightList = new ArrayList<>();
 
         try {
             for (int i = 0; i < player2.length; i++) {

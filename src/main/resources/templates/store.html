@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
-    <link th:href="@{/static/css/store.css}" rel="stylesheet">
+    <link th:href="@{/css/store.css}" rel="stylesheet">
     <title>FA 계약</title>
 </head>
 <body>
@@ -13,20 +13,20 @@
         <a class="nav-logo">
             <li class="nav-item">
                 <a th:href="@{/main}" class="nav-link">
-                    <img th:src="@{/static/images/logo.jpg}" th:alt="logo">
+                    <img th:src="@{/images/logo.jpg}" th:alt="logo">
                 </a>
             </li>
         </a>
 
         <ul class="nav-list">
             <!-- 승부예측 이미지 -->
-            <li class="nav-item"><a th:href="@{/forecast}" class="nav-link"><img th:src="@{/static/images/vs.jpg}" alt="vs"></a></li>
+            <li class="nav-item"><a th:href="@{/forecast}" class="nav-link"><img th:src="@{/images/vs.jpg}" alt=""></a></li>
 
             <!-- 야구장 이미지 -->
-            <li class="nav-item"><a th:href="@{/ground}" class="nav-link"><img th:src="@{/static/images/club.jpg}" alt="club"></a></li>
+            <li class="nav-item"><a th:href="@{/ground}" class="nav-link"><img th:src="@{/images/club.jpg}" alt=""></a></li>
 
             <!-- FA 예약 이미지 -->
-            <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="@{/static/images/FA.jpg}" alt="FA"></a></li>
+            <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="@{/images/FA.jpg}" alt=""></a></li>
 
         </ul>
     </nav>
@@ -39,12 +39,12 @@
 
     <div class="top">
         <!-- 선수단 글씨 이미지 -->
-        <a href="" class="playerteamImg"><img th:src="@{/static/images/playerteam.jpg}" th:alt="playerTeam"></a>
+        <a href="" class="playerteamImg"><img th:src="@{/images/playerteam.jpg}" th:alt="playerTeam"></a>
 
         <!-- 검색창 -->
         <div class="search">
             <input type="text" placeholder="찾고 싶은 선수를 검색하세요" class="inputSearch">
-            <img th:src="@{/static/images/search.jpg}" class="searchImg">
+            <img th:src="@{/images/search.jpg}" class="searchImg">
         </div>
 
         <!-- 코인 표시 -->
@@ -53,11 +53,11 @@
                 <h3>10,000</h3>
             </div>
 
-            <img th:src="@{/static/images/coin.jpg}" class="coinImg">
+            <img th:src="@{/images/coin.jpg}" class="coinImg">
         </div>
 
         <!-- 장바구니 이미지 -->
-        <img th:src="@{/static/images/basket.jpg}" class="basketImg">
+        <img th:src="@{/images/basket.jpg}" class="basketImg">
     </div>
 
     <div class="main">
@@ -77,10 +77,6 @@
                             <p>두산</p>
                         </button>
 
-                        <button id="team_lotte" class="button">
-                            <p>롯데</p>
-                        </button>
-
                         <button id="team_samsung" class="button">
                             <p>삼성</p>
                         </button>
@@ -89,10 +85,6 @@
                     <div class="Tline_2">
                         <button id="team_kiwoom" class="button">
                             <p>키움</p>
-                        </button>
-
-                        <button id="team_hanwha" class="button">
-                            <p>한화</p>
                         </button>
 
                         <button id="team_kia" class="button">
@@ -107,10 +99,6 @@
                     <div class="Tline_3">
                         <button id="team_ssg" class="button">
                             <p>SSG</p>
-                        </button>
-
-                        <button id="team_lg" class="button">
-                            <p>LG</p>
                         </button>
 
                         <button id="team_nc" class="button">
@@ -148,7 +136,7 @@
                 </div>
 
                 <div class="team_title">
-                    <img th:src="@{/static/images/wishlist.jpg}" class="wish">
+                    <img th:src="@{/images/wishlist.jpg}" class="wish">
                     <!-- 포지션 밑에 있는 선 -->
                     <hr>
                 </div>
@@ -160,23 +148,23 @@
             </div> <!-- team_container -->
         </div> <!-- check -->
 
-        <div class="playerContainer">
-            <div id="boramPlayer-container">
-                <th:block th:each="player, idx : ${nameList}">
-                    <div class="boramPlayer">
-                        <img th:src="${imgList[idx]}" alt="player">
-                    </div>
-                    <div class="bottomName">
-                        <h3 th:text="${player}"></h3>
-                    </div>
-                </th:block>
-            </div>
-        </div>
+<!--        <div class="playerContainer">-->
+<!--            <div id="boramPlayer-container">-->
+<!--                <th:block th:each="player, idx : ${nameList}">-->
+<!--                    <div class="boramPlayer">-->
+<!--                        <img th:src="${imgList[idx]}" alt="player">-->
+<!--                    </div>-->
+<!--                    <div class="bottomName">-->
+<!--                        <h3 th:text="${player}"></h3>-->
+<!--                    </div>-->
+<!--                </th:block>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 
 </main>
 
-<script type="text/javascript" th:src="@{/static/js/store.js}" th:line="javascript"></script>
+<script type="text/javascript" th:src="@{/js/store.js}" th:line="javascript"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>

@@ -24,5 +24,8 @@ public class PlayerService {
         return playerRepository.findById(playerId).orElse(null);
     }
 
+    public void savePlayer(Player player) {
+        playerRepository.save(player);
+    }
 
 }
