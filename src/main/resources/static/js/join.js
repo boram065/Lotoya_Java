@@ -11,9 +11,10 @@ errorMessage.style.visibility = 'hidden';
 // 회원가입 버튼 요소를 가져옵니다.
 var joinButton = document.querySelector('.join_container button');
 
+/*
 // 회원가입 버튼 클릭 시 이벤트를 처리합니다.
 joinButton.addEventListener('click', function(event) {
-
+    debugger;
     var hasError = false;
 
     if (pwInput.value.trim() === '') {
@@ -27,13 +28,14 @@ joinButton.addEventListener('click', function(event) {
 
     // id, pw, email을 다 입력했을 때 로그인 화면으로 넘어가기
     // 그렇지 않으면 에러메시지를 보여주고 페이지 이동이 되지 않기
-    if(hasError == false) {
-        window.location.href = 'login.html';
-    } else {
+    if(hasError) {
         errorMessage.style.visibility = 'visible';
         event.preventDefault();
     }
+
+    return true;
 });
+*/
 
 // 도메인 직접 입력 or domain option 선택
 var domain = document.querySelector('.domain')
