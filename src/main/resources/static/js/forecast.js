@@ -4,54 +4,103 @@ document.addEventListener("DOMContentLoaded", function() {
     var ok = document.querySelector('.ok');
     var replay = document.querySelector('.replay');
     var containers = document.querySelectorAll(".fore-container");
+    var right = document.querySelectorAll(".scoreViewRight");
+    var left = document.querySelectorAll(".scoreViewLeft");
+    var num = document.querySelectorAll('.num h2');
 
     plusBtns.forEach(function(btn) {
         btn.addEventListener('click', function() {
-            var scoreElement = btn.parentElement.previousElementSibling.querySelector("p");
-            var score = parseInt(scoreElement.textContent);
-            scoreElement.textContent = (score + 100).toString();
+            var scores = btn.parentElement.previousElementSibling.querySelector("p");
+            var score = parseInt(scores.textContent);
+            scores.textContent = (score + 100).toString();
         });
     });
 
     minusBtns.forEach(function(btn) {
         btn.addEventListener('click', function() {
-            var scoreElement = btn.parentElement.previousElementSibling.querySelector("p");
-            var score = parseInt(scoreElement.textContent);
+            var scores = btn.parentElement.previousElementSibling.querySelector("p");
+            var score = parseInt(scores.textContent);
             if (score >= 100) {
-                scoreElement.textContent = (score - 100).toString();
+                scores.textContent = (score - 100).toString();
             } else {
-                scoreElement.textContent = "0";
+                scores.textContent = "0";
             }
         });
     });
 
-    // 야구팀 랜덤으로 돌리기
-    function shuffle(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+     // 야구팀 랜덤으로 돌리기
+     function shuffleLogos() {
+        var imgSources = [
+            "/images/기아.png",
+            "/images/두산.png",
+            "/images/롯데.png",
+            "/images/삼성.png",
+            "/images/키움.png",
+            "/images/한화.png",
+            "/images/NC.png",
+            "/images/SSG.png",
+            "/images/LG.png",
+            "/images/KT.png"
+        ];
+
+        var teamNames = ["kia", "doosan", "lotte", "samsung", "kiwoom", "hanwha", "nc", "ssg", "lg", "kt"];
+
+        var images = document.querySelectorAll('.scoreViewLeft img, .scoreViewRight img');
+        var usedIndexes = new Set();
+
+        function getRandomIndex() {
+            var randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * teamNames.length);
+            } while (usedIndexes.has(randomIndex));
+            usedIndexes.add(randomIndex);
+            return randomIndex;
         }
-    }
+
+        images.forEach(img => {
+            var randomIndex = getRandomIndex();
+            var teamName = teamNames[randomIndex];
+
+            // 기존 클래스명 삭제
+            var existingClass = img.className;
+            img.classList.remove(existingClass);
+            // 새로운 클래스이름 넣기
+            img.classList.add(teamName);
+
+            img.setAttribute('src', imgSources[randomIndex]);
+            img.classList.remove(img.classList.item(1));
+
+            // 부모 div의 클래스 변경
+            var parentDiv = img.closest('.logo');
+            var parentClasses = Array.from(parentDiv.classList);
+            parentClasses.forEach(className => {
+                parentDiv.classList.remove(className);
+            });
+            parentDiv.classList.add('logo');
+            parentDiv.classList.add(teamName + '-logo');
+        });
+     }
 
     replay.addEventListener('click', function() {
-        var num = document.querySelectorAll('.num h2');
+        shuffleLogos();
+
+        var scores = document.querySelectorAll('.score p');
+        scores.forEach(function(score) {
+            score.textContent = "0";
+        });
+
         num.forEach(function(num) {
             num.textContent = "0";
         });
 
-        var containerArray = Array.from(containers);
-        shuffle(containerArray);
-
-        containerArray.forEach(function(container, index) {
-            container.style.order = index + 1;
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     ok.addEventListener('click', function() {
-        var num = document.querySelectorAll('.num h2');
         num.forEach(function(num) {
           var randomNum = Math.floor(Math.random() * 10);
           num.textContent = randomNum.toString();
         });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 });

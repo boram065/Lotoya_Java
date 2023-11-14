@@ -1,19 +1,15 @@
 package com.example.Lotoya_Java.controller;
 
-import com.example.Lotoya_Java.dto.UserDto;
 import com.example.Lotoya_Java.entity.User;
 import com.example.Lotoya_Java.repository.UserRepository;
 import com.example.Lotoya_Java.service.UserService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@RequestMapping("/join")
 @Controller
 public class UserController{
 
@@ -21,22 +17,28 @@ public class UserController{
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @GetMapping(value = "/new")
-    public String login(Model model){
-        model.addAttribute("userDto", new UserDto());
-        return "user/join";
+    @GetMapping("/join")
+    public String showJoinForm(Model model){
+        model.addAttribute("user", new User());
+        return "join";
     }
-    @PostMapping(value = "new")
-    public String login(@Valid UserDto userDto, BindingResult bindingResult, Model model){
-        if (bindingResult.hasErrors()){
-            return "user/join";
-        }try{
-            User user = userService.createUser(userDto, passwordEncoder);
-            userService.saveUser(user);
-            return "user/login";
-        }catch (IllegalStateException e){
-            model.addAttribute("errorMessage", e.getMessage());
-            return "user/join";
+
+    @PostMapping("/join")
+    public String processJoin(@ModelAttribute User user){
+        userService.createUser(user);
+        return "redirect:/login";
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam("email") String email, @RequestParam("password") String password, Model model){
+        User user = userService.loginUser(email, password);
+
+        if(user != null){
+            model.addAttribute("loggedInUser", user);
+            return "redirect:/main";
+        }else{
+            model.addAttribute("error", "존재하지 않는 유저입니다.");
+            return "/login";
         }
     }
 
