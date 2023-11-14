@@ -4,10 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-<<<<<<< HEAD
-=======
 import lombok.Setter;
->>>>>>> 9123af325493a6574989b41649c52aeee8043310
 
 @Entity
 @Setter

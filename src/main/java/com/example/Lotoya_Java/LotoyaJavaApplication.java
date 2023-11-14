@@ -8,5 +8,4 @@ public class LotoyaJavaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LotoyaJavaApplication.class, args);
 	}
-
 }
