@@ -40,11 +40,20 @@
 
         <p>로그인</p>
 
+        <!-- 에러 메세지 -->
+        <script th:inline="javascript">
+            var errorMessage = [[${error}]];
+
+            if (errorMessage) {
+                alert(errorMessage);
+            }
+        </script>
         <!-- 이메일 입력창 -->
+        <form th:action="@{/login}" method="post">
         <div class="email_container">
             <h5 style="margin-left: -50px">이메일</h5>
             <div class="input_container">
-                <input class="email_input" type="text">
+                <input class="email_input" type="text" th:name="email">
                 <div class="error" id="idErrorMessage" style="visibility: hidden">아이디 틀림 에러 메시지</div>
             </div>
         </div>
@@ -53,18 +62,19 @@
         <div class="pw_container">
             <h5 style="margin-left: -40px">비밀번호</h5>
             <div class="input_container">
-                <input class="pw_input" type="password">
+                <input class="pw_input" type="password" th:name="password">
                 <div class="error" id="pwErrorMessage" style="visibility: hidden">비밀번호 틀림 에러 메시지</div>
             </div>
         </div>
 
         <!-- 글씨 클릭 시 회원가입 화면으로 이동 -->
-        <h5 class="join"><a th:href="@{/join.html}">회원가입 하러가기</a></h5>
+        <h5 class="join"><a th:href="@{/join}">회원가입 하러가기</a></h5>
 
         <!-- 로그인 버튼 -->
         <div class="button_container">
-          <button th:onclick="location.href='main.html'">로그인</button>
+            <button type="submit">로그인</button>
         </div>
+        </form>
 
     </main>
 

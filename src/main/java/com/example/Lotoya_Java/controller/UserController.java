@@ -34,8 +34,8 @@ public class UserController{
             model.addAttribute("loggedInUser", user);
             return "redirect:/main";
         }else{
-            System.out.println("로그인 안됨 ㅠㅠ");
-            return "redirect:/login?error";
+            model.addAttribute("error", "존재하지 않는 유저입니다.");
+            return "/login";
         }
     }
 }
