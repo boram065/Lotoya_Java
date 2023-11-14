@@ -45,25 +45,15 @@
         <form th:action="@{/join}" th:object="${user}" method="post">
             <!-- 이메일 입력창 -->
             <div class="email_container">
-                <h5 style="margin-left: -190px">이메일</h5>
+                <h5 style="margin-left: -70px">아이디</h5>
                 <div class="input_container email">
                     <input class="email_input" type="text" name="email" th:field="*{email}" required>
-                    <h4>@</h4>
-                    <input class="domain_input" type="text">
-
-                    <select class="domain" >
-                        <option value="" disabled selected hidden></option>
-                        <option value="gmail.com">gmail.com</option>
-                        <option value="naver.com">naver.com</option>
-                        <option value="hotmail.com">hotmail.com</option>
-                        <option value="self">직접입력</option>
-                    </select>
                 </div>
             </div>
 
             <!-- 비밀번호 입력창 -->
             <div class="pw_container">
-                <h5 style="margin-left: -35px">비밀번호</h5>
+                <h5 style="margin-left: -50px">비밀번호</h5>
                 <div class="input_container">
                     <input class="pw_input" type="password" name="password" th:field="*{password}" required>
                 </div>
@@ -73,7 +63,7 @@
             <!-- 회원가입 버튼 -->
             <div class="join_container">
                 <div class="button_container">
-                    <input type="submit" text="로그인하기" class="button">
+                    <input type="submit" value="로그인하기" class="button">
                 </div>
             </div>
 

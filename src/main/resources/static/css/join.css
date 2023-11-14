@@ -74,7 +74,6 @@ p {
 
 .email_container {
     position: relative;
-    left: 4%;
 }
 
 h5 {
@@ -97,34 +96,18 @@ h5 {
 }
 
 .email_input {
-    width: 7vw;
-    height: 3vh;
-}
-
-.domain_input {
-    width: 6.3vw;
+    width: 16.8vw;
     height: 3vh;
 }
 
 .pw_input,
-.email_input,
-.domain_input {
+.email_input {
     padding: 10px;
     margin: 5px;
     margin-top: -15px;
     border: 1px solid #ccc;
     font-size: 0.8rem;
     outline: none;
-}
-
-/* 도메인 선택 셀렉트 박스 스타일 */
-.domain {
-    width: 7.5vw;
-    height: 6vh;
-    margin-top: -20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    font-size: 0.8rem;
 }
 
 .input_container.email {
