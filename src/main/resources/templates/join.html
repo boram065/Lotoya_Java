@@ -42,16 +42,16 @@
         <p>회원가입</p>
 
         <!-- 아이디 입력창 -->
-        <form th:action="@{/join}" th:method="post">
+        <form th:action="@{/join}" th:object="${user}" method="post">
             <!-- 이메일 입력창 -->
             <div class="email_container">
                 <h5 style="margin-left: -190px">이메일</h5>
                 <div class="input_container email">
-                    <input class="email_input" type="text" name="email_input">
+                    <input class="email_input" type="text" name="email" th:field="*{email}" required>
                     <h4>@</h4>
                     <input class="domain_input" type="text">
 
-                    <select class="domain">
+                    <select class="domain" >
                         <option value="" disabled selected hidden></option>
                         <option value="gmail.com">gmail.com</option>
                         <option value="naver.com">naver.com</option>
@@ -65,20 +65,22 @@
             <div class="pw_container">
                 <h5 style="margin-left: -35px">비밀번호</h5>
                 <div class="input_container">
-                    <input class="pw_input" type="password" name="pw_input">
+                    <input class="pw_input" type="password" name="password" th:field="*{password}" required>
                 </div>
             </div>
+            <div class="error" id="ErrorMessage">에러 메시지</div>
+
+            <!-- 회원가입 버튼 -->
+            <div class="join_container">
+                <div class="button_container">
+                    <input type="submit">회원가입</input>
+                </div>
+            </div>
+
         </form>
 
 
-        <div class="error" id="ErrorMessage">에러 메시지</div>
 
-        <!-- 회원가입 버튼 -->
-        <div class="join_container">
-            <div class="button_container">
-                <a th:href="@{/login}"><button type="button">회원가입</button></a>
-            </div>
-        </div>
 
     </main>
 
