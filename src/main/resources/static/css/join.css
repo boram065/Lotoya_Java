@@ -1,9 +1,9 @@
 header {
-    position: fixed;                 /* 스크롤 해도 항상 위치 고정함 */
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;
-    z-index: 100;                   /* 책 올릴 때 header 위로 올라가는 문제 해결 */
+    z-index: 100;
 }
 
 nav {
@@ -31,7 +31,7 @@ li {
 
 .nav-list {
     display: flex;
-    padding: 0;                     /* 내부 여백 제거 */
+    padding: 0;
 }
 
 .nav-list img {
@@ -40,7 +40,7 @@ li {
 }
 
 .nav-item {
-    margin-left: 15px;              /* 이미지 사이의 간격 조절 */
+    margin-left: 15px;
 }
 
 hr {

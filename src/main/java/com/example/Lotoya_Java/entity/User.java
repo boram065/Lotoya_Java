@@ -24,12 +24,11 @@ public class User {
     private String password;
 
     @Column(name = "coin", nullable = false)
-    private Integer coin = 0;
+    private Integer coin = 1000;
 
     @Builder
     public User(String email, String password){
         this.email = email;
         this.password = password;
     }
-
 }

@@ -1,15 +1,20 @@
 package com.example.Lotoya_Java.controller;
 
 import com.example.Lotoya_Java.BoramPlayer;
+import com.example.Lotoya_Java.entity.Player;
+import com.example.Lotoya_Java.service.PlayerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class fontController {
     private final BoramPlayer boramPlayer;
+    private final PlayerService playerService;
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -85,7 +90,7 @@ public class fontController {
 
     @RequestMapping("/store")
     public String store(Model model) {
-        model.addAttribute("imagePath1", "/images/logo.jpg");
+        model.addAttribute("logo", "/images/logo.jpg");
         model.addAttribute("imagePath2", "/images/vs.jpg");
         model.addAttribute("imagePath3", "/images/club.jpg");
         model.addAttribute("imagePath4", "/images/FA.jpg");

@@ -1,13 +1,11 @@
 package com.example.Lotoya_Java.info;
 
-import com.example.Lotoya_Java.entity.Player;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DoosanInfo {
@@ -22,7 +20,7 @@ public class DoosanInfo {
     public static ArrayList<Integer> weightList = new ArrayList<>();
     public static ArrayList<Integer> priceList = new ArrayList<>();
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         String pitcher1 = "https://www.doosanbears.com/players/pitchers/";
         String pitcher2[] = {"98", "296", "251", "117", "49", "68", "311", "348", "359", "257",
                             "313", "336", "99", "113", "387", "385", "97", "258", "112", "342"};
@@ -38,11 +36,11 @@ public class DoosanInfo {
 
                 String playerImg = "";
                 String playerName = "";
-                String playerNumber = "";
+                int playerNumber;
                 String playerBirth = "";
                 String playerPosition = "";
-                String playerHeight = "";
-                String playerWeight = "";
+                int playerHeight;
+                int playerWeight;
 
                 // 이미지 링크 불러오기
                 Element imgElement = doc.select("div.photo_r > img").first();
@@ -52,8 +50,8 @@ public class DoosanInfo {
                 playerName = tr.select("th:contains(선수명) + td").text();
                 nameList.add(playerName);
 
-                playerNumber = tr.select("th:contains(등번호) + td").text();
-                numList.add(Integer.parseInt(playerNumber));
+                playerNumber = Integer.parseInt(tr.select("th:contains(등번호) + td").text());
+                numList.add(playerNumber);
 
                 playerBirth = tr.select("th:contains(생년월일) + td").text();
                 birthList.add(playerBirth);
@@ -63,10 +61,10 @@ public class DoosanInfo {
 
                 String body = tr.select("th:contains(신장/체중) + td").text();
                 int index = body.indexOf("/");
-                playerHeight = body.substring(0, index-3).replaceAll("[^0-9]","");
-                heightList.add(Integer.parseInt(playerHeight));
-                playerWeight = body.substring(index+2).replaceAll("[^0-9]","");
-                weightList.add(Integer.parseInt(playerWeight));
+                playerHeight = Integer.parseInt(body.substring(0, index-3).replaceAll("[^0-9]",""));
+                heightList.add(playerHeight);
+                playerWeight = Integer.parseInt(body.substring(index+2).replaceAll("[^0-9]",""));
+                weightList.add(playerWeight);
             }
 
             for (int i = 0; i < batters2.length; i++) {
@@ -76,11 +74,11 @@ public class DoosanInfo {
 
                 String playerImg = "";
                 String playerName = "";
-                String playerNumber = "";
+                int playerNumber;
                 String playerBirth = "";
                 String playerPosition = "";
-                String playerHeight = "";
-                String playerWeight = "";
+                int playerHeight;
+                int playerWeight;
 
                 // 이미지 링크 불러오기
                 Element imgElement = doc.select("div.photo_r > img").first();
@@ -90,8 +88,8 @@ public class DoosanInfo {
                 playerName = tr.select("th:contains(선수명) + td").text();
                 nameList.add(playerName);
 
-                playerNumber = tr.select("th:contains(등번호) + td").text();
-                numList.add(Integer.parseInt(playerNumber));
+                playerNumber = Integer.parseInt(tr.select("th:contains(등번호) + td").text());
+                numList.add(playerNumber);
 
                 playerBirth = tr.select("th:contains(생년월일) + td").text();
                 birthList.add(playerBirth);
@@ -101,35 +99,34 @@ public class DoosanInfo {
 
                 String body = tr.select("th:contains(신장/체중) + td").text();
                 int index = body.indexOf("/");
-                playerHeight = body.substring(0, index-3).replaceAll("[^0-9]","");
-                heightList.add(Integer.parseInt(playerHeight));
-                playerWeight = body.substring(index+2).replaceAll("[^0-9]","");
-                weightList.add(Integer.parseInt(playerWeight));
+                playerHeight = Integer.parseInt(body.substring(0, index-3).replaceAll("[^0-9]",""));
+                heightList.add(playerHeight);
+                playerWeight = Integer.parseInt(body.substring(index+2).replaceAll("[^0-9]",""));
+                weightList.add(playerWeight);
+
             }
 
             int length = pitcher2.length + batters2.length;
             for (int i = 0; i < length; i++) {
-                idList.add(i);
+                idList.add(i+1);
                 clubList.add("두산");
                 priceList.add(numList.get(i) * 100);
 
-                System.out.println("id: " + idList.get(i));
-                System.out.println("팀 소속: " + clubList.get(i));
-                System.out.println("이미지 링크: " + imgList.get(i));
-                System.out.println("선수명: " + nameList.get(i));
-                System.out.println("등번호: " + numList.get(i));
-                System.out.println("생년월일: " + birthList.get(i));
-                System.out.println("포지션: " + positionList.get(i));
-                System.out.println("신장: " + heightList.get(i));
-                System.out.println("체중: " + weightList.get(i));
-                System.out.println("가격: " + priceList.get(i));
-                System.out.println();
+//                System.out.println("id: " + idList.get(i));
+//                System.out.println("팀 소속: " + clubList.get(i));
+//                System.out.println("이미지 링크: " + imgList.get(i));
+//                System.out.println("선수명: " + nameList.get(i));
+//                System.out.println("등번호: " + numList.get(i));
+//                System.out.println("생년월일: " + birthList.get(i));
+//                System.out.println("포지션: " + positionList.get(i));
+//                System.out.println("신장: " + heightList.get(i));
+//                System.out.println("체중: " + weightList.get(i));
+//                System.out.println("가격: " + priceList.get(i));
+//                System.out.println();
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 }

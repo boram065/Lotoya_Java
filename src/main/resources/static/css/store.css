@@ -19,9 +19,8 @@ nav {
 }
 
 .nav-logo {
+    position: absolute;
     display: flex;
-    margin-left: -70%;
-    margin-top: -60px;
     width: 200px;
     height: 70px;
 }
@@ -226,12 +225,13 @@ hr {
     padding: 3px;
 }
 
+/* 선수 이미지 */
 #player-container {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-left: 15%;
-    margin-top: 10%;
+    margin-left: 100%;
+    margin-top: 30%;
 }
 
 .player {
@@ -239,13 +239,15 @@ hr {
 
 }
 
-/* 선수 이미지 */
 .player img {
     width: 10vw;
     height: 30vh;
 }
 
-.bottomName{
+.bottomName {
+    position: absolute;
     display: flex;
-    margin-top: -25px;
+    width: 8vw;
+    top: 40%;
+    margin-left: 12%;
 }

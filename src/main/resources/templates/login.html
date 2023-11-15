@@ -50,31 +50,30 @@
         </script>
         <!-- 이메일 입력창 -->
         <form th:action="@{/login}" method="post">
-        <div class="email_container">
-            <h5 style="margin-left: -50px">이메일</h5>
-            <div class="input_container">
-                <div class="error" id="emailErrorMessage" style="visibility: hidden">이메일 틀림 에러 메시지</div>
-                <input class="email_input" type="text" th:name="email">
-                <div class="error" id="idErrorMessage" style="visibility: hidden">아이디 틀림 에러 메시지</div>
+            <div class="email_container">
+                <h5 style="margin-left: -50px">아이디</h5>
+                <div class="input_container">
+                    <input class="email_input" type="text" th:name="email">
+                    <div class="error" id="idErrorMessage" style="visibility: hidden">아이디 틀림 에러 메시지</div>
+                </div>
             </div>
-        </div>
 
-        <!-- 비밀번호 입력창 -->
-        <div class="pw_container">
-            <h5 style="margin-left: -40px">비밀번호</h5>
-            <div class="input_container">
-                <input class="pw_input" type="password" th:name="password">
-                <div class="error" id="pwErrorMessage" style="visibility: hidden">비밀번호 틀림 에러 메시지</div>
+            <!-- 비밀번호 입력창 -->
+            <div class="pw_container">
+                <h5 style="margin-left: -40px">비밀번호</h5>
+                <div class="input_container">
+                    <input class="pw_input" type="password" th:name="password">
+                    <div class="error" id="pwErrorMessage" style="visibility: hidden">비밀번호 틀림 에러 메시지</div>
+                </div>
             </div>
-        </div>
 
-        <!-- 글씨 클릭 시 회원가입 화면으로 이동 -->
-        <h5 class="join"><a th:href="@{/join}">회원가입 하러가기</a></h5>
+            <!-- 글씨 클릭 시 회원가입 화면으로 이동 -->
+            <h5 class="join"><a th:href="@{/join}">회원가입 하러가기</a></h5>
 
-        <!-- 로그인 버튼 -->
-        <div class="button_container">
-            <button type="submit">로그인</button>
-        </div>
+            <!-- 로그인 버튼 -->
+            <div class="button_container">
+                <input type="submit" value="로그인" class="button">
+            </div>
         </form>
 
     </main>

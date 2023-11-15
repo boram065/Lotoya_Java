@@ -97,10 +97,19 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     ok.addEventListener('click', function() {
-        num.forEach(function(num) {
-          var randomNum = Math.floor(Math.random() * 10);
-          num.textContent = randomNum.toString();
-        });
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        var scoresLeft = container.querySelectorAll(".scoreShowRight .score p");
+        var scoresRight = container.querySelectorAll(".scoreShowLeft .score p");
+        var scoreLeftValue = parseInt(scoresLeft[0].innerText);
+        var scoreRightValue = parseInt(scoresRight[0].innerText);
+
+        if (scoreLeftValue !== 0 && scoreViewValue !== 0 && scoreLeftValue === scoreRightValue) {
+            alert("팝업 메시지: 스코어가 동일합니다!");
+        } else {
+            num.forEach(function(num) {
+              var randomNum = Math.floor(Math.random() * 10);
+              num.textContent = randomNum.toString();
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     });
 });

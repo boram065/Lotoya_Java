@@ -13,7 +13,7 @@
         <a class="nav-logo">
             <li class="nav-item">
                 <a th:href="@{/main}" class="nav-link">
-                    <img th:src="@{/images/logo.jpg}" th:alt="logo">
+                    <img th:src="${logo}" th:alt="logo">
                 </a>
             </li>
         </a>
@@ -148,18 +148,18 @@
             </div> <!-- team_container -->
         </div> <!-- check -->
 
-<!--        <div class="playerContainer">-->
-<!--            <div id="boramPlayer-container">-->
-<!--                <th:block th:each="player, idx : ${nameList}">-->
-<!--                    <div class="boramPlayer">-->
-<!--                        <img th:src="${imgList[idx]}" alt="player">-->
-<!--                    </div>-->
-<!--                    <div class="bottomName">-->
-<!--                        <h3 th:text="${player}"></h3>-->
-<!--                    </div>-->
-<!--                </th:block>-->
-<!--            </div>-->
-<!--        </div>-->
+        <form th:action="@{/store}" th:object="${player}" method="post">
+            <div class="playerContainer">
+                <div id="player-container">
+                    <div class="player">
+                        <img th:src="@{/images/mypage.jpg}" alt="player">
+                    </div>
+                    <div class="bottomName">
+                        <h3>김재환</h3>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
 </main>
