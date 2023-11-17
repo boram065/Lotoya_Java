@@ -18,31 +18,31 @@ public class Player {
     @Column(name="id", updatable = false)
     private Long id;
 
-    @Column(name="club", nullable = false)
+    @Column(name="club")
     private String club;
 
-    @Column(name="position", nullable = false)
+    @Column(name="position")
     private String position;
 
-    @Column(name="back_num", nullable = false)
+    @Column(name="back_num")
     private Integer backNum;
 
-    @Column(name="name", nullable = false)
+    @Column(name="name")
     private String name;
 
-    @Column(name="birth", nullable = false)
+    @Column(name="birth")
     private String birth;
 
-    @Column(name="height", nullable = false)
+    @Column(name="height")
     private Integer height;
 
-    @Column(name="weight", nullable = false)
+    @Column(name="weight")
     private Integer weight;
 
-    @Column(name="price", nullable = false)
+    @Column(name="price")
     private Integer price;
 
-    @Column(name="imgLink", nullable = false)
+    @Column(name="imgLink")
     private String imgLink;
 
     @Builder

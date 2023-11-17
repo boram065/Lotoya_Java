@@ -2,9 +2,12 @@ package com.example.Lotoya_Java.service;
 
 import com.example.Lotoya_Java.entity.User;
 import com.example.Lotoya_Java.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -27,6 +30,5 @@ public class UserService {
             return user;
         }
         return null;
-
     }
 }

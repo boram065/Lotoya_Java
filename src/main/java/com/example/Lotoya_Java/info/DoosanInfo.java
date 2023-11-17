@@ -1,5 +1,6 @@
 package com.example.Lotoya_Java.info;
 
+import com.example.Lotoya_Java.entity.Player;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -7,9 +8,10 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DoosanInfo {
-    public static ArrayList<Integer> idList = new ArrayList<>();
+    public static List<Player> players = new ArrayList<>();
     public static ArrayList<String> clubList = new ArrayList<>();
     public static ArrayList<String> imgList = new ArrayList<>();
     public static ArrayList<Integer> numList = new ArrayList<>();
@@ -20,9 +22,9 @@ public class DoosanInfo {
     public static ArrayList<Integer> weightList = new ArrayList<>();
     public static ArrayList<Integer> priceList = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static List<Player> convertToPlayers() {
         String pitcher1 = "https://www.doosanbears.com/players/pitchers/";
-        String pitcher2[] = {"98", "296", "251", "117", "49", "68", "311", "348", "359", "257",
+        String pitcher2[] = {"98", "296", "251", "117", "49", "68", "311", "359", "257",
                             "313", "336", "99", "113", "387", "385", "97", "258", "112", "342"};
         String batters1 = "https://www.doosanbears.com/players/batters/";
         String batters2[] = {"34", "343", "302", "107", "345", "261", "104", "370", "260", "64",
@@ -106,27 +108,27 @@ public class DoosanInfo {
 
             }
 
-            int length = pitcher2.length + batters2.length;
-            for (int i = 0; i < length; i++) {
-                idList.add(i+1);
+            for (int i = 0; i < numList.size(); i++) {
                 clubList.add("두산");
-                priceList.add(numList.get(i) * 100);
+                priceList.add(numList.get(i) * 10);
 
-//                System.out.println("id: " + idList.get(i));
-//                System.out.println("팀 소속: " + clubList.get(i));
-//                System.out.println("이미지 링크: " + imgList.get(i));
-//                System.out.println("선수명: " + nameList.get(i));
-//                System.out.println("등번호: " + numList.get(i));
-//                System.out.println("생년월일: " + birthList.get(i));
-//                System.out.println("포지션: " + positionList.get(i));
-//                System.out.println("신장: " + heightList.get(i));
-//                System.out.println("체중: " + weightList.get(i));
-//                System.out.println("가격: " + priceList.get(i));
-//                System.out.println();
+                Player playerEntity = new Player();
+                playerEntity.setBackNum(numList.get(i));
+                playerEntity.setHeight(heightList.get(i));
+                playerEntity.setPrice(priceList.get(i));
+                playerEntity.setWeight(weightList.get(i));
+                playerEntity.setBirth(birthList.get(i));
+                playerEntity.setClub(clubList.get(i));
+                playerEntity.setImgLink(imgList.get(i));
+                playerEntity.setName(nameList.get(i));
+                playerEntity.setPosition(positionList.get(i));
+
+                players.add(playerEntity);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return players;
     }
 }

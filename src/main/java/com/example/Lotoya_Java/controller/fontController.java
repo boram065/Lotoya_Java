@@ -2,7 +2,9 @@ package com.example.Lotoya_Java.controller;
 
 import com.example.Lotoya_Java.BoramPlayer;
 import com.example.Lotoya_Java.entity.Player;
+import com.example.Lotoya_Java.entity.User;
 import com.example.Lotoya_Java.service.PlayerService;
+import com.example.Lotoya_Java.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +16,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class fontController {
     private final BoramPlayer boramPlayer;
-    private final PlayerService playerService;
+    private final UserService userService;
+    private final User user;
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -72,6 +75,10 @@ public class fontController {
         model.addAttribute("imagePath13", "/images/삼성.png");
         model.addAttribute("imagePath14", "/images/키움.png");
         model.addAttribute("imagePath15", "/images/한화.png");
+
+        Integer currentUserCoin = user.getCoin();
+        model.addAttribute("currentUserCoin", currentUserCoin);
+
         return "forecast";
     }
 
@@ -85,6 +92,10 @@ public class fontController {
         model.addAttribute("imagePath7", "/images/search.jpg");
         model.addAttribute("imagePath8", "/images/coin.jpg");
         model.addAttribute("imagePath9", "/images/ground.png");
+
+        Integer currentUserCoin = user.getCoin();
+        model.addAttribute("currentUserCoin", currentUserCoin);
+
         return "ground";
     }
 
@@ -99,6 +110,10 @@ public class fontController {
         model.addAttribute("imagePath8", "/images/coin.jpg");
         model.addAttribute("imagePath9", "/images/basket.jpg");
         model.addAttribute("imagePath10", "/images/wishlist.jpg");
+
+        Integer currentUserCoin = user.getCoin();
+        model.addAttribute("currentUserCoin", currentUserCoin);
+
         return "store";
     }
 

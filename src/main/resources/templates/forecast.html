@@ -42,6 +42,14 @@
     <h1>승부예측</h1>
   </div>
 
+  <!-- 코인 표시 -->
+  <div class="coin">
+    <div class="money">
+      <h3 th:text="${currentUserCoin}"></h3>
+    </div>
+    <img th:src="@{/images/coin.jpg}" class="coinImg">
+  </div>
+
   <div class="todayFore">
     <div class="fore-container">
       <div class="scoreViewLeft">
@@ -56,7 +64,7 @@
       </div>
 
       <div class="scoreTable">
-        <div class="num">
+        <div class="num right">
           <h2>0</h2>
         </div>
 
@@ -64,7 +72,7 @@
           <h1>VS</h1>
         </div>
 
-        <div class="num">
+        <div class="num left">
           <h2>0</h2>
         </div>
       </div>
@@ -94,7 +102,7 @@
       </div>
 
       <div class="scoreTable">
-        <div class="num">
+        <div class="num right">
           <h2>0</h2>
         </div>
 
@@ -102,7 +110,7 @@
           <h1>VS</h1>
         </div>
 
-        <div class="num">
+        <div class="num left">
           <h2>0</h2>
         </div>
       </div>
@@ -132,7 +140,7 @@
       </div>
 
       <div class="scoreTable">
-        <div class="num">
+        <div class="num right">
           <h2>0</h2>
         </div>
 
@@ -140,7 +148,7 @@
           <h1>VS</h1>
         </div>
 
-        <div class="num">
+        <div class="num left">
           <h2>0</h2>
         </div>
       </div>
@@ -170,7 +178,7 @@
       </div>
 
       <div class="scoreTable">
-        <div class="num">
+        <div class="num right">
           <h2>0</h2>
         </div>
 
@@ -178,7 +186,7 @@
           <h1>VS</h1>
         </div>
 
-        <div class="num">
+        <div class="num left">
           <h2>0</h2>
         </div>
       </div>
@@ -208,7 +216,7 @@
       </div>
 
       <div class="scoreTable">
-        <div class="num">
+        <div class="num right">
           <h2>0</h2>
         </div>
 
@@ -216,7 +224,7 @@
           <h1>VS</h1>
         </div>
 
-        <div class="num">
+        <div class="num left">
           <h2>0</h2>
         </div>
       </div>

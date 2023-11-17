@@ -1,27 +1,19 @@
 package com.example.Lotoya_Java.dto;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
-
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
+import org.springframework.data.annotation.Id;
 
 @Getter
 @NoArgsConstructor
 public class UserDto {
 
-    @NotBlank(message = "이메일은 필수 입력 값입니다.")
-    @Email(message = "이메일 형식으로 입력해주세요.")
+    @NotBlank(message = "아이디는 필수 입력 값입니다.")
+    @Id
     private String email;
 
     @NotEmpty(message = "비밀번호는 필수 입력 값입니다.")

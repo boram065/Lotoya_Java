@@ -1,12 +1,19 @@
 package com.example.Lotoya_Java.controller;
 
+import com.example.Lotoya_Java.dto.LoginRequest;
 import com.example.Lotoya_Java.entity.User;
+import com.example.Lotoya_Java.repository.UserRepository;
 import com.example.Lotoya_Java.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Controller
@@ -26,13 +33,13 @@ public class UserController{
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam("email") String email, @RequestParam("password") String password, Model model){
+    public String login(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
         User user = userService.loginUser(email, password);
 
-        if(user != null){
+        if (user != null) {
             model.addAttribute("loggedInUser", user);
             return "redirect:/main";
-        }else{
+        } else {
             model.addAttribute("error", "존재하지 않는 유저입니다.");
             return "/login";
         }

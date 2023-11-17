@@ -50,14 +50,10 @@
         <!-- 코인 표시 -->
         <div class="coin">
             <div class="money">
-                <h3>10,000</h3>
+                <h3 th:text="${currentUserCoin}"></h3>
             </div>
-
             <img th:src="@{/images/coin.jpg}" class="coinImg">
         </div>
-
-        <!-- 장바구니 이미지 -->
-        <img th:src="@{/images/basket.jpg}" class="basketImg">
     </div>
 
     <div class="main">

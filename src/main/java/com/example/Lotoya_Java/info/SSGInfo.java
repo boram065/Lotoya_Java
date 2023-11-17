@@ -1,5 +1,6 @@
 package com.example.Lotoya_Java.info;
 
+import com.example.Lotoya_Java.entity.Player;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -7,23 +8,26 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SSGInfo {
+    public static List<Player> players = new ArrayList<>();
+    public static ArrayList<String> clubList = new ArrayList<>();
     public static ArrayList<String> imgList = new ArrayList<>();
-    public static ArrayList<String> numList = new ArrayList<>();
+    public static ArrayList<Integer> numList = new ArrayList<>();
     public static ArrayList<String> nameList = new ArrayList<>();
     public static ArrayList<String> birthList = new ArrayList<>();
     public static ArrayList<String> positionList = new ArrayList<>();
-    public static ArrayList<String> heightList = new ArrayList<>();
-    public static ArrayList<String> weightList = new ArrayList<>();
+    public static ArrayList<Integer> heightList = new ArrayList<>();
+    public static ArrayList<Integer> weightList = new ArrayList<>();
+    public static ArrayList<Integer> priceList = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static List<Player> convertToPlayers() {
         String player1 = "https://www.ssglanders.com/players/";
-        String player2[] = {"607", "616", "617", "599", "659", "251", "176", "698", "309", "626",
+        String player2[] = {"616", "617", "599", "659", "251", "698", "309", "626",
                             "657", "625", "639", "100", "538", "600", "588", "572", "653", "76",
-                            "419", "589", "640", "527", "601", "591", "611", "60", "557", "630",
-                            "258", "699", "638", "590", "645", "542", "683", "571", "683", "571",
-                            "465", "259"};
+                            "419", "589", "527", "601", "611", "60", "557", "630",
+                            "258", "699", "638", "645", "542", "571", "683", "465", "259"};
 
         try {
             for (int i = 0; i < player2.length; i++) {
@@ -48,7 +52,7 @@ public class SSGInfo {
                 String number = div.select(".box-backNo").text();
                 int index = number.indexOf(".");
                 playerNumber = number.substring(index+1);
-                numList.add(playerNumber);
+                numList.add(Integer.parseInt(playerNumber));
 
                 playerName = div.select(".txt-box").text();
                 nameList.add(playerName);
@@ -60,27 +64,39 @@ public class SSGInfo {
                 playerBirth = tr.select("th:contains(생년월일) + td").text();
                 birthList.add(playerBirth);
 
-                playerHeight = tr.select("th:contains(신장) + td").text();
-                heightList.add(playerHeight);
+                String height = tr.select("th:contains(신장) + td").text();
+                int heightIndex = height.indexOf("c");
+                playerHeight = height.substring(0, heightIndex);
+                heightList.add(Integer.parseInt(playerHeight));
 
-                playerWeight = tr.select("th:contains(체중) + td").text();
-                weightList.add(playerWeight);
+                String weight = tr.select("th:contains(체중) + td").text();
+                int weightIndex = weight.indexOf("k");
+                playerWeight = weight.substring(0, weightIndex);
+                weightList.add(Integer.parseInt(playerWeight));
 
-                String heightWeight = playerHeight + " / " + playerWeight;
-                heightList.add(heightWeight);
+            }
 
-                System.out.println("이미지 링크: " + imgList.get(i));
-                System.out.println("선수명: " + nameList.get(i));
-                System.out.println("등번호: " + numList.get(i));
-                System.out.println("생년월일: " + birthList.get(i));
-                System.out.println("포지션: " + positionList.get(i));
-                System.out.println("신장/체중: " + heightList.get(i));
-                System.out.println();
+            for (int i = 0; i < numList.size(); i++) {
+                clubList.add("SSG");
+                priceList.add(numList.get(i) * 10);
+
+                Player playerEntity = new Player();
+                playerEntity.setBackNum(numList.get(i));
+                playerEntity.setHeight(heightList.get(i));
+                playerEntity.setPrice(priceList.get(i));
+                playerEntity.setWeight(weightList.get(i));
+                playerEntity.setBirth(birthList.get(i));
+                playerEntity.setClub(clubList.get(i));
+                playerEntity.setImgLink(imgList.get(i));
+                playerEntity.setName(nameList.get(i));
+                playerEntity.setPosition(positionList.get(i));
+
+                players.add(playerEntity);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return players;
     }
-
 }
