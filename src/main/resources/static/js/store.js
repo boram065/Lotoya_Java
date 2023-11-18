@@ -1,13 +1,13 @@
-var buttons = document.querySelectorAll('.button');
+document.addEventListener("DOMContentLoaded", function () {
+    var players = document.querySelectorAll(".player");
 
-buttons.forEach(function(button) {
-   button.addEventListener('click', function() {
-       // 클릭 시 배경색 변경
-       button.classList.toggle('clicked');
-   });
+    players.forEach(function (player) {
+        player.addEventListener("click", function () {
+            var playerId = player.getAttribute("data-player-id");
+            window.location.href = "/buyPlayer/" + playerId;
+        });
+    });
 });
-
-
 
 //document.addEventListener("DOMContentLoaded", function() {
 //    $.get("/", function(data) {

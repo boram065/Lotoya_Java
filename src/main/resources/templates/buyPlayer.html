@@ -44,9 +44,8 @@
     <!-- 코인 표시 -->
     <div class="coin">
       <div class="money">
-        <h3>10,000</h3>
+        <h3 th:text="${currentUserCoin}"></h3>
       </div>
-
       <img th:src="${coin}" class="coinImg">
     </div>
   </div>
@@ -54,37 +53,36 @@
   <div class="main">
 
     <div class="playerImg">
-      <img th:src="@{/images/mypage.jpg}">
+      <img th:src="${player.imgLink}">
     </div>
 
     <div class="Container">
       <div class="title">
         <div class="name">
-          <h1 id="playerName" th:text="@{playerName}">32.김재환</h1>
+          <h1 id="playerName" th:text="${player.backNum + '. ' + player.name}"></h1>
         </div>
 
         <div class="coinContainer">
           <div class="coinImg">
-            <img th:src="@{/images/coin.jpg}" alt="coin">
+            <img th:src="${coin}" alt="coin">
           </div>
 
           <div class="moneyContainer">
-            <h3>10,000</h3>
+            <h3 th:text="${currentUserCoin}"></h3>
           </div>
         </div>
       </div>
 
       <div class="inforContainer">
         <div class="infor">
-          <h4>생년월일: <span> <!-- th:text="선수의 생년월일" --> </span></h4>
-          <h4>포지션: <span> <!-- th:text="선수의 포지션" --> </span></h4>
-          <h4>신장/체중: <span> <!-- th:text="선수의 키/몸무게" --> </span></h4>
+          <h4>생년월일: <span th:text="${player.birth}"></span></h4>
+          <h4>포지션: <span th:text="${player.position}"></span></h4>
+          <h4>신장/체중: <span th:text="${player.height + 'cm / ' + player.weight + 'kg'}"></span></h4>
         </div>
       </div>
 
       <div class="buttons">
-        <button class="btnBasket">장바구니</button>
-        <button class="wish"><i class="bi bi-heart"></i></button>
+        <button class="btnBasket">구매하기</button>
       </div>
 
     </div>

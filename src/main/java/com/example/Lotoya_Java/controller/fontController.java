@@ -6,9 +6,11 @@ import com.example.Lotoya_Java.service.PlayerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -45,14 +47,21 @@ public class fontController {
         return "main";
     }
 
-    @RequestMapping("/buyPlayer")
-    public String buyPlayer(Model model) {
+    @RequestMapping("/buyPlayer/{id}")
+    public String buyPlayer(@PathVariable Long id, Model model) {
         model.addAttribute("logo", "/images/logo.jpg");
         model.addAttribute("vs", "/images/vs.jpg");
         model.addAttribute("club", "/images/club.jpg");
         model.addAttribute("FA", "/images/FA.jpg");
         model.addAttribute("coin", "/images/coin.jpg");
         model.addAttribute("back", "/images/back.jpg");
+
+        Integer currentUserCoin = user.getCoin();
+        model.addAttribute("currentUserCoin", currentUserCoin);
+
+        Optional<Player> player = playerService.getPlayer(id);
+        model.addAttribute("player", player);
+
         return "buyPlayer";
     }
 

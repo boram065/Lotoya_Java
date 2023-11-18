@@ -41,7 +41,7 @@
       <img th:src="@{/images/my.jpg}" alt="my">
     </div>
     <div class="playerteam">
-      <img th:src="@{/images/playerteam.jpg}" alt="playerteam">
+      <img th:src="${playerTeam}" alt="playerteam">
     </div>
   </div>
 
@@ -49,7 +49,7 @@
     <!-- 검색창 -->
     <div class="search">
       <input type="text" placeholder="찾고 싶은 선수를 검색하세요" class="inputSearch">
-      <img th:src="@{/images/search.jpg}" class="searchImg">
+      <img th:src="${search}" class="searchImg">
     </div>
 
     <!-- 코인 표시 -->
@@ -57,7 +57,7 @@
       <div class="money">
         <h3 th:text="${currentUserCoin}"></h3>
       </div>
-      <img th:src="@{/images/coin.jpg}" class="coinImg">
+      <img th:src="${coin}" class="coinImg">
     </div>
   </div>
 
@@ -138,19 +138,17 @@
       </div>
     </div>
 
-    <div class="ground-container">
-      <div class="groundContainer">
-        <div class="circle"><i class="bi bi-circle"></i></div>
-        <div class="circle"><i class="bi bi-circle"></i></div>
-        <div class="circle"><i class="bi bi-circle"></i></div>
-        <div class="circle"><i class="bi bi-circle"></i></div>
-        <div class="circle"><i class="bi bi-circle"></i></div>
-        <div class="circle"><i class="bi bi-circle"></i></div>
-        <div class="circle"><i class="bi bi-circle"></i></div>
-        <div class="circle"><i class="bi bi-circle"></i></div>
-        <div class="ground"><img th:src="@{/images/ground.png}"></div>
-      </div>
-    </div>
+<!--    <div class="playerContainer">-->
+<!--      <div id="player-container">-->
+<!--        <div class="player" th:each="player : ${players}" th:data-player-id="${player.id}">-->
+<!--          <img th:src="@{${player.imgLink}}" alt="player">-->
+<!--          <div class="bottomName">-->
+<!--            <h4 th:text="${player.backNum + '. ' + player.name}"></h4>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
   </div>
 
 </main>

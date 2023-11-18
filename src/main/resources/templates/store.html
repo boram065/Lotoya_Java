@@ -146,7 +146,7 @@
 
         <div class="playerContainer">
             <div id="player-container">
-                <div class="player" th:each="player : ${players}">
+                <div class="player" th:each="player : ${players}" th:data-player-id="${player.id}">
                     <img th:src="@{${player.imgLink}}" alt="player">
                     <div class="bottomName">
                         <h4 th:text="${player.backNum + '. ' + player.name}"></h4>

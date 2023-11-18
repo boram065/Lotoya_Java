@@ -5,12 +5,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
+@Component
 public class Player {
 
     @Id
