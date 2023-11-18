@@ -11,23 +11,23 @@
 
     <header>
         <nav class="nav container">
-            <a href="" class="nav-logo">
+            <a class="nav-logo">
                 <li class="nav-item">
-                    <a th:href="@{main}" class="nav-link">
-                        <img th:src="@{images/logo.jpg}" alt="">
+                    <a th:href="@{/main}" class="nav-link">
+                        <img th:src="${logo}" th:alt="logo">
                     </a>
                 </li>
             </a>
 
             <ul class="nav-list">
                 <!-- 승부예측 이미지 -->
-                <li class="nav-item"><a th:href="@{/forecast}" class="nav-link"><img th:src="@{/images/vs.jpg}" alt=""></a></li>
+                <li class="nav-item"><a th:href="@{/forecast}" class="nav-link"><img th:src="${vs}" alt=""></a></li>
 
                 <!-- 야구장 이미지 -->
-                <li class="nav-item"><a th:href="@{/ground}" class="nav-link"><img th:src="@{/images/club.jpg}" alt=""></a></li>
+                <li class="nav-item"><a th:href="@{/ground}" class="nav-link"><img th:src="${club}" alt=""></a></li>
 
                 <!-- FA 예약 이미지 -->
-                <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="@{/images/FA.jpg}" alt=""></a></li>
+                <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="${FA}" alt=""></a></li>
 
             </ul>
         </nav>

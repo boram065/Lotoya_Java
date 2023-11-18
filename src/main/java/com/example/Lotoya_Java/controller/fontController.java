@@ -1,10 +1,8 @@
 package com.example.Lotoya_Java.controller;
 
-import com.example.Lotoya_Java.BoramPlayer;
 import com.example.Lotoya_Java.entity.Player;
 import com.example.Lotoya_Java.entity.User;
 import com.example.Lotoya_Java.service.PlayerService;
-import com.example.Lotoya_Java.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,34 +13,33 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class fontController {
-    private final BoramPlayer boramPlayer;
-    private final UserService userService;
     private final User user;
+    private final PlayerService playerService;
 
     @RequestMapping("/login")
     public String login(Model model) {
-        model.addAttribute("imagePath1", "/images/logo.jpg");
-        model.addAttribute("imagePath2", "/images/vs.jpg");
-        model.addAttribute("imagePath3", "/images/club.jpg");
-        model.addAttribute("imagePath4", "/images/FA.jpg");
+        model.addAttribute("logo", "/images/logo.jpg");
+        model.addAttribute("vs", "/images/vs.jpg");
+        model.addAttribute("club", "/images/club.jpg");
+        model.addAttribute("FA", "/images/FA.jpg");
         return "login";
     }
 
     @RequestMapping("/join")
     public String join(Model model) {
-        model.addAttribute("imagePath1", "/images/logo.jpg");
-        model.addAttribute("imagePath2", "/images/vs.jpg");
-        model.addAttribute("imagePath3", "/images/club.jpg");
-        model.addAttribute("imagePath4", "/images/FA.jpg");
+        model.addAttribute("logo", "/images/logo.jpg");
+        model.addAttribute("vs", "/images/vs.jpg");
+        model.addAttribute("club", "/images/club.jpg");
+        model.addAttribute("FA", "/images/FA.jpg");
         return "join";
     }
 
     @RequestMapping("/main")
     public String Main(Model model) {
-        model.addAttribute("imagePath1", "/images/logo.jpg");
-        model.addAttribute("imagePath2", "/images/vs.jpg");
-        model.addAttribute("imagePath3", "/images/club.jpg");
-        model.addAttribute("imagePath4", "/images/FA.jpg");
+        model.addAttribute("logo", "/images/logo.jpg");
+        model.addAttribute("vs", "/images/vs.jpg");
+        model.addAttribute("club", "/images/club.jpg");
+        model.addAttribute("FA", "/images/FA.jpg");
         model.addAttribute("imagePath5", "/images/coin.jpg");
         model.addAttribute("imagePath6", "/images/basket.jpg");
         return "main";
@@ -50,31 +47,31 @@ public class fontController {
 
     @RequestMapping("/buyPlayer")
     public String buyPlayer(Model model) {
-        model.addAttribute("imagePath1", "/images/logo.jpg");
-        model.addAttribute("imagePath2", "/images/vs.jpg");
-        model.addAttribute("imagePath3", "/images/club.jpg");
-        model.addAttribute("imagePath4", "/images/FA.jpg");
-        model.addAttribute("imagePath5", "/images/coin.jpg");
-        model.addAttribute("imagePath6", "/images/basket.jpg");
+        model.addAttribute("logo", "/images/logo.jpg");
+        model.addAttribute("vs", "/images/vs.jpg");
+        model.addAttribute("club", "/images/club.jpg");
+        model.addAttribute("FA", "/images/FA.jpg");
+        model.addAttribute("coin", "/images/coin.jpg");
+        model.addAttribute("back", "/images/back.jpg");
         return "buyPlayer";
     }
 
     @RequestMapping("/forecast")
     public String forecast(Model model) {
-        model.addAttribute("imagePath1", "/images/logo.jpg");
-        model.addAttribute("imagePath2", "/images/vs.jpg");
-        model.addAttribute("imagePath3", "/images/club.jpg");
-        model.addAttribute("imagePath4", "/images/FA.jpg");
-        model.addAttribute("imagePath6", "/images/SSG.png");
-        model.addAttribute("imagePath7", "/images/두산.png");
-        model.addAttribute("imagePath8", "/images/KT.png");
-        model.addAttribute("imagePath9", "/images/LG.png");
-        model.addAttribute("imagePath10", "/images/NC.png");
-        model.addAttribute("imagePath11", "/images/기아.png");
-        model.addAttribute("imagePath12", "/images/롯데.png");
-        model.addAttribute("imagePath13", "/images/삼성.png");
-        model.addAttribute("imagePath14", "/images/키움.png");
-        model.addAttribute("imagePath15", "/images/한화.png");
+        model.addAttribute("logo", "/images/logo.jpg");
+        model.addAttribute("vs", "/images/vs.jpg");
+        model.addAttribute("club", "/images/club.jpg");
+        model.addAttribute("FA", "/images/FA.jpg");
+        model.addAttribute("SSG", "/images/SSG.png");
+        model.addAttribute("Doosan", "/images/두산.png");
+        model.addAttribute("KT", "/images/KT.png");
+        model.addAttribute("LG", "/images/LG.png");
+        model.addAttribute("NC", "/images/NC.png");
+        model.addAttribute("KIA", "/images/기아.png");
+        model.addAttribute("Lotte", "/images/롯데.png");
+        model.addAttribute("Samsung", "/images/삼성.png");
+        model.addAttribute("Kiwoom", "/images/키움.png");
+        model.addAttribute("Hanwha", "/images/한화.png");
 
         Integer currentUserCoin = user.getCoin();
         model.addAttribute("currentUserCoin", currentUserCoin);
@@ -84,14 +81,14 @@ public class fontController {
 
     @RequestMapping("/ground")
     public String ground(Model model) {
-        model.addAttribute("imagePath1", "/images/logo.jpg");
-        model.addAttribute("imagePath2", "/images/vs.jpg");
-        model.addAttribute("imagePath3", "/images/club.jpg");
-        model.addAttribute("imagePath4", "/images/FA.jpg");
-        model.addAttribute("imagePath6", "/images/playerteam.jpg");
-        model.addAttribute("imagePath7", "/images/search.jpg");
-        model.addAttribute("imagePath8", "/images/coin.jpg");
-        model.addAttribute("imagePath9", "/images/ground.png");
+        model.addAttribute("logo", "/images/logo.jpg");
+        model.addAttribute("vs", "/images/vs.jpg");
+        model.addAttribute("club", "/images/club.jpg");
+        model.addAttribute("FA", "/images/FA.jpg");
+        model.addAttribute("playerTeam", "/images/playerteam.jpg");
+        model.addAttribute("search", "/images/search.jpg");
+        model.addAttribute("coin", "/images/coin.jpg");
+        model.addAttribute("ground", "/images/ground.png");
 
         Integer currentUserCoin = user.getCoin();
         model.addAttribute("currentUserCoin", currentUserCoin);
@@ -102,17 +99,19 @@ public class fontController {
     @RequestMapping("/store")
     public String store(Model model) {
         model.addAttribute("logo", "/images/logo.jpg");
-        model.addAttribute("imagePath2", "/images/vs.jpg");
-        model.addAttribute("imagePath3", "/images/club.jpg");
-        model.addAttribute("imagePath4", "/images/FA.jpg");
-        model.addAttribute("imagePath6", "/images/playerteam.jpg");
-        model.addAttribute("imagePath7", "/images/search.jpg");
-        model.addAttribute("imagePath8", "/images/coin.jpg");
-        model.addAttribute("imagePath9", "/images/basket.jpg");
-        model.addAttribute("imagePath10", "/images/wishlist.jpg");
+        model.addAttribute("vs", "/images/vs.jpg");
+        model.addAttribute("club", "/images/club.jpg");
+        model.addAttribute("FA", "/images/FA.jpg");
+        model.addAttribute("playerTeam", "/images/playerteam.jpg");
+        model.addAttribute("search", "/images/search.jpg");
+        model.addAttribute("coin", "/images/coin.jpg");
+        model.addAttribute("wishList", "/images/wishlist.jpg");
 
         Integer currentUserCoin = user.getCoin();
         model.addAttribute("currentUserCoin", currentUserCoin);
+
+        List<Player> players = playerService.getAllPlayers();
+        model.addAttribute("players", players);
 
         return "store";
     }

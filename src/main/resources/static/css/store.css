@@ -218,27 +218,30 @@ hr {
 
 /* 선수 이미지 */
 #player-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-left: 100%;
-    margin-top: 30%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-bottom: 15%;
+    column-gap: 60px;
+    row-gap: 50px;
 }
 
 .player {
     display: flex;
-
 }
 
 .player img {
-    width: 10vw;
-    height: 30vh;
+   width: 12vw;
+   height: 27vh;
 }
 
 .bottomName {
     position: absolute;
     display: flex;
     width: 8vw;
-    top: 40%;
-    margin-left: 12%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2.3%;
+    margin-top: 14%;
 }

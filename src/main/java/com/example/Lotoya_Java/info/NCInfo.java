@@ -25,7 +25,7 @@ public class NCInfo {
     public static List<Player> convertToPlayers() {
         String pitcher1 = "https://www.ncdinos.com/player/pitcher/view.do?playerId=";
         String pitcher2[] = {"591", "348", "403", "625", "255", "347", "619", "227", "346",
-                "578", "18", "108", "594", "652", "194", "402", "198", "539",
+                "578", "18", "108", "594", "194", "402", "198", "539",
                 "19", "360", "286", "450", "193", "605"};
 
         String catcher1 = "https://www.ncdinos.com/player/catcher/view.do?playerId=";

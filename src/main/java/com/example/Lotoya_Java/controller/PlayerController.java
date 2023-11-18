@@ -39,6 +39,7 @@ public class PlayerController {
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/lotoya";
     private static final String USER = "root";
     private static final String PASSWORD = "0605";
+    private static final String RESET_ID_SQL = "ALTER TABLE player AUTO_INCREMENT = 1";
 
     @Transactional
     public static void saveAllPlayers() {
@@ -48,12 +49,6 @@ public class PlayerController {
             List<Player> SSGPlayers = SSGInfo.convertToPlayers();
             List<Player> SamsungPlayers = SamsungInfo.convertToPlayers();
             List<Player> NCPlayers = NCInfo.convertToPlayers();
-
-            System.out.println("Kiwoom Players: " + kiwoomPlayers.size());
-            System.out.println("Doosan Players: " + doosanPlayers.size());
-            System.out.println("SSG Players: " + SSGPlayers.size());
-            System.out.println("Samsung Players: " + SamsungPlayers.size());
-            System.out.println("NC Players: " + NCPlayers.size());
 
             savePlayers(kiwoomPlayers);
             savePlayers(doosanPlayers);
@@ -66,56 +61,56 @@ public class PlayerController {
         }
     }
 
-    public static void main(String[] args) {
-        saveAllPlayers();
-    }
-
     @Transactional
     private static void savePlayers(List<Player> players) {
-        String sql = "INSERT INTO player (back_num, height, price, weight, birth, club, img_link, name, position) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String selectSql = "SELECT * FROM player WHERE back_num = ? AND name = ?";
+        String updateSql = "UPDATE player SET height = ?, price = ?, weight = ?, birth = ?, club = ?, img_link = ?, position = ? WHERE back_num = ? AND name = ?";
+        String insertSql = "INSERT INTO player (back_num, height, price, weight, birth, club, img_link, name, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement selectStatement = connection.prepareStatement(selectSql);
+             PreparedStatement updateStatement = connection.prepareStatement(updateSql);
+             PreparedStatement insertStatement = connection.prepareStatement(insertSql)) {
 
-            for (Player player : players) {
-                if (!isPlayerExists(connection, player)) {
-                    preparedStatement.setInt(1, player.getBackNum());
-                    preparedStatement.setInt(2, player.getHeight());
-                    preparedStatement.setInt(3, player.getPrice());
-                    preparedStatement.setInt(4, player.getWeight());
-                    preparedStatement.setString(5, player.getBirth());
-                    preparedStatement.setString(6, player.getClub());
-                    preparedStatement.setString(7, player.getImgLink());
-                    preparedStatement.setString(8, player.getName());
-                    preparedStatement.setString(9, player.getPosition());
+            for (Player newPlayer : players) {
+                selectStatement.setInt(1, newPlayer.getBackNum());
+                selectStatement.setString(2, newPlayer.getName());
 
-                    preparedStatement.executeUpdate();
+                try (ResultSet resultSet = selectStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        // 선수가 이미 존재하는 경우, 정보 업데이트
+                        updateStatement.setInt(1, newPlayer.getHeight());
+                        updateStatement.setInt(2, newPlayer.getPrice());
+                        updateStatement.setInt(3, newPlayer.getWeight());
+                        updateStatement.setString(4, newPlayer.getBirth());
+                        updateStatement.setString(5, newPlayer.getClub());
+                        updateStatement.setString(6, newPlayer.getImgLink());
+                        updateStatement.setString(7, newPlayer.getPosition());
+                        updateStatement.setInt(8, newPlayer.getBackNum());
+                        updateStatement.setString(9, newPlayer.getName());
 
-                } else {
-                    System.out.println(player.getClub() + " " + player.getName());
+                        updateStatement.executeUpdate();
+                    } else {
+                        // 선수가 존재하지 않는 경우, 신규 추가
+                        insertStatement.setInt(1, newPlayer.getBackNum());
+                        insertStatement.setInt(2, newPlayer.getHeight());
+                        insertStatement.setInt(3, newPlayer.getPrice());
+                        insertStatement.setInt(4, newPlayer.getWeight());
+                        insertStatement.setString(5, newPlayer.getBirth());
+                        insertStatement.setString(6, newPlayer.getClub());
+                        insertStatement.setString(7, newPlayer.getImgLink());
+                        insertStatement.setString(8, newPlayer.getName());
+                        insertStatement.setString(9, newPlayer.getPosition());
+
+                        insertStatement.executeUpdate(RESET_ID_SQL);
+                        insertStatement.executeUpdate();
+                    }
                 }
             }
-            System.out.println("Players saved successfully!");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private static boolean isPlayerExists(Connection connection, Player player) throws SQLException {
-        String checkDuplicateSql = "SELECT COUNT(*) FROM player WHERE back_num = ? AND name = ?";
-        try (PreparedStatement checkDuplicateStatement = connection.prepareStatement(checkDuplicateSql)) {
-            checkDuplicateStatement.setInt(1, player.getBackNum());
-            checkDuplicateStatement.setString(2, player.getName());
-
-            try (ResultSet resultSet = checkDuplicateStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    int count = resultSet.getInt(1);
-                    return count > 0;
-                }
-            }
-        }
-        return false;
-    }
 }

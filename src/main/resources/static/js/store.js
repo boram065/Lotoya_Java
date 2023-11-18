@@ -7,6 +7,8 @@ buttons.forEach(function(button) {
    });
 });
 
+
+
 //document.addEventListener("DOMContentLoaded", function() {
 //    $.get("/", function(data) {
 //        var players = JSON.parse(data);

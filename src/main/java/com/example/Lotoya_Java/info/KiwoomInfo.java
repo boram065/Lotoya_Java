@@ -138,7 +138,7 @@ public class KiwoomInfo {
                 // 이미지
                 String imgLink = "https://www.heroesbaseball.co.kr/players/catcher/list.do";
                 Document imgDoc = Jsoup.connect(imgLink).get();
-                Elements playerImageElements = imgDoc.select(".playerList li img");
+                Elements playerImageElements = imgDoc.select(".playerList li img[alt=" + playerName + "]");
 
                 for (Element playerImage : playerImageElements) {
                     playerImg = playerImage.attr("src");
@@ -191,12 +191,10 @@ public class KiwoomInfo {
                 playerWeight = w.substring(0, 4).replaceAll("[.]", "").trim();
                 weightList.add(Integer.parseInt(playerWeight));
 
-
-
                 // 이미지
                 String imgLink = "https://www.heroesbaseball.co.kr/players/infielder/list.do";
                 Document imgDoc = Jsoup.connect(imgLink).get();
-                Elements playerImageElements = imgDoc.select(".playerList li img");
+                Elements playerImageElements = imgDoc.select(".playerList li img[alt=" + playerName + "]");
 
                 for (Element playerImage : playerImageElements) {
                     playerImg = playerImage.attr("src");
@@ -250,9 +248,9 @@ public class KiwoomInfo {
                 weightList.add(Integer.parseInt(playerWeight));
 
                 // 이미지
-                String imgLink = "https://www.heroesbaseball.co.kr/players/pitcher/list.do";
+                String imgLink = "https://www.heroesbaseball.co.kr/players/outfielder/list.do";
                 Document imgDoc = Jsoup.connect(imgLink).get();
-                Elements playerImageElements = imgDoc.select(".playerList li img");
+                Elements playerImageElements = imgDoc.select(".playerList li img[alt=" + playerName + "]");
 
                 for (Element playerImage : playerImageElements) {
                     playerImg = playerImage.attr("src");
