@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Entity
 @Setter
 @Getter
@@ -27,6 +29,9 @@ public class User {
 
     @Column(name = "coin", nullable = false)
     private Integer coin = 1000;
+
+    @OneToMany(mappedBy = "user")
+    private List<MyPlayer> myPlayerList;
 
     @Builder
     public User(String email, String password){

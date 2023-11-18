@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Entity
 @Setter
@@ -44,6 +46,9 @@ public class Player {
 
     @Column(name="imgLink")
     private String imgLink;
+
+    @OneToMany(mappedBy = "player")
+    private List<MyPlayer> myPlayerList;
 
     @Builder
     public Player(Long id, String club, String position, Integer backNum, String name, String birth, Integer height, Integer weight, Integer price, String imgLink) {
