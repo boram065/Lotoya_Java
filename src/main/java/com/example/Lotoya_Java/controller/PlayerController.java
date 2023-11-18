@@ -38,7 +38,7 @@ public class PlayerController {
 
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/lotoya";
     private static final String USER = "root";
-    private static final String PASSWORD = "0605";
+    private static final String PASSWORD = "1234";
     private static final String RESET_ID_SQL = "ALTER TABLE player AUTO_INCREMENT = 1";
 
     @Transactional
