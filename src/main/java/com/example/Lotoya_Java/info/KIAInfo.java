@@ -25,7 +25,7 @@ public class KIAInfo {
 
 
     public static void main(String[] args) {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver"); // ChromeDriver 경로 설정
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\boram\\Downloads"); // ChromeDriver 경로 설정
         WebDriver driver = new ChromeDriver(); // ChromeDriver를 사용하여 브라우저를 열기
 
         String pitcher1 = "https://tigers.co.kr/players/pitcher/";
@@ -34,8 +34,11 @@ public class KIAInfo {
 
         try {
             for(int i = 0; i < pitcher2.length; i++) {
-                Document doc = Jsoup.connect(pitcher1 + pitcher2[i]).get();
-                System.out.println(doc);
+//                Document doc = Jsoup.connect(pitcher1 + pitcher2[i]).get();
+                driver.get(pitcher1 + pitcher2[i]);
+//                System.out.println(doc);
+                Thread.sleep(5000);
+                System.out.println(driver.getPageSource());
 
 //                String playerImg = "";
 //                String playerName = "";
@@ -94,8 +97,10 @@ public class KIAInfo {
 //                }
 //            }
 
-        } catch (IOException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            driver.quit(); // 브라우저 닫기
         }
     }
 }
