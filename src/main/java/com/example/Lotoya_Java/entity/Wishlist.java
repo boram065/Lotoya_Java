@@ -6,14 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
-public class MyPlayer {
+public class Wishlist {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id", updatable = false)
     private Long id;
 
     @ManyToOne
@@ -23,9 +23,4 @@ public class MyPlayer {
     @ManyToOne
     @JoinColumn(name="player_id")
     private Player player;
-
-    public MyPlayer(User user, Player player) {
-        this.user = user;
-        this.player = player;
-    }
 }

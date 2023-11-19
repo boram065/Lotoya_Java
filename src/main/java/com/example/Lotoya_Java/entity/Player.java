@@ -52,6 +52,10 @@ public class Player {
     @OneToMany(mappedBy = "player")
     private List<MyPlayer> myPlayerList;
 
+    @OneToMany(mappedBy = "player")
+    private List<Wishlist> wishlistList;
+
+
     @Builder
     public Player(Long id, String club, String position, Integer backNum, String name, String birth, Integer height, Integer weight, Integer price, String imgLink) {
         this.id = id;

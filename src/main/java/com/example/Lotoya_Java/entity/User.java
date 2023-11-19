@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -13,7 +12,6 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-@Repository
 public class User {
 
     @Id
@@ -32,6 +30,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<MyPlayer> myPlayerList;
+
+    @OneToMany(mappedBy = "user")
+    private List<Wishlist> wishlistList;
 
     @Builder
     public User(String email, String password){
