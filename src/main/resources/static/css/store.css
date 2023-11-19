@@ -229,6 +229,7 @@ hr {
 
 .player {
     display: flex;
+    cursor: focus;
 }
 
 .player img {

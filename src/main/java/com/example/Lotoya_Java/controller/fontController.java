@@ -1,5 +1,6 @@
 package com.example.Lotoya_Java.controller;
 
+import com.example.Lotoya_Java.dto.UserContextHolder;
 import com.example.Lotoya_Java.entity.Player;
 import com.example.Lotoya_Java.entity.User;
 import com.example.Lotoya_Java.service.PlayerService;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class fontController {
     private final User user;
     private final PlayerService playerService;
+    private final UserContextHolder userContextHolder;
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -44,25 +46,32 @@ public class fontController {
         model.addAttribute("FA", "/images/FA.jpg");
         model.addAttribute("imagePath5", "/images/coin.jpg");
         model.addAttribute("imagePath6", "/images/basket.jpg");
+
         return "main";
     }
 
     @RequestMapping("/buyPlayer/{id}")
     public String buyPlayer(@PathVariable Long id, Model model) {
-        model.addAttribute("logo", "/images/logo.jpg");
-        model.addAttribute("vs", "/images/vs.jpg");
-        model.addAttribute("club", "/images/club.jpg");
-        model.addAttribute("FA", "/images/FA.jpg");
-        model.addAttribute("coin", "/images/coin.jpg");
-        model.addAttribute("back", "/images/back.jpg");
+        Optional<Player> optionalPlayer = playerService.getPlayer(id);
 
-        Integer currentUserCoin = user.getCoin();
-        model.addAttribute("currentUserCoin", currentUserCoin);
+        if (optionalPlayer.isPresent()) {
+            Player player = optionalPlayer.get();
 
-        Optional<Player> player = playerService.getPlayer(id);
-        model.addAttribute("player", player);
+            model.addAttribute("logo", "/images/logo.jpg");
+            model.addAttribute("vs", "/images/vs.jpg");
+            model.addAttribute("club", "/images/club.jpg");
+            model.addAttribute("FA", "/images/FA.jpg");
+            model.addAttribute("coin", "/images/coin.jpg");
+            model.addAttribute("back", "/images/back.jpg");
 
-        return "buyPlayer";
+            Integer currentUserCoin = user.getCoin();
+            model.addAttribute("currentUserCoin", currentUserCoin);
+
+            model.addAttribute("player", player);
+            return "buyPlayer";
+        } else {
+            return "redirect:/";
+        }
     }
 
     @RequestMapping("/forecast")
@@ -71,6 +80,7 @@ public class fontController {
         model.addAttribute("vs", "/images/vs.jpg");
         model.addAttribute("club", "/images/club.jpg");
         model.addAttribute("FA", "/images/FA.jpg");
+        model.addAttribute("coin", "/images/coin.jpg");
         model.addAttribute("SSG", "/images/SSG.png");
         model.addAttribute("Doosan", "/images/두산.png");
         model.addAttribute("KT", "/images/KT.png");
@@ -82,8 +92,16 @@ public class fontController {
         model.addAttribute("Kiwoom", "/images/키움.png");
         model.addAttribute("Hanwha", "/images/한화.png");
 
-        Integer currentUserCoin = user.getCoin();
-        model.addAttribute("currentUserCoin", currentUserCoin);
+        User loggedInUser = userContextHolder.getLoggedInUser();
+        if (loggedInUser != null) {
+            model.addAttribute("currentUserCoin", loggedInUser.getCoin());
+            model.addAttribute("loggedInUser", loggedInUser);
+        } else {
+            return "redirect:/login";
+        }
+
+//        Integer currentUserCoin = user.getCoin();
+//        model.addAttribute("currentUserCoin", currentUserCoin);
 
         return "forecast";
     }

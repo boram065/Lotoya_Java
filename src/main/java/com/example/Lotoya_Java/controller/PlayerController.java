@@ -1,5 +1,6 @@
 package com.example.Lotoya_Java.controller;
 
+import com.example.Lotoya_Java.dto.PlayerFilterRequest;
 import com.example.Lotoya_Java.dto.PlayerViewResponse;
 import com.example.Lotoya_Java.entity.Player;
 import com.example.Lotoya_Java.info.*;
@@ -12,6 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.sql.*;
 import java.util.List;
@@ -22,19 +26,33 @@ public class PlayerController {
     @Autowired
     private final PlayerService playerService;
 
-    public String showStoreForm(Model model) {
-        model.addAttribute("player", new Player());
-        return "store";
+//    public String showStoreForm(Model model) {
+//        model.addAttribute("player", new Player());
+//        return "store";
+//    }
+
+//    @GetMapping("/{id}")
+//    public ResponseEntity<PlayerViewResponse> getPlayerById(@PathVariable Long id) {
+//        // 해당 ID에 해당하는 선수 정보 가져오기
+//        return playerService.getPlayer(id)
+//                .map(player -> ResponseEntity.ok(new PlayerViewResponse(player)))
+//                .orElse(ResponseEntity.notFound().build());
+//    }
+
+    @PostMapping("/store")
+    public ResponseEntity<List<PlayerViewResponse>> getFilteredPlayers(@RequestBody PlayerFilterRequest filterRequest) {
+        List<PlayerViewResponse> filteredPlayers = playerService.getFilteredPlayers(filterRequest);
+        return ResponseEntity.ok().body(filteredPlayers);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<PlayerViewResponse>> getAllPlayers() {
-        List<PlayerViewResponse> players = playerService.getAllPlayers()
-                .stream()
-                .map(PlayerViewResponse::new)
-                .toList();
-        return ResponseEntity.ok().body(players);
-    }
+//    @GetMapping("/")
+//    public ResponseEntity<List<PlayerViewResponse>> getAllPlayers() {
+//        List<PlayerViewResponse> players = playerService.getAllPlayers()
+//                .stream()
+//                .map(PlayerViewResponse::new)
+//                .toList();
+//        return ResponseEntity.ok().body(players);
+//    }
 
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/lotoya";
     private static final String USER = "root";

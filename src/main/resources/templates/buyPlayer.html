@@ -53,13 +53,13 @@
   <div class="main">
 
     <div class="playerImg">
-      <img th:src="${player.imgLink}">
+      <img th:src="${player.imgLink}" alt="playerImg">
     </div>
 
     <div class="Container">
       <div class="title">
         <div class="name">
-          <h1 id="playerName" th:text="${player.backNum + '. ' + player.name}"></h1>
+          <h1 th:text="${player.backNum + '. ' + player.name}"></h1>
         </div>
 
         <div class="coinContainer">
@@ -68,7 +68,7 @@
           </div>
 
           <div class="moneyContainer">
-            <h3 th:text="${currentUserCoin}"></h3>
+            <h3 th:text="${player.price}"></h3>
           </div>
         </div>
       </div>
@@ -82,7 +82,8 @@
       </div>
 
       <div class="buttons">
-        <button class="btnBasket">구매하기</button>
+        <button class="btnBasket" id="btnBuy" th:data-player-id="${player.id}">구매하기</button>
+        <button class="wish"><i class="bi bi-suit-heart-fill"></i></button>
       </div>
 
     </div>
