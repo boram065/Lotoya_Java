@@ -10,25 +10,21 @@ public class UserContextHolder {
 
     private static final String USER_SESSION_KEY = "loggedInUser";
 
-    public void setLoggedInUser(HttpSession httpSession, User loggedInUser) {
-        if (httpSession != null && loggedInUser != null) {
-            httpSession.setAttribute(USER_SESSION_KEY, loggedInUser);
-        }
+    private final HttpSession httpSession;
+
+    public UserContextHolder(HttpSession httpSession) {
+        this.httpSession = httpSession;
     }
 
-
-    public User getLoggedInUser(HttpSession httpSession) {
-        if (httpSession != null) {
-            return (User) httpSession.getAttribute(USER_SESSION_KEY);
-        }
-        return null;
+    public void setLoggedInUser(User loggedInUser) {
+        httpSession.setAttribute(USER_SESSION_KEY, loggedInUser);
     }
 
-
-    public void clearLoggedInUser(HttpSession httpSession) {
-        if (httpSession != null) {
-            httpSession.removeAttribute(USER_SESSION_KEY);
-        }
+    public User getLoggedInUser() {
+        return (User) httpSession.getAttribute(USER_SESSION_KEY);
     }
 
+    public void clearLoggedInUser() {
+        httpSession.removeAttribute(USER_SESSION_KEY);
+    }
 }

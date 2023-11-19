@@ -1,6 +1,5 @@
 package com.example.Lotoya_Java.controller;
 
-import com.example.Lotoya_Java.dto.UserContextHolder;
 import com.example.Lotoya_Java.entity.User;
 import com.example.Lotoya_Java.repository.UserRepository;
 import com.example.Lotoya_Java.service.UserService;
@@ -11,61 +10,35 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-
 @RequiredArgsConstructor
 @Controller
-public class UserController {
+public class UserController{
     private final UserService userService;
     private final UserRepository userRepository;
-    private final UserContextHolder userContextHolder;
 
     @GetMapping("/join")
-    public String showJoinForm(Model model) {
+    public String showJoinForm(Model model){
         model.addAttribute("user", new User());
         return "join";
     }
 
     @PostMapping("/join")
-    public String processJoin(@ModelAttribute User user) {
+    public String processJoin(@ModelAttribute User user){
         userService.createUser(user);
         return "redirect:/login";
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam("email") String email,
-                        @RequestParam("password") String password,
-                        HttpSession httpSession) {
+    public String login(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
         User user = userService.loginUser(email, password);
 
         if (user != null) {
-            userContextHolder.setLoggedInUser(httpSession, user);
+            model.addAttribute("loggedInUser", user);
             return "redirect:/main";
         } else {
+            model.addAttribute("error", "존재하지 않는 유저입니다.");
             return "redirect:/login";
         }
-    }
-
-    // 다른 메서드에서 세션 사용 예시
-    @GetMapping("/profile")
-    public String showProfile(HttpSession httpSession, Model model) {
-        User loggedInUser = userContextHolder.getLoggedInUser(httpSession);
-
-        if (loggedInUser != null) {
-            model.addAttribute("currentUserCoin", loggedInUser.getCoin());
-            model.addAttribute("loggedInUser", loggedInUser);
-            return "profile";
-        } else {
-            return "redirect:/login";
-        }
-    }
-
-
-    // 다른 메서드에서 로그아웃
-    @GetMapping("/logout")
-    public String logout(HttpSession httpSession) {
-        userContextHolder.clearLoggedInUser(httpSession);
-        return "redirect:/login";
     }
 
     public User getUserById(Long userId) {
@@ -74,8 +47,8 @@ public class UserController {
     }
 
     @PostMapping("/forecast")
-    public ResponseEntity<String> updateCoin(@RequestParam Integer newCoinValue, HttpSession httpSession) {
-        userService.updateCoinValue(newCoinValue, httpSession);
+    public ResponseEntity<String> updateCoin(@RequestParam Long userId, @RequestParam Integer newCoinValue) {
+        userService.updateCoinValue(userId, newCoinValue);
         return ResponseEntity.ok("Coin updated successfully");
     }
 }
