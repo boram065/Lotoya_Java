@@ -114,11 +114,7 @@ public class UserController{
                 userRepository.save(loggedInUser);
 
                 Integer updatedCoin = userRepository.findById(loggedInUser.getId()).map(User::getCoin).orElse(0);
-<<<<<<< HEAD
                 return ResponseEntity.ok(updatedCoin+"");
-=======
-                return ResponseEntity.ok(updatedCoin + "");
->>>>>>> f49daf79cf92342eaa21f896335766a635e39229
             }
         } else {
             return ResponseEntity.badRequest().body("선수 찾을 수 없습니다");
@@ -159,9 +155,8 @@ public class UserController{
         return "redirect:/buyPlayer/" + playerId;
     }
     @GetMapping("/buyPlayer/wishlist/{userId}")
-    public String getUserWishlist(@PathVariable Long userId, Model model) {
-        List<Wishlist> userWishlist = wishlistService.getWishlistByUserId(userId);
-        model.addAttribute("userWishlist", userWishlist);
-        return "redirect:/buyPlayer/wishlist";
+    @ResponseBody
+    public List<Wishlist> getUserWishlist(@PathVariable Long userId) {
+        return wishlistService.getWishlistByUserId(userId);
     }
 }
