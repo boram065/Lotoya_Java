@@ -3,10 +3,8 @@ package com.example.Lotoya_Java.info;
 import com.example.Lotoya_Java.entity.Player;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,20 +23,14 @@ public class KIAInfo {
 
 
     public static void main(String[] args) {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\boram\\Downloads"); // ChromeDriver 경로 설정
-        WebDriver driver = new ChromeDriver(); // ChromeDriver를 사용하여 브라우저를 열기
-
         String pitcher1 = "https://tigers.co.kr/players/pitcher/";
         String pitcher2[] = {"67604"}; // , "53609"
         String pitcherImg = "https://tigers.co.kr/players/pitcher";
 
         try {
             for(int i = 0; i < pitcher2.length; i++) {
-//                Document doc = Jsoup.connect(pitcher1 + pitcher2[i]).get();
-                driver.get(pitcher1 + pitcher2[i]);
-//                System.out.println(doc);
-                Thread.sleep(5000);
-                System.out.println(driver.getPageSource());
+                Document doc = Jsoup.connect(pitcher1 + pitcher2[i]).get();
+                System.out.println(doc);
 
 //                String playerImg = "";
 //                String playerName = "";
@@ -97,10 +89,8 @@ public class KIAInfo {
 //                }
 //            }
 
-        } catch (InterruptedException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            driver.quit(); // 브라우저 닫기
         }
     }
 }

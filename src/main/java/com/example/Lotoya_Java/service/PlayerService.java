@@ -35,6 +35,10 @@ public class PlayerService {
         return playerRepository.findById(playerId);
     }
 
+    public Long getPlayerId(Player player) {
+        return player.getId();
+    }
+
     public List<PlayerViewResponse> getFilteredPlayers(PlayerFilterRequest filterRequest) {
         String club = filterRequest.getClub();
         String position = filterRequest.getPosition();
