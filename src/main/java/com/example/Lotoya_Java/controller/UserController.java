@@ -110,7 +110,11 @@ public class UserController{
                 userRepository.save(loggedInUser);
 
                 Integer updatedCoin = userRepository.findById(loggedInUser.getId()).map(User::getCoin).orElse(0);
+<<<<<<< HEAD
                 return ResponseEntity.ok(updatedCoin + "");
+=======
+                return ResponseEntity.ok(updatedCoin+"");
+>>>>>>> 06e9f87e714139b422a517d92312b5e961c66f0f
             }
         } else {
             return ResponseEntity.badRequest().body("선수 찾을 수 없습니다");
@@ -130,4 +134,32 @@ public class UserController{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("사용자가 로그인하지 않았습니다.");
         }
     }
+<<<<<<< HEAD
+=======
+
+    @PostMapping("/buyPlayer/addwishlist/{playerId}")
+    public String addToWishlist(@PathVariable Long playerId, HttpSession session){
+        User loogedInUser = (User) session.getAttribute("loggedInUser");
+
+        if(loogedInUser != null){
+            wishlistService.addToWishlist(loogedInUser.getId(), playerId);
+        }
+        return "redirect:/buyPlayer/" + playerId;
+    }
+
+    @PostMapping("/buyPlayer/removeWishlist/{playerId}")
+    public String removeFromWishlist(@PathVariable Long playerId, HttpSession session){
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+
+        if(loggedInUser != null){
+            wishlistService.removeFromWishlist(loggedInUser.getId(), playerId);
+        }
+        return "redirect:/buyPlayer/" + playerId;
+    }
+    @GetMapping("/buyPlayer/wishlist/{userId}")
+    @ResponseBody
+    public List<Wishlist> getUserWishlist(@PathVariable Long userId) {
+        return wishlistService.getWishlistByUserId(userId);
+    }
+>>>>>>> 06e9f87e714139b422a517d92312b5e961c66f0f
 }
