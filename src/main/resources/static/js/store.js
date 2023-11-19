@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
     players.forEach(function (player) {
         player.addEventListener("click", function () {
             var playerId = player.getAttribute("data-player-id");
+            // 확인: 콘솔에 playerId를 출력하여 값이 존재하는지 확인합니다.
+            console.log("Player ID:", playerId);
+            // 확인: buyPlayer 페이지로 이동하는 부분이 정상적으로 동작하는지 확인합니다.
             window.location.href = "/buyPlayer/" + playerId;
         });
     });
@@ -29,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 club = null;
             }
 
-            if (position === "" && club === "") {
+            if (!position && !club) {
                 filterPlayers(null, null);
                 return;
             }

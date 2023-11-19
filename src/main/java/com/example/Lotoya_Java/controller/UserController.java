@@ -6,20 +6,20 @@ import com.example.Lotoya_Java.entity.Player;
 import com.example.Lotoya_Java.entity.User;
 import com.example.Lotoya_Java.repository.MyPlayerRepository;
 import com.example.Lotoya_Java.repository.UserRepository;
+import com.example.Lotoya_Java.service.MyPlayerService;
 import com.example.Lotoya_Java.service.PlayerService;
 import com.example.Lotoya_Java.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-//import org.springframework.http.ResponseEntity;
 import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Controller
@@ -28,6 +28,8 @@ public class UserController{
     private final UserRepository userRepository;
     private final MyPlayerRepository myPlayerRepository;
     private final PlayerService playerService;
+    private final JdbcTemplate jdbcTemplate;
+    private static final String RESET_ID_SQL = "ALTER TABLE player AUTO_INCREMENT = 1";
 
     public static User getLoggedInUser(HttpSession session) {
         return (User) session.getAttribute("loggedInUser");
@@ -78,27 +80,52 @@ public class UserController{
         }
     }
 
-    @PostMapping("/buyPlayer")
-    public ResponseEntity<String> buyPlayer(@RequestParam Long playerId, HttpSession session) {
+    @PostMapping("/buyPlayer/{playerId}")
+    public ResponseEntity<String> buyPlayer(@PathVariable Long playerId, HttpSession session) {
         User loggedInUser = getLoggedInUser(session);
 
         if (loggedInUser != null) {
-            Player player = playerService.getPlayerId(playerId);
-            MyPlayer myPlayer = new MyPlayer();
-            myPlayer.setUser(loggedInUser);
-            myPlayer.setPlayer(player);
+            Optional<Player> playerOptional = playerService.getPlayer(playerId);
 
-            myPlayerRepository.save(myPlayer);
+            if (playerOptional.isPresent()) {
+                Player player = playerOptional.get();
 
-            Integer newCoinValue = loggedInUser.getCoin() - player.getPrice();
-            loggedInUser.setCoin(newCoinValue);
-            userRepository.save(loggedInUser);
+                boolean isPlayerAlreadyBought = myPlayerRepository.existsByUserAndPlayer(loggedInUser, player);
+                if (isPlayerAlreadyBought) {
+                    return ResponseEntity.badRequest().body("이미 구매한 선수입니다");
+                }
 
-            return ResponseEntity.ok("Purchase successful");
+                if (loggedInUser.getCoin() < player.getPrice()) {
+                    return ResponseEntity.badRequest().body("선수 구매할 충분한 코인이 없습니다");
+                }
+
+                String insertMyPlayerQuery = "INSERT INTO my_player (user_id, player_id) VALUES (?, ?)";
+                jdbcTemplate.update(insertMyPlayerQuery, loggedInUser.getId(), player.getId());
+                jdbcTemplate.execute(RESET_ID_SQL);
+
+                Integer newCoinValue = loggedInUser.getCoin() - player.getPrice();
+                loggedInUser.setCoin(newCoinValue);
+                userRepository.save(loggedInUser);
+
+                Integer updatedCoin = userRepository.findById(loggedInUser.getId()).map(User::getCoin).orElse(0);
+                return ResponseEntity.ok("선수 구매 성공\n" + updatedCoin + "코인 남았습니다.");
+            }
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not logged in");
+            return ResponseEntity.badRequest().body("선수 찾을 수 없습니다");
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("사용자가 로그인하지 않았습니다");
+    }
+
+    @PostMapping("/forecast-coins")
+    public ResponseEntity<String> updateCoins(@RequestParam Integer totalCoinsDifference, HttpSession session) {
+        User loggedInUser = getLoggedInUser(session);
+
+        if (loggedInUser != null) {
+            loggedInUser.setCoin(totalCoinsDifference);
+            userRepository.save(loggedInUser);
+            return ResponseEntity.ok("코인이 업데이트되었습니다.");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("사용자가 로그인하지 않았습니다.");
         }
     }
 }
-
-// 커밋하자

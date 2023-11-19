@@ -1,9 +1,13 @@
 package com.example.Lotoya_Java.controller;
 
-//import com.example.Lotoya_Java.dto.UserContextHolder;
+import com.example.Lotoya_Java.entity.MyPlayer;
 import com.example.Lotoya_Java.entity.Player;
 import com.example.Lotoya_Java.entity.User;
+import com.example.Lotoya_Java.repository.PlayerRepository;
+import com.example.Lotoya_Java.repository.UserRepository;
+import com.example.Lotoya_Java.service.MyPlayerService;
 import com.example.Lotoya_Java.service.PlayerService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.Lotoya_Java.controller.UserController.getLoggedInUser;
+
 @Controller
 @RequiredArgsConstructor
 public class fontController {
-    private final User user;
     private final PlayerService playerService;
-//    private final UserContextHolder userContextHolder;
+    private final UserRepository userRepository;
+    private final MyPlayerService myPlayerService;
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -44,15 +50,19 @@ public class fontController {
         model.addAttribute("vs", "/images/vs.jpg");
         model.addAttribute("club", "/images/club.jpg");
         model.addAttribute("FA", "/images/FA.jpg");
-        model.addAttribute("imagePath5", "/images/coin.jpg");
-        model.addAttribute("imagePath6", "/images/basket.jpg");
+        model.addAttribute("slide1", "/images/slide1.jpeg");
+        model.addAttribute("slide2", "/images/slide2.jpg");
+        model.addAttribute("slide3", "/images/slide3.jpg");
+        model.addAttribute("slide4", "/images/slide4.jpg");
+        model.addAttribute("slide5", "/images/slide5.jpg");
 
         return "main";
     }
 
     @RequestMapping("/buyPlayer/{id}")
-    public String buyPlayer(@PathVariable Long id, Model model) {
+    public String buyPlayer(@PathVariable Long id, Model model, HttpSession session) {
         Optional<Player> optionalPlayer = playerService.getPlayer(id);
+        User loggedInUser = getLoggedInUser(session);
 
         if (optionalPlayer.isPresent()) {
             Player player = optionalPlayer.get();
@@ -64,8 +74,11 @@ public class fontController {
             model.addAttribute("coin", "/images/coin.jpg");
             model.addAttribute("back", "/images/back.jpg");
 
-            Integer currentUserCoin = user.getCoin();
-            model.addAttribute("currentUserCoin", currentUserCoin);
+            loggedInUser = userRepository.findById(loggedInUser.getId()).orElse(null);
+            if (loggedInUser != null) {
+                Integer currentUserCoin = loggedInUser.getCoin();
+                model.addAttribute("currentUserCoin", currentUserCoin);
+            }
 
             model.addAttribute("player", player);
             return "buyPlayer";
@@ -75,7 +88,9 @@ public class fontController {
     }
 
     @RequestMapping("/forecast")
-    public String forecast(Model model) {
+    public String forecast(Model model, HttpSession session) {
+        User loggedInUser = getLoggedInUser(session);
+
         model.addAttribute("logo", "/images/logo.jpg");
         model.addAttribute("vs", "/images/vs.jpg");
         model.addAttribute("club", "/images/club.jpg");
@@ -92,14 +107,19 @@ public class fontController {
         model.addAttribute("Kiwoom", "/images/키움.png");
         model.addAttribute("Hanwha", "/images/한화.png");
 
-        Integer currentUserCoin = user.getCoin();
-        model.addAttribute("currentUserCoin", currentUserCoin);
+        loggedInUser = userRepository.findById(loggedInUser.getId()).orElse(null);
+        if (loggedInUser != null) {
+            Integer currentUserCoin = loggedInUser.getCoin();
+            model.addAttribute("currentUserCoin", currentUserCoin);
+        }
 
         return "forecast";
     }
 
     @RequestMapping("/ground")
-    public String ground(Model model) {
+    public String ground(Model model, HttpSession session) {
+        User loggedInUser = getLoggedInUser(session);
+
         model.addAttribute("logo", "/images/logo.jpg");
         model.addAttribute("vs", "/images/vs.jpg");
         model.addAttribute("club", "/images/club.jpg");
@@ -109,14 +129,22 @@ public class fontController {
         model.addAttribute("coin", "/images/coin.jpg");
         model.addAttribute("ground", "/images/ground.png");
 
-        Integer currentUserCoin = user.getCoin();
-        model.addAttribute("currentUserCoin", currentUserCoin);
+        loggedInUser = userRepository.findById(loggedInUser.getId()).orElse(null);
+        if (loggedInUser != null) {
+            Integer currentUserCoin = loggedInUser.getCoin();
+            model.addAttribute("currentUserCoin", currentUserCoin);
+        }
+
+        List<MyPlayer> myPlayers = myPlayerService.getAllPlayers();
+        model.addAttribute("myPlayers", myPlayers);
 
         return "ground";
     }
 
     @RequestMapping("/store")
-    public String store(Model model) {
+    public String store(Model model, HttpSession session) {
+        User loggedInUser = getLoggedInUser(session);
+
         model.addAttribute("logo", "/images/logo.jpg");
         model.addAttribute("vs", "/images/vs.jpg");
         model.addAttribute("club", "/images/club.jpg");
@@ -126,8 +154,11 @@ public class fontController {
         model.addAttribute("coin", "/images/coin.jpg");
         model.addAttribute("wishList", "/images/wishlist.jpg");
 
-        Integer currentUserCoin = user.getCoin();
-        model.addAttribute("currentUserCoin", currentUserCoin);
+        loggedInUser = userRepository.findById(loggedInUser.getId()).orElse(null);
+        if (loggedInUser != null) {
+            Integer currentUserCoin = loggedInUser.getCoin();
+            model.addAttribute("currentUserCoin", currentUserCoin);
+        }
 
         List<Player> players = playerService.getAllPlayers();
         model.addAttribute("players", players);

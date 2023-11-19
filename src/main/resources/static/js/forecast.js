@@ -119,7 +119,7 @@ ok.addEventListener('click', function() {
 var newCoin = 0;
 var good = 0, bad = 0;
 function shouldRandomize(result) {
-    newCoin = 0;
+    newCoin = 0, good = 0, bad = 0;
     if (result === 1) {
         num.forEach(function(numElement) {
            var randomNum = Math.floor(Math.random() * 10);
@@ -155,40 +155,25 @@ function shouldRandomize(result) {
         currentUserCoinElement.textContent = newCoin.toString();
     });
 
-//      // userId 구하는 코드
-//    var userId = getLoggedInUserId();
-//    if (userId) {
-//        console.log("사용자 id : ", userId)
-//        updateCoinValue(userId, newCoin);
-//    } else {
-//        console.error('Failed to get user ID');
-//    }
-
     var totalCoins = good - bad;
     var message = "얻은 코인: " + good + "\n" +
                   "잃은 코인: " + bad + "\n" +
                   (totalCoins >= 0 ? totalCoins + "코인 얻었습니다" : Math.abs(totalCoins) + "코인 잃었습니다");
     alert(message);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/forecast-coins', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4) {
+           if (xhr.status === 200) {
+               console.log("코인이 업데이트되었습니다.");
+           } else {
+               console.error("코인 업데이트 중 오류 발생:", xhr.statusText);
+               console.log("코인 업데이트 중 오류가 발생했습니다.");
+           }
+       }
+    };
+    xhr.send('totalCoinsDifference=' + newCoin);
 }
-
-//function getLoggedInUserId() {
-//    var loggedInUser = [[${loggedInUser}]];
-//    if (loggedInUser) {
-//        return loggedInUser.id;
-//    } else {
-//        // 로그인되지 않은 경우에 대한 처리
-//        console.error('User is not logged in');
-//        return null;
-//    }
-//}
-
-//function updateCoinValue(userId, newCoinValue) {
-//    fetch("/forecast", {
-//        method: 'POST',
-//    })
-//    .then(response => response.json())
-//    .then(data => {
-//        console.log(data);  // 서버 응답을 콘솔에 출력
-//    })
-//    .catch(error => console.error('Error updating coin value:', error));
-//}
