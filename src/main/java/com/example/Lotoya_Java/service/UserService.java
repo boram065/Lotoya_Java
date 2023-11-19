@@ -1,9 +1,10 @@
 package com.example.Lotoya_Java.service;
 
-import com.example.Lotoya_Java.dto.UserContextHolder;
+import com.example.Lotoya_Java.controller.UserController;
 import com.example.Lotoya_Java.entity.User;
 import com.example.Lotoya_Java.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -15,7 +16,6 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final UserContextHolder userContextHolder;
 
     public User createUser(User user) {
         return userRepository.save(user);
@@ -38,9 +38,8 @@ public class UserService {
         return null;
     }
 
-    public void updateCoinValue(Long userId, Integer newCoinValue) {
-//        User user = userRepository.findById(userId).orElse(null);
-        User user = userContextHolder.getLoggedInUser();
+    public void updateCoinValue(Integer newCoinValue, HttpSession session) {
+        User user = UserController.getLoggedInUser(session);
 
         if (user != null) {
             user.setCoin(newCoinValue);
