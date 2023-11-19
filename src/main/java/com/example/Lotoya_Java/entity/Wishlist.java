@@ -3,6 +3,7 @@ package com.example.Lotoya_Java.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Repository;
 @Getter
 @Setter
 @NoArgsConstructor
-@Repository
 public class Wishlist {
 
     @Id
@@ -25,4 +25,9 @@ public class Wishlist {
     @ManyToOne
     @JoinColumn(name="player_id")
     private Player player;
+
+    public Wishlist(User user, Player player) {
+        this.user = user;
+        this.player = player;
+    }
 }
