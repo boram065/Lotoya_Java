@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     players.forEach(function (player) {
         player.addEventListener("click", function () {
             var playerId = player.getAttribute("data-player-id");
-            window.location.href = "/buyPlayer/" + playerId;
+            window.location.href = "/groundPlayer/" + playerId;
         });
     });
 

@@ -1,5 +1,3 @@
-let index = -1;
-
 document.addEventListener("DOMContentLoaded", function () {
      btnBuy.addEventListener('click', async function () {
         btnBuy.classList.toggle('btnBasket-click');

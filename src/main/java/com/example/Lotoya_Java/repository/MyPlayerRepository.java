@@ -21,4 +21,8 @@ public interface MyPlayerRepository extends JpaRepository<MyPlayer, Long> {
     boolean existsByUserAndPlayer(User user, Player player);
 
     List<MyPlayer> findByUser(User user) ;
+
+    List<MyPlayer> findByClubAndPosition(String club, String position);
+    List<MyPlayer> findByClub(String club);
+    List<MyPlayer> findByPosition(String position);
 }

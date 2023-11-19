@@ -119,7 +119,6 @@ ok.addEventListener('click', function() {
 // OK 버튼의 활성화 상태를 업데이트하는 함수
 function updateOkButtonState() {
     var isAllScoresZero = Array.from(num).every(function (numElement) {
-        alert("예측 다시하기 버튼을 눌러주세요");
         return parseInt(numElement.textContent, 10) === 0;
     });
 
