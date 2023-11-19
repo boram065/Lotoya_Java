@@ -3,12 +3,11 @@ package com.example.Lotoya_Java.service;
 import com.example.Lotoya_Java.dto.UserContextHolder;
 import com.example.Lotoya_Java.entity.User;
 import com.example.Lotoya_Java.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @Service
@@ -38,9 +37,8 @@ public class UserService {
         return null;
     }
 
-    public void updateCoinValue(Long userId, Integer newCoinValue) {
-//        User user = userRepository.findById(userId).orElse(null);
-        User user = userContextHolder.getLoggedInUser();
+    public void updateCoinValue(Integer newCoinValue, HttpSession httpSession) {
+        User user = userContextHolder.getLoggedInUser(httpSession);
 
         if (user != null) {
             user.setCoin(newCoinValue);
@@ -49,4 +47,5 @@ public class UserService {
             System.out.println("사용자를 찾을 수 없습니다.");
         }
     }
+
 }
