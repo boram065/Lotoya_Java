@@ -18,7 +18,7 @@ import java.util.Optional;
 public class fontController {
     private final User user;
     private final PlayerService playerService;
-    private final UserContextHolder userContextHolder;
+//    private final UserContextHolder userContextHolder;
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -92,16 +92,8 @@ public class fontController {
         model.addAttribute("Kiwoom", "/images/키움.png");
         model.addAttribute("Hanwha", "/images/한화.png");
 
-        User loggedInUser = userContextHolder.getLoggedInUser();
-        if (loggedInUser != null) {
-            model.addAttribute("currentUserCoin", loggedInUser.getCoin());
-            model.addAttribute("loggedInUser", loggedInUser);
-        } else {
-            return "redirect:/login";
-        }
-
-//        Integer currentUserCoin = user.getCoin();
-//        model.addAttribute("currentUserCoin", currentUserCoin);
+        Integer currentUserCoin = user.getCoin();
+        model.addAttribute("currentUserCoin", currentUserCoin);
 
         return "forecast";
     }

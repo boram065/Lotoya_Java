@@ -155,13 +155,14 @@ function shouldRandomize(result) {
         currentUserCoinElement.textContent = newCoin.toString();
     });
 
-    var userId = getLoggedInUserId();
-    if (userId) {
-        console.log("사용자 id : ", userId)
-        updateCoinValue(userId, newCoin);
-    } else {
-        console.error('Failed to get user ID');
-    }
+//      // userId 구하는 코드
+//    var userId = getLoggedInUserId();
+//    if (userId) {
+//        console.log("사용자 id : ", userId)
+//        updateCoinValue(userId, newCoin);
+//    } else {
+//        console.error('Failed to get user ID');
+//    }
 
     var totalCoins = good - bad;
     var message = "얻은 코인: " + good + "\n" +
@@ -181,13 +182,13 @@ function shouldRandomize(result) {
 //    }
 //}
 
-function updateCoinValue(userId, newCoinValue) {
-    fetch("/forecast", {
-        method: 'POST',
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);  // 서버 응답을 콘솔에 출력
-    })
-    .catch(error => console.error('Error updating coin value:', error));
-}
+//function updateCoinValue(userId, newCoinValue) {
+//    fetch("/forecast", {
+//        method: 'POST',
+//    })
+//    .then(response => response.json())
+//    .then(data => {
+//        console.log(data);  // 서버 응답을 콘솔에 출력
+//    })
+//    .catch(error => console.error('Error updating coin value:', error));
+//}

@@ -3,8 +3,10 @@ package com.example.Lotoya_Java.info;
 import com.example.Lotoya_Java.entity.Player;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +25,9 @@ public class KIAInfo {
 
 
     public static void main(String[] args) {
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver"); // ChromeDriver 경로 설정
+        WebDriver driver = new ChromeDriver(); // ChromeDriver를 사용하여 브라우저를 열기
+
         String pitcher1 = "https://tigers.co.kr/players/pitcher/";
         String pitcher2[] = {"67604"}; // , "53609"
         String pitcherImg = "https://tigers.co.kr/players/pitcher";
