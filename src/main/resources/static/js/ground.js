@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (position === "") {
                 position = null;
-            } else if (club === ""){
+            } else if (club === "") {
                 club = null;
             }
 

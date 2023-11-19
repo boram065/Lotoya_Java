@@ -177,7 +177,7 @@ main {
 }
 
 .btnBasket {
-    width: 20vw;
+    width: 25vw;
     height: 6vh;
     border: 0;
     cursor: pointer;
@@ -189,25 +189,4 @@ main {
 
 .btnBasket-click {
     background-color: #777978;
-}
-
-.wish {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 3.5vw;
-    height: 6vh;
-    border: 0;
-    cursor: pointer;
-    font-size: 1.5rem;
-    background-color: #CAECD7;
-    color: #6D7885;
-}
-
-.wish i {
-    margin-top: 5px;
-}
-
-.wish-click {
-    color: red;
 }

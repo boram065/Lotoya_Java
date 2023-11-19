@@ -2,12 +2,10 @@ package com.example.Lotoya_Java.controller;
 
 import com.example.Lotoya_Java.entity.Player;
 import com.example.Lotoya_Java.entity.User;
-import com.example.Lotoya_Java.entity.Wishlist;
 import com.example.Lotoya_Java.repository.MyPlayerRepository;
 import com.example.Lotoya_Java.repository.UserRepository;
 import com.example.Lotoya_Java.service.PlayerService;
 import com.example.Lotoya_Java.service.UserService;
-import com.example.Lotoya_Java.service.WishlistService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import jakarta.servlet.http.HttpSession;
@@ -18,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -29,7 +26,6 @@ public class UserController{
     private final MyPlayerRepository myPlayerRepository;
     private final PlayerService playerService;
     private final JdbcTemplate jdbcTemplate;
-    private final WishlistService wishlistService;
     private static final String RESET_ID_SQL = "ALTER TABLE player AUTO_INCREMENT = 1";
 
     public static User getLoggedInUser(HttpSession session) {
@@ -114,11 +110,7 @@ public class UserController{
                 userRepository.save(loggedInUser);
 
                 Integer updatedCoin = userRepository.findById(loggedInUser.getId()).map(User::getCoin).orElse(0);
-<<<<<<< HEAD
-                return ResponseEntity.ok(updatedCoin+"");
-=======
                 return ResponseEntity.ok(updatedCoin + "");
->>>>>>> f49daf79cf92342eaa21f896335766a635e39229
             }
         } else {
             return ResponseEntity.badRequest().body("선수 찾을 수 없습니다");
@@ -137,31 +129,5 @@ public class UserController{
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("사용자가 로그인하지 않았습니다.");
         }
-    }
-
-    @PostMapping("/buyPlayer/addwishlist/{playerId}")
-    public String addToWishlist(@PathVariable Long playerId, HttpSession session){
-        User loogedInUser = (User) session.getAttribute("loggedInUser");
-
-        if(loogedInUser != null){
-            wishlistService.addToWishlist(loogedInUser.getId(), playerId);
-        }
-        return "redirect:/buyPlayer/" + playerId;
-    }
-
-    @PostMapping("/buyPlayer/removeWishlist/{playerId}")
-    public String removeFromWishlist(@PathVariable Long playerId, HttpSession session){
-        User loggedInUser = (User) session.getAttribute("loggedInUser");
-
-        if(loggedInUser != null){
-            wishlistService.removeFromWishlist(loggedInUser.getId(), playerId);
-        }
-        return "redirect:/buyPlayer/" + playerId;
-    }
-    @GetMapping("/buyPlayer/wishlist/{userId}")
-    public String getUserWishlist(@PathVariable Long userId, Model model) {
-        List<Wishlist> userWishlist = wishlistService.getWishlistByUserId(userId);
-        model.addAttribute("userWishlist", userWishlist);
-        return "redirect:/buyPlayer/wishlist";
     }
 }
