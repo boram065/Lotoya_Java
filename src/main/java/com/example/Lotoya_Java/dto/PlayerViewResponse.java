@@ -15,6 +15,7 @@ public class PlayerViewResponse {
     private final Integer height;
     private final Integer weight;
     private final Integer price;
+    private final String imgLink;
 
     public PlayerViewResponse(Player player) {
         this.id = player.getId();
@@ -26,6 +27,6 @@ public class PlayerViewResponse {
         this.height = player.getHeight();
         this.weight = player.getWeight();
         this.price = player.getPrice();
-
+        this.imgLink = player.getImgLink();
     }
 }

@@ -1,121 +1,119 @@
-var buttons = document.querySelectorAll('.button');
+document.addEventListener("DOMContentLoaded", function () {
+    var buttons = document.querySelectorAll(".button.filter");
+    var players = document.querySelectorAll(".player");
 
-buttons.forEach(function(button) {
-   button.addEventListener('click', function() {
-       // 클릭 시 배경색 변경
-       button.classList.toggle('clicked');
-   });
+    players.forEach(function (player) {
+        player.addEventListener("click", function () {
+            var playerId = player.getAttribute("data-player-id");
+            window.location.href = "/buyPlayer/" + playerId;
+        });
+    });
+
+    buttons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            button.classList.toggle("clicked");
+            var clickedButtons = Array.from(buttons).filter(b => b.classList.contains("clicked"));
+            var club = clickedButtons
+                .filter(b => b.classList.contains("club"))
+                .map(b => b.textContent.trim())
+                .join(",");
+
+            var position = clickedButtons
+                .filter(b => b.classList.contains("position"))
+                .map(b => b.textContent.trim())
+                .join(",");
+
+            if (position === "") {
+                position = null;
+            } else if (club === ""){
+                club = null;
+            }
+
+            if (position === "" && club === "") {
+                filterPlayers(null, null);
+                return;
+            }
+
+            filterPlayers(club, position);
+        });
+    });
+
+    var searchInput = document.querySelector(".inputSearch");
+    searchInput.addEventListener("input", function () {
+        var searchTerm = searchInput.value;
+        filterPlayersBySearch(searchTerm);
+    });
 });
 
+// 필터링된 선수들을 가져오는 함수
+function filterPlayers(club, position) {
+    var url = '/store';
+    var requestBody = {
+        club: club,
+        position: position
+    };
 
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+    })
+        .then(response => response.json())
+        .then(data => {
+            updatePlayerList(data);
+        })
+        .catch(error => console.error('Error:', error));
+}
 
-//document.addEventListener("DOMContentLoaded", function() {
-//    $.get("/", function(data) {
-//        var players = JSON.parse(data);
-//
-//        // player-container에 선수 정보를 동적으로 추가
-//        var container = document.getElementById("player-container");
-//        players.forEach(function(player) {
-//            addPlayerToContainer(container, player);
-//        });
-//    });
-//});
+function updatePlayerList(data) {
+    var playerContainer = document.getElementById('player-container');
+    playerContainer.innerHTML = '';
 
-//// 선수 정보를 받아 HTML 엘리먼트를 동적으로 생성하여 컨테이너에 추가하는 함수
-//function addPlayerToContainer(container, player) {
-//    // 새로운 선수를 추가하는 HTML 엘리먼트 생성
-//    var playerDiv = document.createElement("div");
-//    playerDiv.className = "player";
-//
-//    var playerImage = document.createElement("img");
-//    playerImage.src = player.imgLink;
-//    playerImage.alt = player.name;
-//
-//    var bottomName = document.createElement("div");
-//    bottomName.className = "bottomName";
-//
-//    var playerName = document.createElement("h3");
-//    playerName.textContent = player.name;
-//
-//    bottomName.appendChild(playerName);
-//    playerDiv.appendChild(playerImage);
-//    playerDiv.appendChild(bottomName);
-//
-//    container.appendChild(playerDiv);
-//}
+    data.forEach(function (player) {
+        var playerDiv = document.createElement('div');
+        playerDiv.classList.add('player');
+        playerDiv.setAttribute('data-player-id', player.id);
 
-//// 새로운 플레이어를 추가하는 함수
-//function addPlayer(image, name) {
-//    var playerContainer = document.createElement("div");
-//    playerContainer.className = "player";
-//    playerContainer.onclick = function () {
-//        // 해당 선수 페이지로 이동
-//        window.location.href = "buyPlayer.html"; // 이동할 페이지 URL을 지정합니다.
-//    };
-//
-//    var playerImage = document.createElement("img");
-//    playerImage.src = image;
-//    playerImage.alt = name;
-//
-//    var bottomName = document.createElement("div");
-//    bottomName.className = "bottomName";
-//    var playerName = document.createElement("h3");
-//    playerName.textContent = name;
-//
-//    bottomName.appendChild(playerName);
-//    playerContainer.appendChild(playerImage);
-//    playerContainer.appendChild(bottomName);
-//
-//    var playerContainerDiv = document.getElementById("player-container");
-//    playerContainerDiv.appendChild(playerContainer);
-//}
+        var img = document.createElement('img');
+        img.setAttribute('src', player.imgLink);
+        img.setAttribute('alt', player.name);
 
-//if (imgList || nameList || numList) {
-//    // imgList, nameList, numList가 모두 null이 아닌 경우
-//    // 원하는 작업을 수행하십시오.
-//    for (var i = 0; i < imgList.length; i++) {
-//        addPlayer(imgList[i], nameList[i], numList[i]);
-//    }
-//} else {
-//    // imgList, nameList, numList 중 하나라도 null인 경우
-//    // 원하는 작업을 수행하십시오.
-//    console.log("하나 이상의 LIST가 null입니다.");
-//}
+        var bottomNameDiv = document.createElement('div');
+        bottomNameDiv.classList.add('bottomName');
+        var h4 = document.createElement('h4');
+        h4.textContent = player.backNum + '. ' + player.name;
 
-//// 검색 기능 구현
-//var searchInput = document.querySelector('.search .input');
-//searchInput.addEventListener('input', function() {
-//    var searchTerm = searchInput.value.toLowerCase();
-//    var filtered;
-//
-//    if (searchTerm === '') {
-//        filtered = song;
-//    } else {
-//        filtered = song.filter(function(item) {
-//            return item.title.toLowerCase().includes(searchTerm);
-//        });
-//    }
-//
-//    renderFilteredSongs(filtered);
-//});
-//
-//function renderFilteredSongs(filteredSongs) {
-//    viewContainer.innerHTML = '';
-//
-//    filteredSongs.forEach(function(item) {
-//        var songDiv = document.createElement('div');
-//        songDiv.classList.add('view');
-//
-//        songDiv.addEventListener('click', function() {
-//            if (currentAudio) {
-//                currentAudio.pause();
-//            }
-//            var audio = new Audio(item.song);
-//            audio.play();
-//            currentAudio = audio;
-//            songTitleDiv.textContent = item.title;
-//        });
-//
-//        viewContainer.appendChild(songDiv);
-//    });
-//}
+        bottomNameDiv.appendChild(h4);
+        playerDiv.appendChild(img);
+        playerDiv.appendChild(bottomNameDiv);
+
+        playerContainer.appendChild(playerDiv);
+    });
+}
+
+// 검색 필터링
+function filterPlayersBySearch(searchTerm) {
+    console.log(searchTerm);
+    var allPlayers = document.querySelectorAll(".player");
+    allPlayers.forEach(function (player) {
+        var playerNameElement = player.querySelector(".bottomName h4");
+
+        if (!searchTerm || searchTerm === "") {
+            player.style.display = "flex";
+            return;
+        }
+
+        if (playerNameElement) {
+            var playerName = playerNameElement.dataset.playerName;
+            var playerNumber = playerNameElement.dataset.playerNumber;
+
+            if (playerName.includes(searchTerm) || playerNumber.includes(searchTerm)) {
+                player.style.display = "flex";
+            } else {
+                player.style.display = "none";
+            }
+        }
+    });
+}

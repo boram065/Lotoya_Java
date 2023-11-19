@@ -32,7 +32,7 @@ public class NCInfo {
         String catcher2[] = {"627", "170", "629", "611", "597", "352", "628"};
 
         String infielder1 = "https://www.ncdinos.com/player/infielder/view.do?playerId=";
-        String infielder2[] = {"42", "261", "410", "630", "536", "236", "217", "411", "355",
+        String infielder2[] = {"42", "261", "410", "630", "536", "236", "217", "355",
                 "609", "356", "543", "537", "456", "632", "649", "472", "633",
                 "631"};
 

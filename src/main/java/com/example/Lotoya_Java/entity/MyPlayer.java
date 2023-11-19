@@ -25,4 +25,9 @@ public class MyPlayer {
     @ManyToOne
     @JoinColumn(name="player_id")
     private Player player;
+
+    public MyPlayer(User user, Player player) {
+        this.user = user;
+        this.player = player;
+    }
 }

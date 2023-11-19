@@ -139,11 +139,10 @@ main {
 .check {
     display: flex;
     justify-content: center;
-    flex-direction: row;
     width: 290px;
-    height: 380px;
-    margin-top: 5%;
-    margin-left: 3%;
+    height: 490px;
+    margin-top: 70px;
+    margin-left: 30px;
     border-radius: 50px;
     background-color: #CAECD7;
 }
@@ -215,89 +214,32 @@ main {
     padding: 2px;
 }
 
-.ground-container {
+/* 선수 이미지 */
+#player-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-bottom: 15%;
+    column-gap: 60px;
+    row-gap: 50px;
+}
+
+.player {
     display: flex;
+}
+
+.player img {
+   width: 12vw;
+   height: 27vh;
+}
+
+.bottomName {
+    position: absolute;
+    display: flex;
+    width: 8vw;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    width: 40vw
-    height: 65vh;
-    left: 30%;
-    top: 100%;
-}
-
-.groundContainer {
-    width: 35vw;
-    height: 60vh;
-}
-
-.circle {
-  width: 5vw;
-  height: 8vh;
-  display: inline-block;
-  position: absolute;
-  margin: 5px;
-  color: #C72828;
-  z-index: 1; /* ground 이미지 위에 위치 */
-}
-
-.bi-circle {
-    font-size: 3.3rem;
-}
-
-.ground {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    left: 50%;
-    top: -7%;
-}
-
-/* 1루 */
-.circle:nth-child(1) {
-    top: 61.3%;
-    left: 62.3%;
-}
-
-/* 2루 */
-.circle:nth-child(2) {
-    top: 43%;
-    left: 54%;
-}
-
-/* 3루 */
-.circle:nth-child(3) {
-    top: 61.3%;
-    left: 45.8%;
-}
-
-/* 투수 */
-.circle:nth-child(4) {
-    top: 61.3%;
-    left: 54%;
-}
-
-/* 홈 */
-.circle:nth-child(5) {
-    top: 78.3%;
-    left: 54.1%;
-}
-
-/* 좌익수 */
-.circle:nth-child(6) {
-    top: 56%;
-    left: 41%;
-}
-
-/* 중견수 */
-.circle:nth-child(7) {
-    top: 31%;
-    left: 54%;
-}
-
-/* 우익수 */
-.circle:nth-child(8) {
-    top: 56%;
-    left: 67.4%;
+    margin-left: 2.3%;
+    margin-top: 14%;
 }

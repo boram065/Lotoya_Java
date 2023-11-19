@@ -1,24 +1,20 @@
 package com.example.Lotoya_Java.controller;
 
-import com.example.Lotoya_Java.dto.LoginRequest;
 import com.example.Lotoya_Java.entity.User;
 import com.example.Lotoya_Java.repository.UserRepository;
 import com.example.Lotoya_Java.service.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-
 @RequiredArgsConstructor
 @Controller
 public class UserController{
     private final UserService userService;
+    private final UserRepository userRepository;
 
     @GetMapping("/join")
     public String showJoinForm(Model model){
@@ -41,7 +37,18 @@ public class UserController{
             return "redirect:/main";
         } else {
             model.addAttribute("error", "존재하지 않는 유저입니다.");
-            return "/login";
+            return "redirect:/login";
         }
+    }
+
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
+    }
+
+    @PostMapping("/forecast")
+    public ResponseEntity<String> updateCoin(@RequestParam Long userId, @RequestParam Integer newCoinValue) {
+        userService.updateCoinValue(userId, newCoinValue);
+        return ResponseEntity.ok("Coin updated successfully");
     }
 }

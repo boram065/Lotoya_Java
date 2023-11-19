@@ -69,35 +69,35 @@
                 <!-- 구단 선택 목록 -->
                 <div class="team">
                     <div class="Tline_1">
-                        <button id="team_doosan" class="button">
+                        <button id="team_doosan" class="button filter club">
                             <p>두산</p>
                         </button>
 
-                        <button id="team_samsung" class="button">
+                        <button id="team_samsung" class="button filter club">
                             <p>삼성</p>
                         </button>
                     </div>
 
                     <div class="Tline_2">
-                        <button id="team_kiwoom" class="button">
+                        <button id="team_kiwoom" class="button filter club">
                             <p>키움</p>
                         </button>
 
-                        <button id="team_kia" class="button">
+                        <button id="team_kia" class="button filter club">
                             <p>KIA</p>
                         </button>
 
-                        <button id="team_kt" class="button">
+                        <button id="team_kt" class="button filter club">
                             <p>KT</p>
                         </button>
                     </div>
 
                     <div class="Tline_3">
-                        <button id="team_ssg" class="button">
+                        <button id="team_ssg" class="button filter club">
                             <p>SSG</p>
                         </button>
 
-                        <button id="team_nc" class="button">
+                        <button id="team_nc" class="button filter club">
                             <p>NC</p>
                         </button>
                     </div>
@@ -112,21 +112,21 @@
                 </div>
 
                 <div class="Pline_1">
-                    <button id="posi_pitcher" class="button">
+                    <button id="posi_pitcher" class="button filter position">
                         <p>투수</p>
                     </button>
 
-                    <button id="posi_catcher" class="button">
+                    <button id="posi_catcher" class="button filter position">
                         <p>포수</p>
                     </button>
                 </div>
 
                 <div class="Pline_2">
-                    <button id="posi_infielder" class="button">
+                    <button id="posi_infielder" class="button filter position">
                         <p>내야수</p>
                     </button>
 
-                    <button id="posi_outfielder" class="button">
+                    <button id="posi_outfielder" class="button filter position">
                         <p>외야수</p>
                     </button>
                 </div>
@@ -146,10 +146,10 @@
 
         <div class="playerContainer">
             <div id="player-container">
-                <div class="player" th:each="player : ${players}">
-                    <img th:src="@{${player.imgLink}}" alt="player">
+                <div class="player" th:each="player : ${players}" th:data-player-id="${player.id}">
+                    <img th:src="@{${player.imgLink}}" alt="player" th:data-player-img="@{${player.imgLink}}">
                     <div class="bottomName">
-                        <h4 th:text="${player.backNum + '. ' + player.name}"></h4>
+                        <h4 th:text="${player.backNum + '. ' + player.name}" th:data-player-number="${player.backNum}" th:data-player-name="${player.name}"></h4>
                     </div>
                 </div>
             </div>
