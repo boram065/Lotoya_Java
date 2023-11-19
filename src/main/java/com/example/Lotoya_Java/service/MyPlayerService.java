@@ -17,14 +17,16 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MyPlayerService {
     private final MyPlayerRepository myPlayerRepository;
-    public List<MyPlayer> getAllPlayers(){
-        return myPlayerRepository.findAll();
+
+    public List<MyPlayer> getAllPlayersByUser(User user){
+        return myPlayerRepository.findByUser(user);
     }
 
     public Optional<MyPlayer> getPlayer(Long playerId){
         return myPlayerRepository.findById(playerId);
     }
-//    public boolean isPlayerBought(User user, Player player) {
-//        return myPlayerRepository.existsByUserAndPlayer(user, player);
-//    }
+
+    public boolean isPlayerBought(User user, Player player) {
+        return myPlayerRepository.existsByUserAndPlayer(user, player);
+    }
 }

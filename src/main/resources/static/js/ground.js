@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (!position && !club) {
                 filterPlayers(null, null);
-                return;
             }
 
             filterPlayers(club, position);
@@ -48,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // 필터링된 선수들을 가져오는 함수
 function filterPlayers(club, position) {
-    var url = '/store';
+    var url = '/ground';
     var requestBody = {
         club: club,
         position: position

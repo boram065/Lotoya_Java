@@ -19,14 +19,6 @@ public class PlayerService {
 
     private final PlayerRepository playerRepository;
 
-//    public Player createPlayer(Player player) {
-//        return playerRepository.save(player);
-//    }
-
-//    public Player savePlayer(Player player) {
-//        return playerRepository.save(player);
-//    }
-
     public List<Player> getAllPlayers(){
         return playerRepository.findAll();
     }

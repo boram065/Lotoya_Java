@@ -19,4 +19,6 @@ public interface MyPlayerRepository extends JpaRepository<MyPlayer, Long> {
     List<Player> findPlayersByUserId(@Param("userId") Long userId);
 
     boolean existsByUserAndPlayer(User user, Player player);
+
+    List<MyPlayer> findByUser(User user) ;
 }

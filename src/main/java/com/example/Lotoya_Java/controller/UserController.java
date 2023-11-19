@@ -1,12 +1,9 @@
 package com.example.Lotoya_Java.controller;
 
-//import com.example.Lotoya_Java.dto.UserContextHolder;
-import com.example.Lotoya_Java.entity.MyPlayer;
 import com.example.Lotoya_Java.entity.Player;
 import com.example.Lotoya_Java.entity.User;
 import com.example.Lotoya_Java.repository.MyPlayerRepository;
 import com.example.Lotoya_Java.repository.UserRepository;
-import com.example.Lotoya_Java.service.MyPlayerService;
 import com.example.Lotoya_Java.service.PlayerService;
 import com.example.Lotoya_Java.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
@@ -47,6 +44,12 @@ public class UserController{
         return "redirect:/login";
     }
 
+    @GetMapping("/")
+    public String showLoginPage(Model model) {
+        model.addAttribute("user", new User());
+        return "redirect:/login";
+    }
+
     @PostMapping("/login")
     public String login(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session, Model model) {
         User user = userService.loginUser(email, password);
@@ -60,7 +63,6 @@ public class UserController{
             return "redirect:/login";
         }
     }
-
 
     public User getUserById(Long userId) {
         return userRepository.findById(userId)
@@ -92,11 +94,11 @@ public class UserController{
 
                 boolean isPlayerAlreadyBought = myPlayerRepository.existsByUserAndPlayer(loggedInUser, player);
                 if (isPlayerAlreadyBought) {
-                    return ResponseEntity.badRequest().body("이미 구매한 선수입니다");
+                    return ResponseEntity.badRequest().body("alreadyBought");
                 }
 
                 if (loggedInUser.getCoin() < player.getPrice()) {
-                    return ResponseEntity.badRequest().body("선수 구매할 충분한 코인이 없습니다");
+                    return ResponseEntity.badRequest().body("noMoney");
                 }
 
                 String insertMyPlayerQuery = "INSERT INTO my_player (user_id, player_id) VALUES (?, ?)";
@@ -108,7 +110,7 @@ public class UserController{
                 userRepository.save(loggedInUser);
 
                 Integer updatedCoin = userRepository.findById(loggedInUser.getId()).map(User::getCoin).orElse(0);
-                return ResponseEntity.ok("선수 구매 성공\n" + updatedCoin + "코인 남았습니다.");
+                return ResponseEntity.ok(updatedCoin+"");
             }
         } else {
             return ResponseEntity.badRequest().body("선수 찾을 수 없습니다");

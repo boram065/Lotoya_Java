@@ -131,13 +131,12 @@ public class fontController {
 
         loggedInUser = userRepository.findById(loggedInUser.getId()).orElse(null);
         if (loggedInUser != null) {
+            List<MyPlayer> myPlayers = myPlayerService.getAllPlayersByUser(loggedInUser);
+            model.addAttribute("myPlayers", myPlayers);
+
             Integer currentUserCoin = loggedInUser.getCoin();
             model.addAttribute("currentUserCoin", currentUserCoin);
         }
-
-        List<MyPlayer> myPlayers = myPlayerService.getAllPlayers();
-        model.addAttribute("myPlayers", myPlayers);
-
         return "ground";
     }
 

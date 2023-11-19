@@ -87,14 +87,6 @@
             <button id="team_kiwoom" class="button filter club">
               <p>키움</p>
             </button>
-
-            <button id="team_kia" class="button filter club">
-              <p>KIA</p>
-            </button>
-
-            <button id="team_kt" class="button filter club">
-              <p>KT</p>
-            </button>
           </div>
 
           <div class="Tline_3">
@@ -140,10 +132,10 @@
 
     <div class="playerContainer">
       <div id="player-container">
-        <div class="player" th:each="player : ${myPlayers}" th:data-player-id="${player.id}">
-          <img th:src="@{${player.imgLink}}" alt="player">
+        <div class="player" th:each="myPlayer : ${myPlayers}" th:data-player-id="${myPlayer.player.id}">
+          <img th:src="@{${myPlayer.player.imgLink}}" alt="player">
           <div class="bottomName">
-            <h4 th:text="${player.backNum + '. ' + player.name}"></h4>
+            <h4 th:text="${myPlayer.player.backNum + '. ' + myPlayer.player.name}"></h4>
           </div>
         </div>
       </div>

@@ -82,7 +82,6 @@ minusBtns.forEach(function(btn) {
 
 replay.addEventListener('click', function() {
     shuffleLogos();
-
     var scores = document.querySelectorAll('.score p');
     scores.forEach(function(score) {
         score.textContent = "0";
@@ -114,7 +113,19 @@ ok.addEventListener('click', function() {
        }
     });
     shouldRandomize(result);
+    updateOkButtonState();
 });
+
+// OK 버튼의 활성화 상태를 업데이트하는 함수
+function updateOkButtonState() {
+    var isAllScoresZero = Array.from(num).every(function (numElement) {
+        alert("예측 다시하기 버튼을 눌러주세요");
+        return parseInt(numElement.textContent, 10) === 0;
+    });
+
+    ok.disabled = !isAllScoresZero;
+}
+
 
 var newCoin = 0;
 var good = 0, bad = 0;

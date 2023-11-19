@@ -1,13 +1,9 @@
-body {
-    overflow: hidden;
-}
-
 header {
-    position: fixed; /* 스크롤 해도 항상 위치 고정함 */
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;
-    z-index: 100; /* 책 올릴 때 header 위로 올라가는 문제 해결 */
+    z-index: 100;
 }
 
 nav {
@@ -140,7 +136,7 @@ main {
     display: flex;
     justify-content: center;
     width: 290px;
-    height: 490px;
+    height: 400px;
     margin-top: 70px;
     margin-left: 30px;
     border-radius: 50px;
@@ -164,6 +160,10 @@ main {
     margin-top: 0;
 }
 
+.Tline_1 {
+    column-gap: 15%;
+}
+
 .Tline_1,
 .Tline_2 {
     display: flex;
@@ -175,6 +175,7 @@ main {
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
+    column-gap: 15%
 }
 
 .button.clicked {
@@ -186,12 +187,12 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 4vw;
+    width: 5vw;
     height: 4vh;
     background-color: #F5F5F5;
     border: none;
     border-radius: 30px;
-    margin: 10px 5px;
+    margin: 10px 15px;
     font-weight: bold;
     font-size: 0.9rem;
     cursor: pointer;
@@ -242,5 +243,5 @@ main {
     align-items: center;
     justify-content: center;
     margin-left: 2.3%;
-    margin-top: 14%;
+    margin-top: 11.5%;
 }

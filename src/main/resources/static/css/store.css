@@ -152,6 +152,10 @@ hr {
     margin-top: 0;
 }
 
+.Tline_1 {
+    column-gap: 15%;
+}
+
 .Tline_1,
 .Tline_2 {
     display: flex;
@@ -163,6 +167,7 @@ hr {
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
+    column-gap: 15%
 }
 
 .button.clicked {
@@ -174,7 +179,7 @@ hr {
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 4vw;
+    width: 5vw;
     height: 4vh;
     background-color: #F5F5F5;
     border: none;

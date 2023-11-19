@@ -26,11 +26,19 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             const data = await response.text();
-            var dataArray = data.split("|");
-            alert(dataArray[0]);
-            console.log(dataArray[0]);
+            if (data === 'alreadyBought') {
+                alert("이미 구매한 선수입니다");
+                return;
+            } else if (data === 'noMoney'){
+                alert("돈이 부족합니다");
+                return;
+            }
 
-            var updatedCoin = dataArray[0].replace("/[^0-9]/g", "");
+            var dataArray = data.split("|");
+            alert("선수 구매가 완료되었습니다");
+            console.log("선수 구매 성공");
+
+            var updatedCoin = dataArray[0];
             document.querySelector('.money h3').innerText = updatedCoin;
         } catch (error) {
             console.error('Error:', error);
