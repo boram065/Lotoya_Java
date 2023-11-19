@@ -2,12 +2,12 @@ package com.example.Lotoya_Java.controller;
 
 import com.example.Lotoya_Java.entity.Player;
 import com.example.Lotoya_Java.entity.User;
-import com.example.Lotoya_Java.entity.Wishlist;
+//import com.example.Lotoya_Java.entity.Wishlist;
 import com.example.Lotoya_Java.repository.MyPlayerRepository;
 import com.example.Lotoya_Java.repository.UserRepository;
 import com.example.Lotoya_Java.service.PlayerService;
 import com.example.Lotoya_Java.service.UserService;
-import com.example.Lotoya_Java.service.WishlistService;
+//import com.example.Lotoya_Java.service.WishlistService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import jakarta.servlet.http.HttpSession;
