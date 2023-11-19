@@ -50,7 +50,7 @@ public class fontController {
         model.addAttribute("vs", "/images/vs.jpg");
         model.addAttribute("club", "/images/club.jpg");
         model.addAttribute("FA", "/images/FA.jpg");
-        model.addAttribute("slide1", "/images/slide1.jpeg");
+        model.addAttribute("slide1", "/images/slide1.jpg");
         model.addAttribute("slide2", "/images/slide2.jpg");
         model.addAttribute("slide3", "/images/slide3.jpg");
         model.addAttribute("slide4", "/images/slide4.jpg");
