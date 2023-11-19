@@ -2,12 +2,10 @@ package com.example.Lotoya_Java.controller;
 
 import com.example.Lotoya_Java.entity.Player;
 import com.example.Lotoya_Java.entity.User;
-import com.example.Lotoya_Java.entity.Wishlist;
 import com.example.Lotoya_Java.repository.MyPlayerRepository;
 import com.example.Lotoya_Java.repository.UserRepository;
 import com.example.Lotoya_Java.service.PlayerService;
 import com.example.Lotoya_Java.service.UserService;
-import com.example.Lotoya_Java.service.WishlistService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import jakarta.servlet.http.HttpSession;
@@ -18,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -29,7 +26,6 @@ public class UserController{
     private final MyPlayerRepository myPlayerRepository;
     private final PlayerService playerService;
     private final JdbcTemplate jdbcTemplate;
-    private final WishlistService wishlistService;
     private static final String RESET_ID_SQL = "ALTER TABLE player AUTO_INCREMENT = 1";
 
     public static User getLoggedInUser(HttpSession session) {
@@ -114,7 +110,11 @@ public class UserController{
                 userRepository.save(loggedInUser);
 
                 Integer updatedCoin = userRepository.findById(loggedInUser.getId()).map(User::getCoin).orElse(0);
+<<<<<<< HEAD
+                return ResponseEntity.ok(updatedCoin + "");
+=======
                 return ResponseEntity.ok(updatedCoin+"");
+>>>>>>> 06e9f87e714139b422a517d92312b5e961c66f0f
             }
         } else {
             return ResponseEntity.badRequest().body("선수 찾을 수 없습니다");
@@ -134,6 +134,8 @@ public class UserController{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("사용자가 로그인하지 않았습니다.");
         }
     }
+<<<<<<< HEAD
+=======
 
     @PostMapping("/buyPlayer/addwishlist/{playerId}")
     public String addToWishlist(@PathVariable Long playerId, HttpSession session){
@@ -159,4 +161,5 @@ public class UserController{
     public List<Wishlist> getUserWishlist(@PathVariable Long userId) {
         return wishlistService.getWishlistByUserId(userId);
     }
+>>>>>>> 06e9f87e714139b422a517d92312b5e961c66f0f
 }

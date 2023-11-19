@@ -33,9 +33,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<MyPlayer> myPlayerList;
 
-    @OneToMany(mappedBy = "user")
-    private List<Wishlist> wishlistList;
-
     @Builder
     public User(String email, String password){
         this.email = email;
