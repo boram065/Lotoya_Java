@@ -64,7 +64,7 @@ public class UserController{
             return "redirect:/main";
         } else {
             model.addAttribute("error", "존재하지 않은 사용자입니다");
-            return "redirect:/join";
+            return "redirect:/login";
         }
     }
 

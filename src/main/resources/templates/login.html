@@ -45,6 +45,7 @@
         <!-- 에러 메세지 -->
         <script th:inline="javascript">
             var errorMessage = [[${error}]];
+            console.log(errorMessage);
 
             if (errorMessage) {
                 alert(errorMessage);
