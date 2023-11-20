@@ -147,55 +147,55 @@ function shouldRandomize(result) {
            var randomNum = Math.floor(Math.random() * 10);
            numElement.textContent = randomNum.toString();
        });
-       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
 
-    containers.forEach(function(container) {
-        var scoreRight = parseInt(container.querySelector(".scoreTable>.right>h2").innerText);
-        var scoreLeft = parseInt(container.querySelector(".scoreTable>.left>h2").innerText);
-        var scoresRight = container.querySelector(".scoreShowRight .score p");
-        var scoresLeft = container.querySelector(".scoreShowLeft .score p");
-        var scoreLeftValue = parseInt(scoresLeft.innerText);
-        var scoreRightValue = parseInt(scoresRight.innerText);
+        containers.forEach(function(container) {
+            var scoreRight = parseInt(container.querySelector(".scoreTable>.right>h2").innerText);
+            var scoreLeft = parseInt(container.querySelector(".scoreTable>.left>h2").innerText);
+            var scoresRight = container.querySelector(".scoreShowRight .score p");
+            var scoresLeft = container.querySelector(".scoreShowLeft .score p");
+            var scoreLeftValue = parseInt(scoresLeft.innerText);
+            var scoreRightValue = parseInt(scoresRight.innerText);
 
-        var addMoney = 0;
-        if (scoreRight > scoreLeft) {
-            addMoney = scoreRightValue - scoreLeftValue;
-            good += scoreRightValue;
-            bad += scoreLeftValue;
-        } else if (scoreRight < scoreLeft) {
-            addMoney = scoreLeftValue - scoreRightValue;
-            good += scoreLeftValue;
-            bad += scoreRightValue;
-        } else {
-            addMoney = 0;
-        }
+            var addMoney = 0;
+            if (scoreRight > scoreLeft) {
+                addMoney = scoreRightValue - scoreLeftValue;
+                good += scoreRightValue;
+                bad += scoreLeftValue;
+            } else if (scoreRight < scoreLeft) {
+                addMoney = scoreLeftValue - scoreRightValue;
+                good += scoreLeftValue;
+                bad += scoreRightValue;
+            } else {
+                addMoney = 0;
+            }
 
-        var currentUserCoinElement = document.querySelector('.coin .money h3');
-        var currentUserCoin = parseInt(currentUserCoinElement.innerText);
-        newCoin = currentUserCoin + addMoney;
-        currentUserCoinElement.textContent = newCoin.toString();
-    });
+            var currentUserCoinElement = document.querySelector('.coin .money h3');
+            var currentUserCoin = parseInt(currentUserCoinElement.innerText);
+            newCoin = currentUserCoin + addMoney;
+            currentUserCoinElement.textContent = newCoin.toString();
+        });
 
-    var totalCoins = good - bad;
-    var message = "얻은 코인: " + good + "\n" +
-                  "잃은 코인: " + bad + "\n" +
-                  (totalCoins >= 0 ? totalCoins + "코인 얻었습니다" : Math.abs(totalCoins) + "코인 잃었습니다");
-    alert(message);
+        var totalCoins = good - bad;
+        var message = "얻은 코인: " + good + "\n" +
+                      "잃은 코인: " + bad + "\n" +
+                      (totalCoins >= 0 ? totalCoins + "코인 얻었습니다" : Math.abs(totalCoins) + "코인 잃었습니다");
+        alert(message);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/forecast-coins', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/forecast-coins', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-    xhr.onreadystatechange = function () {
-       if (xhr.readyState === 4) {
-           if (xhr.status === 200) {
-               console.log("코인이 업데이트되었습니다.");
-           } else {
-               console.error("코인 업데이트 중 오류 발생:", xhr.statusText);
-               console.log("코인 업데이트 중 오류가 발생했습니다.");
+        xhr.onreadystatechange = function () {
+           if (xhr.readyState === 4) {
+               if (xhr.status === 200) {
+                   console.log("코인이 업데이트되었습니다.");
+               } else {
+                   console.error("코인 업데이트 중 오류 발생:", xhr.statusText);
+                   console.log("코인 업데이트 중 오류가 발생했습니다.");
+               }
            }
-       }
-    };
+        };
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     xhr.send('totalCoinsDifference=' + newCoin);
 }

@@ -32,9 +32,9 @@ public class PlayerController {
         return ResponseEntity.ok().body(filteredPlayers);
     }
 
-    private static final String JDBC_URL = "jdbc:mysql://lotoya-db.ctsk3n1v46sd.eu-north-1.rds.amazonaws.com/Lotoya_DB";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/lotoya";
     private static final String USER = "root";
-    private static final String PASSWORD = "12345678";
+    private static final String PASSWORD = "1234";
     private static final String RESET_ID_SQL = "ALTER TABLE player AUTO_INCREMENT = 1";
 
     @Transactional
