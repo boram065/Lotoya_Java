@@ -63,8 +63,8 @@ public class UserController{
             session.setAttribute("loggedInUser", user);
             return "redirect:/main";
         } else {
-            model.addAttribute("error", "존재하지 않는 유저입니다.");
-            return "redirect:/login";
+            model.addAttribute("error", "존재하지 않은 사용자입니다");
+            return "redirect:/join";
         }
     }
 

@@ -93,42 +93,6 @@ function updatePlayerList(data) {
 
         playerContainer.appendChild(playerDiv);
     });
-
-    buttons.forEach(function(button) {
-        button.addEventListener("click", function() {
-            console.log("Button Clicked!");
-            button.classList.toggle("clicked");
-            console.log("Button Classes:", button.classList.toString());
-            var clickedButtons = Array.from(buttons).filter(b => b.classList.contains("clicked"));
-            var club = clickedButtons
-                .filter(b => b.classList.contains("club"))
-                .map(b => b.textContent.trim())
-                .join(",");
-
-            var position = clickedButtons
-                .filter(b => b.classList.contains("position"))
-                .map(b => b.textContent.trim())
-                .join(",");
-
-            if (position === "") {
-                position = null;
-            } else if (club === ""){
-                club = null;
-            }
-
-            if (!position && !club) {
-                filterPlayers(null, null);
-            }
-
-            filterPlayers(club, position);
-        });
-    });
-
-    var searchInput = document.querySelector(".inputSearch");
-    searchInput.addEventListener("input", function () {
-        var searchTerm = searchInput.value;
-        filterPlayersBySearch(searchTerm);
-    });
 }
 
 // 검색 필터링

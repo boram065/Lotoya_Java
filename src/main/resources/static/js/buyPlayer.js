@@ -1,14 +1,19 @@
 //index = 0;
 document.addEventListener("DOMContentLoaded", function () {
      btnBuy.addEventListener('click', async function () {
-        btnBuy.classList.toggle('btnBasket-click');
-
+//        btnBuy.classList.toggle('btnBasket-click');
         var playerId = btnBuy.getAttribute("data-player-id");
 
         var playerIdValue = playerId ? parseInt(playerId) : 0;
         var requestData = {
             playerId: playerIdValue
         };
+
+        const isBought = await isPlayerBought(playerId);
+        if (isBought) {
+            btnBuy.classList.add('btnBasket-click');
+        }
+
 
 //         wishButton.addEventListener('click', function() {
 //           var heartIcon = document.querySelector('.bi-suit-heart-fill');
@@ -31,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const data = await response.text();
             if (data === 'alreadyBought') {
                 alert("이미 구매한 선수입니다");
+                btnBuy.classList.add('btnBasket-click');
                 return;
             } else if (data === 'noMoney'){
                 alert("돈이 부족합니다");
@@ -39,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var dataArray = data.split("|");
             alert("선수 구매가 완료되었습니다");
             console.log("선수 구매 성공");
-
+            btnBuy.classList.add('btnBasket-click');
             var updatedCoin = dataArray[0];
             document.querySelector('.money h3').innerText = updatedCoin;
         } catch (error) {

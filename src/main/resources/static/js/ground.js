@@ -16,6 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    var searchInput = document.querySelector(".inputSearch");
+    searchInput.addEventListener("input", function () {
+        var searchTerm = searchInput.value;
+        filterPlayersBySearch(searchTerm);
+    });
+
 //    buttons.forEach(function(button) {
 //        button.addEventListener("click", function() {
 //            button.classList.toggle("clicked");
@@ -66,6 +72,54 @@ document.addEventListener("DOMContentLoaded", function () {
 //        })
 //        .catch(error => console.error('Error:', error));
 //}
+
+function updatePlayerList(data) {
+    var playerContainer = document.getElementById('player-container');
+    playerContainer.innerHTML = '';
+
+    data.forEach(function (player) {
+        var playerDiv = document.createElement('div');
+        playerDiv.classList.add('player');
+        playerDiv.setAttribute('data-player-id', player.id);
+
+        var img = document.createElement('img');
+        img.setAttribute('src', player.imgLink);
+        img.setAttribute('alt', player.name);
+
+        var bottomNameDiv = document.createElement('div');
+        bottomNameDiv.classList.add('bottomName');
+        var h4 = document.createElement('h4');
+        h4.textContent = player.backNum + '. ' + player.name;
+
+        bottomNameDiv.appendChild(h4);
+        playerDiv.appendChild(img);
+        playerDiv.appendChild(bottomNameDiv);
+
+        playerContainer.appendChild(playerDiv);
+    });
+}
+
+// 필터링된 선수들을 가져오는 함수
+function filterPlayers(club, position) {
+    var url = '/store';
+    var requestBody = {
+        club: club,
+        position: position
+    };
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+    })
+        .then(response => response.json())
+        .then(data => {
+            updatePlayerList(data);
+        })
+        .catch(error => console.error('Error:', error));
+}
 
 function updatePlayerList(data) {
     var playerContainer = document.getElementById('player-container');

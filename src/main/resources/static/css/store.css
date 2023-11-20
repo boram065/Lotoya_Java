@@ -234,7 +234,7 @@ hr {
 
 .player {
     display: flex;
-    cursor: focus;
+    cursor: pointer;
 }
 
 .player img {

@@ -26,8 +26,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getUserByEmail(Long email) {
-        return userRepository.findByEmail(String.valueOf(email));
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     public User loginUser(String email, String password) {

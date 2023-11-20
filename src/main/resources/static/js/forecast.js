@@ -91,6 +91,8 @@ replay.addEventListener('click', function() {
         num.textContent = "0";
     });
 
+    ok.disabled = false;
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
@@ -116,15 +118,25 @@ ok.addEventListener('click', function() {
     updateOkButtonState();
 });
 
+num.forEach(function (numElement) {
+    numElement.addEventListener('input', function () {
+        updateOkButtonState();
+    });
+});
+
 // OK 버튼의 활성화 상태를 업데이트하는 함수
 function updateOkButtonState() {
     var isAllScoresZero = Array.from(num).every(function (numElement) {
         return parseInt(numElement.textContent, 10) === 0;
     });
-
-    ok.disabled = !isAllScoresZero;
+    ok.disabled = !isAllScoresZero || areAnyNumElementsNonZero();
 }
 
+function areAnyNumElementsNonZero() {
+    return Array.from(num).some(function (numElement) {
+        return parseInt(numElement.textContent, 10) !== 0;
+    });
+}
 
 var newCoin = 0;
 var good = 0, bad = 0;
