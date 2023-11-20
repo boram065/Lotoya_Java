@@ -82,7 +82,7 @@ main {
   align-items: center;
   position: absolute;
   top: calc(50% - 16px);
-  color: #292D32;
+  color: #fff;
   cursor: pointer;
 }
 

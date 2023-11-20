@@ -131,7 +131,9 @@ main {
     flex-direction: row;
 }
 
+
 /* 구단, 포지션 선택 */
+/*
 .check {
     display: flex;
     justify-content: center;
@@ -179,7 +181,7 @@ main {
 }
 
 .button.clicked {
-    background-color: #41B96F; /* 클릭 시 배경색 변경 */
+    background-color: #41B96F;
 }
 
 .button {
@@ -214,16 +216,22 @@ main {
     margin: 10px;
     padding: 2px;
 }
+*/
 
 /* 선수 이미지 */
+.playerContainer {
+    display: flex;
+    justify-content: center;
+    margin-left: 3%;
+}
+
 #player-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    margin-top: 10%;
-    margin-left: 10%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin-top: 5%;
     margin-bottom: 15%;
     column-gap: 60px;
-    row-gap: 50px;
+    row-gap: 70px;
 }
 
 .player {

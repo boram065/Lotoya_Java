@@ -22,7 +22,7 @@ public interface MyPlayerRepository extends JpaRepository<MyPlayer, Long> {
 
     List<MyPlayer> findByUser(User user) ;
 
-    List<MyPlayer> findByClubAndPosition(String club, String position);
-    List<MyPlayer> findByClub(String club);
-    List<MyPlayer> findByPosition(String position);
+//    List<MyPlayer> findByClubAndPosition(String club, String position);
+//    List<MyPlayer> findByClub(String club);
+//    List<MyPlayer> findByPosition(String position);
 }

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="icon" th:href="@{/images/MainLogo.png}"/>
+    <link rel="apple-touch-icon" th:href="@{/images/MainLogo.png}"/>
     <title>로그인</title>
 </head>
 <body>
@@ -20,13 +22,13 @@
 
             <ul class="nav-list">
                 <!-- 승부예측 이미지 -->
-                <li class="nav-item"><a th:href="@{/forecast}" class="nav-link"><img th:src="@{images/vs.jpg}" alt=""></a></li>
+                <li class="nav-item"><a class="nav-link"><img th:src="@{images/vs.jpg}" alt=""></a></li>
 
                 <!-- 야구장 이미지 -->
-                <li class="nav-item"><a th:href="@{/ground}" class="nav-link"><img th:src="@{images/club.jpg}" alt=""></a></li>
+                <li class="nav-item"><a class="nav-link"><img th:src="@{images/club.jpg}" alt=""></a></li>
 
                 <!-- FA 예약 이미지 -->
-                <li class="nav-item"><a th:href="@{/store}" class="nav-link"><img th:src="@{images/FA.jpg}" alt=""></a></li>
+                <li class="nav-item"><a class="nav-link"><img th:src="@{images/FA.jpg}" alt=""></a></li>
 
             </ul>
         </nav>
@@ -54,7 +56,7 @@
                 <h5 style="margin-left: -50px">아이디</h5>
                 <div class="input_container">
                     <input class="email_input" type="text" th:name="email">
-                    <div class="error" id="idErrorMessage" style="visibility: hidden">아이디 틀림 에러 메시지</div>
+<!--                    <div class="error" id="idErrorMessage" style="visibility: hidden">아이디 틀림 에러 메시지</div>-->
                 </div>
             </div>
 
@@ -63,7 +65,7 @@
                 <h5 style="margin-left: -40px">비밀번호</h5>
                 <div class="input_container">
                     <input class="pw_input" type="password" th:name="password">
-                    <div class="error" id="pwErrorMessage" style="visibility: hidden">비밀번호 틀림 에러 메시지</div>
+<!--                    <div class="error" id="pwErrorMessage" style="visibility: hidden">비밀번호 틀림 에러 메시지</div>-->
                 </div>
             </div>
 

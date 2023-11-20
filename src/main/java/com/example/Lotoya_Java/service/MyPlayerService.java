@@ -32,30 +32,30 @@ public class MyPlayerService {
         return myPlayerRepository.existsByUserAndPlayer(user, player);
     }
 
-    public List<PlayerViewResponse> getFilteredPlayers(PlayerFilterRequest filterRequest) {
-        String club = filterRequest.getClub();
-        String position = filterRequest.getPosition();
+//    public List<PlayerViewResponse> getFilteredPlayers(PlayerFilterRequest filterRequest) {
+//        String club = filterRequest.getClub();
+//        String position = filterRequest.getPosition();
+//
+//        List<MyPlayer> filteredPlayers;
+//
+//        if (club != null && position != null) {
+//            filteredPlayers = myPlayerRepository.findByClubAndPosition(club, position);
+//        } else if (club != null) {
+//            filteredPlayers = myPlayerRepository.findByClub(club);
+//        } else if (position != null) {
+//            filteredPlayers = myPlayerRepository.findByPosition(position);
+//        } else {
+//            filteredPlayers = myPlayerRepository.findAll();
+//        }
+//        return convertToPlayerViewResponseList(filteredPlayers);
+//    }
 
-        List<MyPlayer> filteredPlayers;
 
-        if (club != null && position != null) {
-            filteredPlayers = myPlayerRepository.findByClubAndPosition(club, position);
-        } else if (club != null) {
-            filteredPlayers = myPlayerRepository.findByClub(club);
-        } else if (position != null) {
-            filteredPlayers = myPlayerRepository.findByPosition(position);
-        } else {
-            filteredPlayers = myPlayerRepository.findAll();
-        }
-        return convertToPlayerViewResponseList(filteredPlayers);
-    }
-
-
-    private List<PlayerViewResponse> convertToPlayerViewResponseList(List<MyPlayer> players) {
-        List<PlayerViewResponse> playerViewResponses = new ArrayList<>();
-        for (MyPlayer player : players) {
-            playerViewResponses.add(new PlayerViewResponse(player.getPlayer()));
-        }
-        return playerViewResponses;
-    }
+//    private List<PlayerViewResponse> convertToPlayerViewResponseList(List<MyPlayer> players) {
+//        List<PlayerViewResponse> playerViewResponses = new ArrayList<>();
+//        for (MyPlayer player : players) {
+//            playerViewResponses.add(new PlayerViewResponse(player.getPlayer()));
+//        }
+//        return playerViewResponses;
+//    }
 }
